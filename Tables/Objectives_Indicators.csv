@@ -1,0 +1,8 @@
+Objective,B1,B2,B3,B4,B4*,B5,B6,B7,B7*,S1,S1*,S2,S2*,S3,G1,G2,G3,G4,G5,G6,G7,G8,G9,G10,G11,G12,G13,G14,G15
+ Avoid overexploitation,,,x,,x,x,,,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+ Conserve species under a special protection,,,x,,x,x,,,x,x,,x,,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+ Maintain biological process,,,,x,x,x,,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+ Improve fishery production in nearby waters,,,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+ Preserve biological diversity and the ecosystem,,,x,,x,x,,,x,,x,,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+ Recover overexploited species,x,x,,x,,x,x,x,,,,,,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+ Recover species of economic interest,x,x,,x,,x,x,x,,,,,,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x

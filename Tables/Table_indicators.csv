@@ -1,0 +1,26 @@
+Code,Indicator,Data type,Unit (if applicable)
+B1,Shannon diversity index,Continuous,
+B2,Species richness,Discrete,Number of species / transect
+B3,Density of mature organisms,Continuous,Percent points
+B4,Density*,Continuous,Organisms/transect
+B5,Natural Disturbance,Descriptive,
+B6,Mean Trophic Level,Continuous,
+B7,Biomass*,Continuous,kg/transect
+S1,Total landings*,Continuous,kg
+S2,Income from total landings*,Continuous,$
+S3,Alternative economic opportunities,Ordinal,
+G1,Access to the fishery,Categorical,
+G2,Number of fishers,Discrete,
+G3,Legal recognition of reserve,Binary,
+G4,Reserve type,Descriptive,
+G5,Illegal harvesting,Ordinal,
+G6,Management plan,Binary,
+G7,Reserve enforcement,Descriptive,
+G8,Size of reserve,Discrete,
+G9,Reasoning for reserve location,Descriptive,
+G10,Membership to fisher organizations,Binary,
+G11,Type of fisheries organizations,Categorical,
+G12,Representation,Ordinal,
+G13,Internal Regulation,Binary,
+G14,Perceived Effectiveness,Categorical,
+G15,Social Impact of Reserve,Categorical,
