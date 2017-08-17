@@ -12,7 +12,7 @@ fontsize: 12pt
 bibliography:
 - exported-references.bib
 - packages.bib
-# csl: plos.csl
+csl: plos.csl
 ---
 
 ```{r setup, include=FALSE}
@@ -23,16 +23,20 @@ windowsFonts(Times=windowsFont("TT Times New Roman"))
 
 ```
 
-Juan Carlos Villaseñor-Derbez^1\*^, Caio Faro^1^, Melaina Wright^1^, Jael Martínez^1^, Alvin Suárez^2^, Stuart Fulton^2^, Sean Fitzgerald^1^, Gavin McDonald^4^, Jorge Torre-Cosio^2^, Fiorenza Micheli^3^, Christopher Costello^1,4^ \
+Juan Carlos Villaseñor-Derbez^1\*^, Caio Faro^1^, Melaina Wright^1^, Jael Martínez^1^, Sean Fitzgerald^1^, Stuart Fulton^2^, Maria del Mar Mancha-Cisneros^3^, Gavin McDonald^1,4,5^, Fiorenza Micheli^6^, Alvin Suárez^2^, Jorge Torre^2^, Christopher Costello^1,4,5^
 
 
 ^1^ Bren School of Environmental Science and Management, University of California Santa Barbara, Santa Barbara, California, United States
 
 ^2^ Comunidad y Biodiversidad A.C., Calle Isla del Peruano, Guaymas, Sonora, México
 
-^3^ Hopkins Marine Station, Stanford University, Monterey, California, United States
+^3^ School of Life Sciences, Arizona State University, Tempe, Arizona, United States
 
-^4^ Sustainable Fisheries Group, University of California Santa Barbara, Santa Barbara, California, United States \
+^4^ Sustainable Fisheries Group, University of California Santa Barbara, Santa Barbara, California, United States
+
+^5^ Marine Science Institute, University of California Santa Barbara, Santa Barbara, California, United States
+
+^6^ Hopkins Marine Station and Center for Ocean Solutions, Stanford University, Pacific Grove, CA 93950, USA
 
 
 \*Corresponding author
