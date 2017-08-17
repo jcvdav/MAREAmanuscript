@@ -342,7 +342,7 @@ The scorecard (**Fig. 4**) shows that, overall, the reserve has a good performan
 
 \clearpage
 
-![Scorecard for the "La Plana / Las Cuevas" marine reserve in Isla Natividad, Mexico. This scorecard was produced by MAREA.)](./Figures/scorecard.png){ width=50% }
+![Scorecard produced by MAREA for the "La Plana / Las Cuevas" marine reserve in Isla Natividad, Mexico.](./Figures/scorecard.png){ width=50% }
 
 ```{r summary of bio results}
 shannon_fish_model <- fish_results$model[[1]] %>% 
