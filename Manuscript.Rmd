@@ -609,19 +609,40 @@ read.csv("Tables/Governance_data.csv", col.names = c("Indicator", "Description")
 
 \clearpage
 
-# Conclusions
+# Discussion and Conclusions
 
-One of the greatest challenges in management measuring the extent to which objectives have been met. The present framework provides a simple and straightforward way to align management objectives with performance indicators. We aknowledge that these 25 indicators might not fully describe a particular reserve. However, we believe that these provide a starting point to perform the evaluation, and urge decision-makers, managers, and users to include other indicators (*e.g.* larval dispersal or connectivity) that are relevant to their reserve.
+Here we discuss the ways in which results can be interpreted and
 
-The proposed methodologies, specially the way in which biophysical indicators are evaluated, provide valuable information for managers. The analysis isolates the net effect of the reserve, providing a propper measure of reserve effectiveness. We acknowledge there is room for improvement in the way in which socioeconomic and governance data are analized. Despire this, we believe that providing a unifying platform where all can be analyzed and comprehensively presented represents a valuable step towards evidence-based effective management.
+The interpretation of the $\beta_2$ coefficient is always relative to the control site. A positive value ($\beta_2 > 0$) might not nessesarily indicate an increase in the indicator. For example, invertebrate density presents a value of $\beta_2 = `r formatC(bio_results_summary$estimate[8], digits = 2, format = "f")`$ (*p* < 0.05), but Figure 5h shows a decrease in the indicator for the reserve and control sites through time. The decrease inside the reserve is not as abrupt as the changes in the control site, indicating that the reserves seem to provide a buffering effect. With additional knowledge of environmental variability (*i.e.* indicator B5 -- Natural Disturbance), we can better understand the performance of this indicator. As shown by @micheli_2012-EU, decreases in density can be caused by local hypoxic events.
 
-Furthermore, MAREA's value is that it provides a free, simple, and replicable way to perform rigurous analysis. The tool can easily be used by fishers, NGO members, and managers in government agencies, providing transparency of the analysis and results. The way in which results are presented allow this information to be interpreted by a wider audience. The scorecard is easily understandable by experts and non-experts, and can be used as an effective tool for communicating the results of yearly evaluations. On the other side, the technical report can serve as a tool for managers and scientists to rapidly communicate information at a more technical level.
+The results identified by our framework and MAREA are consistent to those previously published [*e.g.* @micheli_2012-EU; @rossetto_2015-V0]. While invertebrates show decreases in density for reserve and control sites, their densities remained higher within the reserve. Here, the positive effect indicated by $\beta_2$ does not indicate an increase in density, but rather a slower decrease in the reserve. This has occurred likely due to local hypoxic events [@micheli_2012-EU], where the reserves seem to provide a buffering effect.
 
-While the first release of MAREAis now available, it will continue to be developed and maintained. This will incorporate new features, and enhance current ones, aiming to improve user experience and expand the scope of the analysis. Yet, we believe that this first release represents a major step towards effective management of marine reserves.
+---
+
+While we are not able to infer causality from the socioeconomic analysis, we are able to identify important trends. For example, snail and urchin density have significantly increased within the reserve, but their landings and income have decreased. The opposite is observed for lobster and cucumber, which have shown increases in densities, landing, and income. While further information on market behavior of each species is needed, these results provide insights into the state of the reserve, as well as the associated fisheries.
+
+-----
+
+One of the greatest challenges in management measuring the extent to which objectives have been met. The present framework provides a simple and replicable way to align management objectives with performance indicators. We recognize that these 25 indicators might not fully describe a reserve. However, they provide a starting point to perform the evaluation, to which managers and users can add other indicators (*e.g.* larval dispersal or connectivity) that are relevant to their reserve.
+
+The proposed methodologies, especially the way in which biological indicators are evaluated, provide valuable information for managers. The analysis isolates the net effect of the reserve, providing a proper measure of reserve effectiveness. We acknowledge there is room for improvement in the way in which socioeconomic and governance data are analyzed. Despite this, we believe that providing a unifying platform where all indicators can be analyzed and comprehensively presented represents a valuable step towards evidence-based effective management.
+
+Furthermore, MAREA's value is that it provides a free, simple, and replicable way to perform rigorous impact analysis. The tool can easily be used by fishers, SCO members, and managers in government agencies, providing transparency of the analysis and results. In addition, it can empower and enable local managers and fishers to respond to local change and adapt by allowing direct and easy access to the information. The way in which results are presented allows this information to be interpreted by a wide-ranging audience. The scorecard is easily understandable by experts and non-experts, and can be used as an effective tool for communicating the results of annual evaluations. Additionally, the technical report can serve as a tool for managers and scientists to rapidly produce and communicate information at a more technical level.
+
+While the first release of MAREA is now available, it will continue to be developed and maintained. This will incorporate new features, and enhance current ones, aiming to improve user experience and expand the scope of the analysis. Yet, we believe that this first release represents a major step towards effective evaluation and management of marine reserves.
 
 # Acknowledgements
 
-The authors wish to thank the fishers from Isla Natividad, who gathered the data used in this study, and the fishers from El Rosario, who helped us validate our survey and framework. Input provided by the participants in the workshop "" was very valuable. We also thank Olivier Deschenes and Andrew Plantinga, who provided valuable input to design the model that evaluates the biophysical indicators.
+We thank Olivier Deschenes and Andrew Plantinga, who provided valuable input to design the model that evaluates the biological indicators. Special thanks to the fishers from Isla Natividad, who gathered the data used in this study, and the fishers from El Rosario, who helped us validate our survey and framework, and to Arturo Hernández and Alfonso Romero who provided help with the logistics. Input provided by the participants in the workshop "" was very valuable.
+
+# Funding
+
+- CF and JC received support from the Latin American Fisheries Fellowship Program.
+- JC received support from the Consejo Nacional de Ciencia y Tecnología (CONACyT).
+- GM - We would also like to thank the Waitt Foundation for their financial support. Carlos Slim Foundation Alliance.
+- The biological data for Isla Natividad were collected with the support of the Walton Family Foundation and the NSF-CNH program (grant DEB-1212124).
+- We also thank the support of: The Nature Conservancy and World Wildlife Fund-
+
 
 \clearpage
 
