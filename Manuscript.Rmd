@@ -188,14 +188,16 @@ landings <- read.csv("Data/natividad_landings_conapesca.csv", stringsAsFactors =
 
 ```
 
-We apply the proposed framework and tool to evaluate the effectiveness of one marine reserve from Isla Natividad, in Baja California Sur, Mexico. Isla Natividad is located 8 Km off the Pacific Coast of the Baja Peninsula (**Fig. 3**), where fishers operate under a fishing cooperative (S.C.P.P. Buzos y Pescadores de la Baja California) that promotes co-management of marine resources [@mccay_2017-1m; @mccay_2014-CN]. Additionaly, fishers have Territorial Use Rights for Fisheries (TURFs) that provide them with exclusive access rights to exploit the marine resources in a given perimeter.
+We apply this analytical framework and open access tool to evaluate the effectiveness of one marine reserve from Isla Natividad, in Baja California Sur, Mexico. Isla Natividad is located 8 Km off the Pacific Coast of the Baja Peninsula (Fig. 3), where fishers operate under a fishing cooperative (S.C.P.P. Buzos y Pescadores de la Baja California) that promotes co-management of marine resources [@mccay_2017-1m; @mccay_2014-CN]. Additionally, fishers have Territorial Use Rights for Fisheries (TURFs) that provide them with exclusive access rights to exploit the marine resources within a given perimeter [@mccay_2014-CN].
 
-```{r map, fig.cap = "General location of Isla Natividad (left) and map of the island (right). The marine reserve polygon is indicated in gray, and the approximate location of the control site is shown with no fill."}
+```{r map, fig.cap = "General location of Isla Natividad (left) and map of the island (right). The marine reserve polygon is indicated in red, and the approximate location of control sites is indicated by blue squares (B = Babencho, D = La Dulce)."}
 proj <- CRS("+proj=longlat +datum=NAD27")
 
 baja <- readOGR(dsn = "./Data/Spatial", layer = "muni_2015gw", verbose = F)
 
 stat <- baja[baja$NOM_ENT %in% c("Baja California Sur", "Baja California", "Sonora"),]
+stat$COUNTRY <- "Mexico"
+stat <- unionSpatialPolygons(stat, stat$COUNTRY)
 
 baja2 <- baja[baja$NOM_ENT %in% c("Baja California Sur"),]
 
