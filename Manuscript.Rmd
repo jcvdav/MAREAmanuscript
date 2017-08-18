@@ -220,34 +220,58 @@ reserves <- read.csv("./Data/Spatial/baja_coordinates.csv", stringsAsFactors = F
   list() %>% 
   SpatialPolygons(proj4string = proj2)
 
-# Transects
-transects <- data.frame(X = -115.187, Y = 27.865)
-coordinates(transects) <- c("X", "Y")
-proj4string(transects) <- proj2
-transects <- spTransform(transects, proj2)
+# Labes for first map
+labels1 <- data.frame(X = c(-111, -111, -116), Y = c(32, 30, 25), Label = c("USA", "Mexico", "Pacific Ocean"))
+coordinates(labels1) <- c("X", "Y")
+proj4string(labels1) <- proj2
+labels1 <- spTransform(labels1, proj2)
+
+# controls
+controls <- data.frame(X = c(-115.187, -115.1464), Y = c(27.865, 27.84407), Label = c("B", "D"))
+coordinates(controls) <- c("X", "Y")
+proj4string(controls) <- proj2
+controls <- spTransform(controls, proj2)
+
+# Labels for second map
+labels2 <- data.frame(X = c(-115.17, -115.17, -115.17), Y = c(27.89, 27.8675, 27.8625), Label = c("Pacific Ocean", "Isla", "Natividad"))
+coordinates(labels2) <- c("X", "Y")
+proj4string(labels2) <- proj2
+labels2 <- spTransform(labels2, proj2)
 
 # Maps
-pen_map <- tm_shape(stat, bbox = bb(xlim = c(-118.36648, -109.41321), ylim = c(22.87195, 32.71863))) +
+data(World)
+W <- spTransform(World, proj)
+W <- W[W$name == "United States",]
+
+pen_map <- tm_shape(W, bbox = bb(xlim = c(-118.36648, -109.41321),
+                                 ylim = c(22.87195, 32.71863))) +
+  tm_polygons() +
+  tm_shape(stat) +
   tm_polygons() +
   tm_shape(res1) +
   tm_symbols(shape = 0, size = 2, border.col = "black", col = "black", border.lwd = 2) +
+  tm_shape(labels1) +
+  tm_text("Label") +
   tm_scale_bar(position = c("left", "bottom"))
 
-study_area <- tm_shape(baja2, bbox = bb(xlim = c(-115.22, -115.15), ylim = c(27.85, 27.90))) +
+study_area <- tm_shape(baja2, bbox = bb(xlim = c(-115.22, -115.14), ylim = c(27.85, 27.90))) +
   tm_polygons() +
   tm_shape(reserves) +
-  tm_polygons(border.col = "black", col = "gray", border.lwd = 0) +
-  tm_shape(transects) +
-  tm_symbols(shape = 0, size = 4, border.col = "black", col = "black", border.lwd = 1) +
+  tm_polygons(border.col = "black", col = "red", border.lwd = 0) +
+  tm_shape(controls) +
+  tm_symbols(shape = 22, size = 4, border.col = "black", col = "blue", border.lwd = 1) +
+  tm_text("Label") +
+  tm_shape(labels2) +
+  tm_text("Label") +
   tm_compass(position = c("left", "bottom")) +
   tm_scale_bar(position = c("left", "bottom"))
 
 tmap_arrange(pen_map, study_area, outer.margins = 0.005, ncol = 2)
 ```
 
-In 2006, the community implemented two marine reserves within their TURF [making them TURF-reserves; @afflerbach_2014-HP]. The reserves from Isla Natividad have prooven to be effective in enhancing resilience to climate variations [@micheli_2012-EU] and preserving genetic diversity of highly valuable commercial species, like abalone [@munguavega_2015-yg]. These ecological benefits have been translated into economical benefits, enhancing population persistance and supporting abalone fisheries [@rossetto_2015-V0]. For the purpose of this evaluation, we will focus on the "La Plana / Las Cuevas" Marine reserve, located in the southern end of the Island (**Fig. 3**) and its corresponding control site "La Dulce / Babencho".
+In 2006, the community implemented two community-based marine reserves within their TURF [@afflerbach_2014-HP; @lester_2017-nh]. These reserves have proven to be effective in enhancing resilience to climate variations [@micheli_2012-EU] and preserving genetic diversity of highly valuable commercial species such as abalone [@munguavega_2015-yg]. These ecological benefits have been translated into economic benefits, enhancing population persistence and bolstering abalone fisheries [@rossetto_2015-V0]. For the purpose of this evaluation, we focused on the “La Plana / Las Cuevas” marine reserve, located in the southern end of the Island (Fig. 3) and its corresponding control site “La Dulce / Babencho”.
 
-The reserve was implemented to recover species of economic interest -which were overexplotied- in order to enhance fishery production in nearby waters. Fishers were also interested in preserving biological diversity and the ecosystem. Thus, objectives objectives 4-7 were selected. Using **Table 2** to match these objectives with appropriate management indicators, we selected all biophysical, socioeconomic, and governance indicators.
+The reserve was implemented to recover species of economic interest --–which were overexploited--- to enhance fishery production in nearby waters. Fishers were also interested in preserving biological diversity and the ecosystem. Thus, objectives 4--7 were selected. Using Table 2 to match these objectives with appropriate management indicators, we selected all biological, socioeconomic, and governance indicators included as options in the framework.
 
 ```{r, data summaries}
 fish_summary <- fish_data %>% 
@@ -273,12 +297,11 @@ landings_summary <- landings %>%
   mutate(Valor = Valor/sum(Valor)*100)
 ```
 
-Biophysical data was gathered by fishers from the community. The reserves have been monitored following a standardized ReefCheck protocol [@suman_2010-ez] to collct data on fish and invertebrate communities inside and outside the reserves between 2016 and 2017. A total of `r sum(fish_summary$Reserva)` and `r sum(invert_summary$Reserva)` transects were performed in the reserve site for fish and invertebrate surveys, respectively. Similar sampling effort was applied to the control site, with `r sum(fish_summary$Control)` fish and `r sum(invert_summary$Control)` invertebrate transects. Between 12 and 27 transects were performed in each site every year.
+Local fishers ---trained in scientific diving by the NGO Comunidad y Biodiversidad, A.C. (COBI; [www.cobi.org](www.cobi.org))--- and personnel from COBI performed SCUBA dives to record fish and invertebrate richness and abundances, as well as fish total length. Information was recorded along 30 m transects, with a sampling window of 2 m X 2 m following a standardized ReefCheck protocol [@suman_2010-ez]. Ecological surveys are performed yearly in each reserve and corresponding control site(s), before and after the implementation of the reserve, allowing us to have a before-after-control-impact sampling design. Yearly surveys (2006 -– 2016) were carried out in late July -- early August, performing a total of `r sum(fish_summary$Reserva)` and `r sum(invert_summary$Reserva)` transects in the reserve site for fish and invertebrate surveys, respectively. Similar sampling effort was applied to the control site, with `r sum(fish_summary$Control)` fish and `r sum(invert_summary$Control)` invertebrate transects. Between 12 and 27 transects were performed in each site every year.
 
-Socioeconomic data was obtained from the National Comission for Fisheries and Acuaculture (Comisión Nacional de Pesca y Acuacultura; CONAPESCA). The data contains species-level (`r length(unique(landings$GeneroEspecie))+2` spp) information on monthly landings and income from 2000 to 2014. Data on landings and income was aggeregated by year, and the yearly Consumer Price Index was included. From the `r length(unique(landings$GeneroEspecie))+2` species available, we selected as objective species those that contribute the most (88.27%) to historical income: lobster (*Panulirus interruptus*; 71.76%), red sea urchin (*Strongylocentrotus franciscanus*; 9.33%), snail (*Megastraea undosa*; 3.93%), and sea cucumber (*Parastichopus parvimensis*; 3.23%). Abalone species (*Haliotis fulgens*; 4.52 and *Haliotis corrugata*; 6.16) were excluded because the cooperative decided to implement an informal closure on the species to allow its populations to recover. Eliminating all fishing preasure on these species means that control sites receive (for this species) the same treatment.
+Socioeconomic data was obtained from the National Commission for Fisheries and Aquaculture (Comisión Nacional de Pesca y Acuacultura; CONAPESCA). The data contains species-level (`r length(unique(landings$GeneroEspecie))+2` spp.) information on monthly landings and income from 2000 to 2014. Data on landings and income was aggregated by year, and the yearly Consumer Price Index was included. From the nine species available, we selected as objective species those that contribute the most (88.27%) to the available 2000 to 2014 income: lobster (*Panulirus interruptus*; 71.76%), red sea urchin (*Mesocentrotus franciscanus*; 9.33%), snail (*Megastraea undosa*; 3.93%), and sea cucumber (*Parastichopus parvimensis*; 3.23%). Abalone species (*Haliotis fulgens*; 4.52 and *Haliotis corrugata*; 6.16) were excluded because the cooperative has implemented an informal closure of these fisheries to allow its populations to recover since 2010. Eliminating all fishing pressure on abalones means that the control site receives (for this species) the same treatment as the reserve.
 
-For govenance data, we constructed the database based on our knowledge of the area, as well as prototype interviews performed to liders of the fishing cooperative.
-
+For governance data, we constructed the database based on our knowledge of the area and the community.
 
 ```{r source functions}
 source("Functions/mpa_plot4.R")
@@ -286,7 +309,6 @@ source("Functions/my_theme.R")
 source("Functions/bio_results.R")
 source("Functions/bio_results_i.R")
 ```
-
 
 ```{r fish analysis}
 splist <- sp_list(fish = fish_data, invert = invert_data, rc = "La Plana / Las Cuevas - La Dulce / Babencho")
