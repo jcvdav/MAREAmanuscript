@@ -57,6 +57,7 @@ suppressPackageStartupMessages({
   library(knitr)
   library(kableExtra)
   library(stargazer)
+  library(maptools)
   library(tmap)
   library(tmaptools)
   library(rgdal)
