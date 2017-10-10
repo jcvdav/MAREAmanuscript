@@ -1,5 +1,5 @@
 ---
-title: \normalsize{A general approach and tool to evaluate the effectiveness of no-take marine reserves}
+title: \normalsize{A user-friendly tool to evaluate the effectiveness of no-take marine reserves}
 header-includes:
 - \usepackage{setspace}
 - \doublespacing
