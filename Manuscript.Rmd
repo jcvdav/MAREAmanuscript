@@ -1,19 +1,31 @@
 ---
 title: A user--friendly tool to evaluate the effectiveness of no--take marine reserves
+subtitle: Marine reserve evaluation
 header-includes:
 - \usepackage{setspace}
 - \doublespacing
 - \usepackage{lineno}
 - \linenumbers
 output:
-  word_document:
+  pdf_document:
     fig_caption: yes
+    keep_tex: yes
 fontsize: 12pt
 bibliography:
 - exported-references.bib
 - packages.bib
 csl: plos.csl
 ---
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { 
+      equationNumbers: { 
+            autoNumber: "all",
+            formatNumber: function (n) {return '9.'+n}
+      } 
+  }
+});
+</script>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = F)
@@ -51,7 +63,7 @@ Email: jvillasenor@bren.ucsb.edu (JCVD)
 
 **Abstract**
 
-Marine reserves are implemented to achieve a variety of objectives, but are seldom rigorously evaluated to determine whether those objectives are met. In the rare cases when evaluations do take place, they typically focus on ecological indicators and ignore other relevant objectives such as socioeconomics and governance. And regardless of the objectives, the diversity of locations, monitoring protocols, and analysis approaches hinder the ability to compare results across case studies. Moreover, analysis and evaluation of reserves is generally conducted by outside researchers, not the reserve managers or users, plausibly thereby hindering effective local management and rapid response to change. We present a framework and tool, called “MAREA”,to overcome these challenges. Its purpose is to evaluate the extent to which any given reserve has achieved its stated objectives.  MAREA provides specific guidance on data collection and formatting, and then conducts rigorous causal inference analysis based on data input by the user, providing real--time outputs about the effectiveness of the reserve. MAREA’s ease of use, standardization of state--of--the--art inference methods, and ability to analyze marine reserve effectiveness across ecological, socioeconomic, and governance objectives could dramatically further our understanding and support of effective marine reserve management.
+Marine reserves are implemented to achieve a variety of objectives, but are seldom rigorously evaluated to determine whether those objectives are met. In the rare cases when evaluations do take place, they typically focus on ecological indicators and ignore other relevant objectives such as socioeconomics and governance. And regardless of the objectives, the diversity of locations, monitoring protocols, and analysis approaches hinder the ability to compare results across case studies. Moreover, analysis and evaluation of reserves is generally conducted by outside researchers, not the reserve managers or users, plausibly thereby hindering effective local management and rapid response to change. We present a framework and tool, called “MAREA”, to overcome these challenges. Its purpose is to evaluate the extent to which any given reserve has achieved its stated objectives.  MAREA provides specific guidance on data collection and formatting, and then conducts rigorous causal inference analysis based on data input by the user, providing real--time outputs about the effectiveness of the reserve. MAREA’s ease of use, standardization of state--of--the--art inference methods, and ability to analyze marine reserve effectiveness across ecological, socioeconomic, and governance objectives could dramatically further our understanding and support of effective marine reserve management.
 
 ```{r load packages}
 suppressPackageStartupMessages({
@@ -142,17 +154,17 @@ In many coastal marine reserves of Mexico, biological data are collected via und
 
 This sampling design for biological data allows us to use causal inference techniques [@moland_2013-VP; @ferraro_2006-oW] to evaluate the effect of the reserve on biological indicators. The hypothesis that the indicators will respond to implementation of the reserve is tested by analyzing spatial and temporal changes in each numeric biological indicator (all but B5) using generalized linear models [@moland_2013-VP]. To account for variations in the environment and survey conditions, covariates that are gathered during the underwater ecological surveys are included in the difference-in-differences model with form:
 
-$$I_{i,t,z}=\beta_0 + \sum_{t = 2}^T\gamma_{t}Y_t + \beta_1Z_{i,z} + \beta_2P_{i,t}\times Z_{i,z} + \beta_3T_{i,t,z} + \beta_4V_{i,t,z} + \beta_5D_{i,t,z} + \epsilon_{i,t,z}$$
+\begin{equation}I_{i,t,z}=\beta_0 + \sum_{t = 2}^T\gamma_{t}Y_t + \beta_1Z_{i,z} + \beta_2P_{i,t}\times Z_{i,z} + \beta_3T_{i,t,z} + \beta_4V_{i,t,z} + \beta_5D_{i,t,z} + \epsilon_{i,t,z}\end{equation}
 
 In this model, $i$, $t$, and $z$ are indices for transect, time, and zone (control or reserve site), respectively. This model allows us to estimate the change in an indicator ($I$) based on the year ($Y$), a dummy variable that indicates treatment ($Z$; *i.e.* control or reserve), an interaction between a dummy variable that indicates pre-- or post--implementation ($P$) and treatment ($Z$), and covariates such as bottom temperature ($T$; in °C), horizontal visibility during the survey ($V$; in m), and depth at which survey was performed ($D$; in m). $\epsilon$ represents the error term associated to the regression. Here, years are modeled as factors, using the first year as the reference level. This does not impose a linear structure in the way an indicator changes through time (*i.e.* the change in biomass between 2006 and 2007 does not have to be the same as the change between 2015 and 2016). The treatment and implementation variables, modeled as dummy variables, are coded as Control = 0 and Reserve = 1; and Pre--implementation = 0 and Post--implementation = 1, respectively.
 
 Socioeconomic data are often collected by fishers, natural resource management agencies, or CSOs by recording landings, income, and sometimes prices for each species. To control for inflation, income is adjusted with the country’s consumer price index [@oecd_website_2017-VV]:
 
-$$I_t = RI\times \frac{CPI_t}{CPI_T}$$
+\begin{equation}I_t = RI\times \frac{CPI_t}{CPI_T}\end{equation}
 
 Where $I_t$ represents the adjusted income for year $t$ as the product between the reported income for that year and the ratio between the consumer price index ($CPI$) in that year to the most recent year’s ($T$) CPI. Since no control sites are typically available for this data type, numeric socioeconomic indicators (S1 and S2) are evaluated with a simplified version of eq. 1:
 
-$$I_{t}=\beta_0 + \beta_1P_{t} + \epsilon_{t}$$
+\begin{equation}I_{t}=\beta_0 + \beta_1P_{t} + \epsilon_{t}\end{equation}
 
 While this model does not formally allow for causal inference, we can still measure changes in mean landings and income before and after the implementation of the reserve and provide valuable input. For both models (eq. 1 and eq. 3), we estimate the model coeficients with ordinary least squares, and calculate heteroskedastic–robust standard errors.
 
@@ -641,15 +653,6 @@ The first release of MAREA is now available, and it will continue to be develope
 
 We thank Olivier Deschenes and Andrew Plantinga, who provided valuable input to design the model that evaluates the biological indicators. Special thanks to the fishers from Isla Natividad, who gathered the data used in this study, and the fishers from El Rosario, who helped us validate our survey and framework, and to Arturo Hernández and Alfonso Romero who provided help with the logistics.
 
-# Funding
-
-- CF and JCVD received support from the Latin American Fisheries Fellowship Program.
-- JCVD received support from the Consejo Nacional de Ciencia y Tecnología (CONACyT).
-- GM received financial support from Waitt Foundation.
-- Biological data for Isla Natividad were collected with the support of the Walton Family Foundation, the NSF-CNH program (grant DEB-1212124), Marisla Foundation, Sandler Family Supporting Foundation, and Packard Foundation.
-- AS received support from The Nature Conservancy and World Wildlife Fund--Carlos Slim Foundation Alliance
-
-
 \clearpage
 
 ```{r ATE socio, eval = F, include =F}
@@ -711,27 +714,3 @@ gridExtra::grid.arrange(plot_ATE_all_bio, plot_ATE_small_bio, ncol = 2)
 **S2 Appendix. Survey to collect governance information from fishing communities.** Spanish version
 
 **S3 Table. Assigned values and reasoning of socioeconomic and governance indicators used to color-code the scorecard in MAREA**
-
-# Figures
-
-![Workflow to evaluate the effectiveness of marine reserves.](./Figures/flowchart.gif){ width="50%"}
-
-```{r, fig.cap = "Legend used to interpret the scorecard produced by MAREA. Colors indicate direction of change (red = negative; green = positive), and color intensity is given by the statistical significance"}
-fig2
-```
-
-```{r, fig.cap = "General location of Isla Natividad (left) and map of the island (right). The marine reserve polygon is indicated in red, and the approximate location of control sites is indicated by blue squares (B = Babencho, D = La Dulce)."}
-tmap_arrange(pen_map, study_area, outer.margins = 0.005, ncol = 2)
-```
-
-![Scorecard produced by MAREA for the "La Plana / Las Cuevas" marine reserve in Isla Natividad, Mexico.](./Figures/scorecard.png){ width=80% }
-
-```{r, fig.height = 6, fig.width = 6, fig.cap = "Plots for values of each biological indicator (y-axis) through time (x-axis). Red and blue correspond to the reserve and control sites, respectively. Black lines indicate yearly mean values, and ribbons indicate +/- 1 standard error. Dots are horizontally jittered to aid visualization. This figure contains information for fish shannon diversity index (a), fish species richness (b), fish density (c), fish trophic level (d), fish biomass (e), invertebrate shannon diversity index (f), invertebrate species richness (g), invertebrate density (h), lobster density (i), urchin density (j), snail density (k), and sea cucumber density (l)."}
-gridExtra::grid.arrange(shannon_fish_plot, richness_fish_plot, density_fish_plot, trophic_fish_plot, biomass_fish_plot, shannon_invert_plot, richness_invert_plot, density_invert_plot, lobster_density_invert_plot, urchin_density_invert_plot, snail_density_invert_plot, cucumber_density_invert_plot, ncol = 3)
-```
-
-```{r, fig.height = 6, fig.width = 6, fig.width = 6, fig.cap = "Plots for values of each socioeconomic indicator (y-axis) through time (x-axis). Red and blue correspond to before and after the implementation of the reserve, respectively. This figure contains information for total landings (a), total income (b), lobster landings (c), urchin landings (d), snail landings (e), sea cucumber landings (f), lobster income (g), urchin income (h), snail income (i), and sea cucumber income (j)."}
-gridExtra::grid.arrange(landings_plot, income_plot, landings_lobster_plot, landings_urchin_plot, landings_snail_plot, landings_cucumber_plot, income_lobster_plot, income_urchin_plot, income_snail_plot, income_cucumber_plot, ncol = 3)
-```
-
-
