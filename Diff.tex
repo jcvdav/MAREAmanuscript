@@ -1,0 +1,1668 @@
+\documentclass[12pt,]{article}
+%DIF LATEXDIFF DIFFERENCE FILE
+
+
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={A user--friendly tool to evaluate the effectiveness of no--take marine reserves},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{A user--friendly tool to evaluate the effectiveness of no--take marine
+reserves}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+\subtitle{Marine reserve evaluation}
+  \author{}
+  \preauthor{}\postauthor{}
+  \date{}
+  \predate{}\postdate{}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{setspace}
+\doublespacing
+\usepackage{lineno}
+\linenumbers
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF HYPERREF PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{\texorpdfstring{\DIFaddtex{#1}}{#1}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{\texorpdfstring{\DIFdeltex{#1}}{}} %DIF PREAMBLE
+\newcommand{\DIFscaledelfig}{0.5}
+%DIF HIGHLIGHTGRAPHICS PREAMBLE %DIF PREAMBLE
+\RequirePackage{settobox} %DIF PREAMBLE
+\RequirePackage{letltxmacro} %DIF PREAMBLE
+\newsavebox{\DIFdelgraphicsbox} %DIF PREAMBLE
+\newlength{\DIFdelgraphicswidth} %DIF PREAMBLE
+\newlength{\DIFdelgraphicsheight} %DIF PREAMBLE
+% store original definition of \includegraphics %DIF PREAMBLE
+\LetLtxMacro{\DIFOincludegraphics}{\includegraphics} %DIF PREAMBLE
+\newcommand{\DIFaddincludegraphics}[2][]{{\color{blue}\fbox{\DIFOincludegraphics[#1]{#2}}}} %DIF PREAMBLE
+\newcommand{\DIFdelincludegraphics}[2][]{% %DIF PREAMBLE
+\sbox{\DIFdelgraphicsbox}{\DIFOincludegraphics[#1]{#2}}% %DIF PREAMBLE
+\settoboxwidth{\DIFdelgraphicswidth}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\settoboxtotalheight{\DIFdelgraphicsheight}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\scalebox{\DIFscaledelfig}{% %DIF PREAMBLE
+\parbox[b]{\DIFdelgraphicswidth}{\usebox{\DIFdelgraphicsbox}\\[-\baselineskip] \rule{\DIFdelgraphicswidth}{0em}}\llap{\resizebox{\DIFdelgraphicswidth}{\DIFdelgraphicsheight}{% %DIF PREAMBLE
+\setlength{\unitlength}{\DIFdelgraphicswidth}% %DIF PREAMBLE
+\begin{picture}(1,1)% %DIF PREAMBLE
+\thicklines\linethickness{2pt} %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\framebox(1,1){}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\line( 1,1){1}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,1){\line(1,-1){1}}}% %DIF PREAMBLE
+\end{picture}% %DIF PREAMBLE
+}\hspace*{3pt}}} %DIF PREAMBLE
+} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbegin}{\DIFaddbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddend}{\DIFaddend} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbegin}{\DIFdelbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelend}{\DIFdelend} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbegin}{\DIFOaddbegin \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbegin}{\DIFOdelbegin \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbeginFL}{\DIFaddbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddendFL}{\DIFaddendFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbeginFL}{\DIFdelbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelendFL}{\DIFdelendFL} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbeginFL}{\DIFOaddbeginFL \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+
+\begin{document}
+\maketitle
+
+Juan Carlos Villaseñor-Derbez\textsuperscript{1¶*}, Caio
+Faro\textsuperscript{1¶}, Melaina Wright\textsuperscript{1¶}, Jael
+Martínez\textsuperscript{1¶}, Sean Fitzgerald\textsuperscript{1\&},
+Stuart Fulton\textsuperscript{2\&}, Maria del Mar
+Mancha-Cisneros\textsuperscript{3\&}, Gavin
+McDonald\textsuperscript{1,4,5\&}, Fiorenza
+Micheli\textsuperscript{6\&}, Alvin Suárez\textsuperscript{2\&}, Jorge
+Torre\textsuperscript{2\&}, Christopher Costello\textsuperscript{1,4,5¶}
+
+\textsuperscript{1} Bren School of Environmental Science and Management,
+University of California Santa Barbara, Santa Barbara, California,
+United States
+
+\textsuperscript{2} Comunidad y Biodiversidad A.C., Calle Isla del
+Peruano, Guaymas, Sonora, México
+
+\textsuperscript{3} School of Life Sciences, Arizona State University,
+Tempe, Arizona, United States
+
+\textsuperscript{4} Sustainable Fisheries Group, University of
+California Santa Barbara, Santa Barbara, California, United States
+
+\textsuperscript{5} Marine Science Institute, University of California
+Santa Barbara, Santa Barbara, California, United States
+
+\textsuperscript{6} Hopkins Marine Station and Center for Ocean
+Solutions, Stanford University, Pacific Grove, CA 93950, USA
+
+*Corresponding author
+
+Email:
+\href{mailto:jvillasenor@bren.ucsb.edu}{\nolinkurl{jvillasenor@bren.ucsb.edu}}
+(JCVD)
+
+¶ These authors contributed equally to this work.
+
+\& These authors also contributed equally to this work.
+
+\clearpage
+
+\textbf{Abstract}
+
+Marine reserves are implemented to achieve a variety of objectives, but
+are seldom rigorously evaluated to determine whether those objectives
+are met. In the rare cases when evaluations do take place, they
+typically focus on ecological indicators and ignore other relevant
+objectives such as socioeconomics and governance. And regardless of the
+objectives, the diversity of locations, monitoring protocols, and
+analysis approaches hinder the ability to compare results across case
+studies. Moreover, analysis and evaluation of reserves is generally
+conducted by outside researchers, not the reserve managers or users,
+plausibly thereby hindering effective local management and rapid
+response to change. We present a framework and tool, called ``MAREA'',
+to overcome these challenges. Its purpose is to evaluate the extent to
+which any given reserve has achieved its stated objectives. MAREA
+provides specific guidance on data collection and formatting, and then
+conducts rigorous causal inference analysis based on data input by the
+user, providing real--time outputs about the effectiveness of the
+reserve. MAREA's ease of use, standardization of state--of--the--art
+inference methods, and ability to analyze marine reserve effectiveness
+across ecological, socioeconomic, and governance objectives could
+dramatically further our understanding and support of effective marine
+reserve management.
+
+\section{Introduction}\label{introduction}
+
+Unsustainable fishing practices threaten biodiversity, conservation,
+economic and social outcomes {[}1,2{]}. Marine Protected Areas (MPAs;
+and marine reserves, in which all extractive efforts are prohibited) are
+frequently proposed to aid in the recovery of fish and invertebrate
+stocks {[}3--6{]} by limiting or restricting fishing effort and gears.
+
+\DIFdelbegin \DIFdel{Available empirical evidence on marine reserve effectiveness is mixed
+}%DIFDELCMD < {[}%%%
+\DIFdel{7}%DIFDELCMD < {]}%%%
+\DIFdel{. Some studies have shown }\DIFdelend \DIFaddbegin \DIFadd{Empirical evidence shows }\DIFaddend that MPAs increase biomass {[}4,\DIFdelbegin \DIFdel{8}\DIFdelend \DIFaddbegin \DIFadd{7}\DIFaddend {]}, enhance
+resilience to climatic impacts {[}\DIFdelbegin \DIFdel{9,10}\DIFdelend \DIFaddbegin \DIFadd{8,9}\DIFaddend {]}, and preserve genetic diversity
+{[}\DIFdelbegin \DIFdel{11}\DIFdelend \DIFaddbegin \DIFadd{10}\DIFaddend {]}. Compared to \DIFdelbegin \DIFdel{partially protected MPAs }\DIFdelend \DIFaddbegin \DIFadd{MPAs that grant partial protection}\DIFaddend , marine
+reserves have higher levels of biomass, density, richness, and larger
+organisms {[}3,\DIFdelbegin \DIFdel{12--14}\DIFdelend \DIFaddbegin \DIFadd{11--13}\DIFaddend {]}. \DIFdelbegin \DIFdel{These }\DIFdelend \DIFaddbegin \DIFadd{However, these }\DIFaddend effects are often measured as
+biological changes \DIFdelbegin \DIFdel{in the area through time}\DIFdelend \DIFaddbegin \DIFadd{within the reserves through time, }\DIFaddend and many lack a
+control site for comparison {[}\DIFdelbegin \DIFdel{15}\DIFdelend \DIFaddbegin \DIFadd{14}\DIFaddend {]}. This approach does not account for
+other factors \DIFaddbegin \DIFadd{(}\emph{\DIFadd{e.g.}} \DIFadd{system-level changes in productivity ;
+}{[}\DIFadd{15}{]}\DIFadd{) }\DIFaddend for which one must control {[}16{]} in order to causally
+attribute a biological change to the reserve. \DIFdelbegin \DIFdel{While some }\DIFdelend \DIFaddbegin \DIFadd{Other }\DIFaddend studies have used \DIFdelbegin \DIFdel{control
+sites, these analyses do not estimate the effect of the reserve, and
+often use }\DIFdelend a
+control--impact comparison approach that \DIFaddbegin \DIFadd{uses control sites but }\DIFaddend does not
+address temporal variability {[}4,\DIFdelbegin \DIFdel{8}\DIFdelend \DIFaddbegin \DIFadd{7}\DIFaddend ,17--19{]}. A smaller fraction of
+studies have used a before--after--control--impact (\emph{i.e.} BACI)
+design comparing reserves to control sites before and after
+implementation {[}4,20,21{]}, which allows the use of causal inference
+techniques that estimate the effect of the reserve. \DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend But even when proper
+causal inference can be drawn, results are often \DIFdelbegin \DIFdel{idiosyncratic }\DIFdelend \DIFaddbegin \DIFadd{different }\DIFaddend across
+reserves. Effects of reserves on ecological and economic outcomes are
+highly heterogeneous, and often depend on the specific ecological,
+economic, and social context.
+\DIFdelbegin \DIFdel{The purpose of this
+paper is to describe a user--friendly tool, called ``MAREA'', to
+rigorously systematize the evaluation of marine reserve effectiveness.
+The tool is in the form of an open-source application that uses
+state--of--the--art methods from program evaluation to compare a reserve
+to control sites along a number of ecological, economic, and governance
+dimensions.
+}\DIFdelend 
+
+\DIFdelbegin \DIFdel{The challenge of how to standardize }\DIFdelend \DIFaddbegin \DIFadd{Standardization of }\DIFaddend marine reserve evaluation is not \DIFdelbegin \DIFdel{a
+newone. The recent }\DIFdelend \DIFaddbegin \DIFadd{new. The }\DIFaddend IUCN
+framework ``How is your MPA doing?'' {[}22,23{]} provides a
+comprehensive list of biological, socioeconomic, and governance
+indicators, and insights into how these \DIFdelbegin \DIFdel{indicators }\DIFdelend may be measured \DIFaddbegin \DIFadd{or collected}\DIFaddend .
+But this framework stops short of analysis, \DIFdelbegin \DIFdel{so }\DIFdelend \DIFaddbegin \DIFadd{and }\DIFaddend provides a user with
+little guidance about establishing causal inference about the reserve.
+Recent work \DIFdelbegin \DIFdel{by Mascia }\emph{\DIFdel{et al.}} %DIFAUXCMD
+\DIFdelend {[}24{]} integrates these three dimensions via the Social
+Ecological Systems Framework {[}25,26{]} and suggests the use of causal
+inference techniques to provide a measure of the effect of conservation
+interventions. However, \DIFdelbegin \DIFdel{these two novel
+approaches do not }\DIFdelend \DIFaddbegin \DIFadd{neither of these approaches }\DIFaddend provide a
+user-friendly tool that \DIFdelbegin \DIFdel{enables
+}\DIFdelend \DIFaddbegin \DIFadd{ensures }\DIFaddend replicability and scalability of the
+analysis, particularly when used by the fishers and decision makers
+themselves.
+
+An increasingly popular way to make science accessible, reproducible,
+scalable, and replicable is through Open Science and the development of
+open--access tools {[}27{]}. The Ocean Health Index {[}28,29{]}, for
+example, successfully standardized a way to measure the health and
+benefits of the oceans. This approach has been implemented at a global
+scale, but also at country-level {[}30{]}, and regionally {[}31,32{]}.
+Open access tools are not limited to conservation, and have also been
+developed to evaluate fishery performance {[}33,34{]}, design
+territorial use rights for fisheries {[}35{]}, and improve decision
+making in the hydro power industry {[}36{]}.
+
+\DIFdelbegin \DIFdel{This paper presents a framework and }\DIFdelend \DIFaddbegin \DIFadd{The purpose of this paper is to describe a }\DIFaddend user--friendly tool\DIFdelbegin \DIFdel{to evaluate
+}\DIFdelend \DIFaddbegin \DIFadd{, called
+``MAREA'', to rigorously systematize the evaluation of }\DIFaddend marine reserve
+effectiveness \DIFdelbegin \DIFdel{, which incorporates the biological, socioeconomic}\DIFdelend \DIFaddbegin \DIFadd{in terms of fisheries and marine conservation. The tool is
+in the form of an open--source application that uses state--of--the--art
+methods from program evaluation to compare a reserve to control sites
+along a number of ecological, economic}\DIFaddend , and governance dimensions\DIFdelbegin \DIFdel{of any fishery}\DIFdelend . We
+first provide a list of commonly stated management objectives and match
+them to appropriate indicators. We then develop a simple approach to
+analyzing these indicators building on causal inference techniques
+{[}20{]}, which help us understand the effect of management
+interventions {[}24,37{]}. To implement the analytical approach\DIFdelbegin \DIFdel{in a
+user-friendly format}\DIFdelend , we
+introduce the Marine Reserve Evaluation Application (MAREA), an open
+source, web--based tool that automates the framework described in this
+paper and enables its broader use. Finally, we present a case study on
+the evaluation of a marine reserve established by the fishers of Isla
+Natividad (Mexico) in 2006, to demonstrate the potential of MAREA.
+
+\section{Materials and methods}\label{materials-and-methods}
+
+Here, we describe the proposed framework to evaluate the effectiveness
+of marine reserves (Fig. 1). We explain how management objectives were
+identified and matched to appropriate indicators that allow the
+evaluation of the reserves, and provide brief guidelines on data
+collection. Alongside, methodologies to analyze these indicators are
+presented. We then describe the development of MAREA and explain how
+this \DIFdelbegin \DIFdel{user--friendly }\DIFdelend open--access tool can be used by fishermen, managers, and other
+stakeholders with little scientific background. Finally, we provide
+guidelines on how to interpret and use the results and output generated
+by MAREA to inform management.
+
+\textbf{Fig 1. Workflow to evaluate the effectiveness of marine
+reserves.}
+
+\subsection{Marine Reserve objectives and
+indicators}\label{marine-reserve-objectives-and-indicators}
+
+Throughout this study, we will refer to the stated goals for which a
+marine reserve was designed as ``objectives.'' This work was motivated
+by the case of Mexico, where 39 reserves have been implemented over the
+past five years to achieve objectives such as increasing productivity in
+nearby waters or \DIFdelbegin \DIFdel{recover }\DIFdelend \DIFaddbegin \DIFadd{recovery of }\DIFaddend overexploited species; most of these
+reserves have never been formally evaluated for effectiveness at meeting
+those objectives. Thus, our focus was on identifying common objectives
+of marine reserves in Mexico. However, a literature review and
+discussions with marine reserve researchers \DIFdelbegin \DIFdel{worldwide }\DIFdelend suggest that the objectives
+driving Mexican marine reserve implementation are similar to those in
+the rest of the world. Thus, we group these objectives into seven major
+categories, which \DIFdelbegin \DIFdel{can }\DIFdelend \DIFaddbegin \DIFadd{may }\DIFaddend be applied to marine reserves worldwide. \DIFdelbegin \DIFdel{The list
+of objectives includes stated objectives }\DIFdelend \DIFaddbegin \DIFadd{Any given
+reserve may have been implemented to meet one or more of these. The list
+includes objectives stated }\DIFaddend in legislation {[}38,39{]} and official
+documents such as the Technical Justification Studies (\emph{Estudios
+Técnicos Justificativos}), agreements, and decrees associated to these
+areas:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Avoid overexploitation
+\item
+  Conserve species under a special protection regime
+\item
+  Maintain biological processes (reproduction, recruitment, growth,
+  feeding)
+\item
+  Improve fishery production in adjacent waters
+\item
+  Preserve biological diversity and the ecosystem
+\item
+  Recover overexploited species
+\item
+  Recover species of economic interest
+\end{enumerate}
+
+Based on these seven objectives, we determined a set of associated
+indicators to evaluate reserve effectiveness. These indicators are
+specific variables on which data could be collected, and analyzed, to
+ultimately determine whether the corresponding objective was causally
+being achieved by the marine reserve. The list of indicators was
+compiled through a review of scientific literature in which we
+identified indicators that were used to measure similar
+objectives\DIFaddbegin {[}\DIFadd{3--5,7,11,13,14,17--20,22,23,40--43}{]}\DIFaddend . A first filter
+eliminated indicators for which baseline data do not typically exist in
+Mexico. The preliminary list of indicators was reviewed at a workshop
+with participation of members from Mexican fishery management agencies
+and non-government organizations. Later, these were presented to fishers
+from the Ensenada Fishing Cooperative (\emph{S.C.P.P. Ensenada}), in El
+Rosario, Baja California, who provided input. Our final list of
+indicators includes those identified in review works {[}4,\DIFdelbegin \DIFdel{40}\DIFdelend \DIFaddbegin \DIFadd{43}\DIFaddend {]}.
+
+Indicators are divided into three main categories: biological,
+socioeconomic, and governance (Table 1). The nine biological indicators
+focus on fish and invertebrate communities that are evaluated using
+underwater ecological surveys performed inside and outside the reserve
+(see Data and Analysis section for specific sampling design and
+methodologies). Five socioeconomic indicators reflect the performance of
+the fishery in terms of landings, income from landings, and availability
+of alternative livelihoods. Fifteen governance indicators describe the
+governance structures under which the community operates (\emph{e.g.},
+access rights to the fishery, number of fishers, legal recognition of
+the reserve). Some indicators \DIFaddbegin \DIFadd{are quantitative and }\DIFaddend require a numerical
+entry (\emph{e.g.} Fish biomass) while others are \DIFdelbegin \DIFdel{more descriptive }\DIFdelend \DIFaddbegin \DIFadd{qualitative and rely
+on a descriptive entry }\DIFaddend (\emph{e.g.} Reasoning for reserve location).
+Many of them specifically measure an outcome of the reserve, though some
+are designed to further the understanding of the mechanisms driving a
+reserve's performance. In that sense, most biological and socioeconomic
+indicators are outcome variables. On the other hand, governance
+indicators are viewed as possible explanatory variables of reserve
+performance. Whenever an indicator is applied to ``Target species'', it
+means that the indicator can be used for all species (\emph{e.g.} Fish
+Biomass) and/or for individual species that are either the conservation
+target of the reserve or are of particular economic or ecological
+interest (\emph{e.g.} Grouper Biomass). \DIFaddbegin \DIFadd{Finally, indicators B3 and B4
+are different in that B3 look only at the density of organisms above
+size at first maturity (related to reproductive potential), while B4
+measures the density of all fish or of a target species. Each indicator
+targets different plausible desired outcomes, like increased
+reproductive potential (}\emph{\DIFadd{i.e.}} \DIFadd{B3; }{[}\DIFadd{44}{]}\DIFadd{) or having more fish
+-regardless of their size- to atract tourism (}\emph{\DIFadd{i.e.}} \DIFadd{B4). }\DIFaddend Table 1
+presents the proposed indicators, and Table 2 shows how objectives are
+matched with biological and socioeconomic indicators. \DIFaddbegin \DIFadd{Governance
+indicators are excluded from Table 2, as we suggest that all of them
+should be used in an evaluation, regardless of the objectives.
+}\DIFaddend 
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-2}List of indicators to evaluate the effectiveness of no-take marine reserves.}
+\centering
+\DIFdelbeginFL %DIFDELCMD < \resizebox{\linewidth}{!}{\begin{tabular}[t]{l|l|l|l}
+%DIFDELCMD < \hline
+%DIFDELCMD < Code & Indicator & Data type & Unit\\
+%DIFDELCMD < \hline
+%DIFDELCMD < \multicolumn{4}{l}{\textbf{Biological}}\\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}B1 & Shannon diversity index & Continuous & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}B2 & Species richness & Discrete & Number of species/transect\\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}B3 & Density of mature organisms & Continuous & Percent points\\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}B4 & Density* & Continuous & Organisms/transect\\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}B5 & Natural Disturbance & Descriptive & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}B6 & Mean Trophic Level & Continuous & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}B7 & Biomass* & Continuous & kg/transect\\
+%DIFDELCMD < \hline
+%DIFDELCMD < \multicolumn{4}{l}{\textbf{Socioeconomic}}\\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}S1 & Total landings* & Continuous & kg\\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}S2 & Income from total landings* & Continuous & \$\\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}S3 & Alternative economic opportunities & Ordinal & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \multicolumn{4}{l}{\textbf{Governance}}\\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}G1 & Access to the fishery & Categorical & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}G2 & Number of fishers & Discrete & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}G3 & Legal recognition of reserve & Binary & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}G4 & Reserve type & Descriptive & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}G5 & Illegal harvesting & Ordinal & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}G6 & Management plan & Binary & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}G7 & Reserve enforcement & Descriptive & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}G8 & Size of reserve & Discrete & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}G9 & Reasoning for reserve location & Descriptive & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}G10 & Membership to fisher organizations & Binary & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}G11 & Type of fisheries organizations & Categorical & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}G12 & Representation & Ordinal & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}G13 & Internal Regulation & Binary & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}G14 & Perceived Effectiveness & Categorical & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \hspace{1em}G15 & Social Impact of Reserve & Categorical & \\
+%DIFDELCMD < \hline
+%DIFDELCMD < \multicolumn{4}{l}{\textsuperscript{*} The indicator is also applied to target species}\\
+%DIFDELCMD < \end{tabular}}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \resizebox{\linewidth}{!}{\begin{tabular}[t]{l|l|l|l}
+\hline
+Code & Indicator & Data type & Unit\\
+\hline
+\multicolumn{4}{l}{\textbf{Biological}}\\
+\hline
+\hspace{1em}B1 & Shannon diversity index & Continuous & \\
+\hline
+\hspace{1em}B2 & Species richness & Discrete & Number of species/transect\\
+\hline
+\hspace{1em}B3 & Density of mature organisms & Continuous & Percent\\
+\hline
+\hspace{1em}B4 & Density* & Continuous & Organisms/transect\\
+\hline
+\hspace{1em}B5 & Natural Disturbance & Descriptive & \\
+\hline
+\hspace{1em}B6 & Mean Trophic Level & Continuous & \\
+\hline
+\hspace{1em}B7 & Biomass* & Continuous & kg/transect\\
+\hline
+\multicolumn{4}{l}{\textbf{Socioeconomic}}\\
+\hline
+\hspace{1em}S1 & Total landings* & Continuous & kg\\
+\hline
+\hspace{1em}S2 & Income from total landings* & Continuous & \$\\
+\hline
+\hspace{1em}S3 & Alternative economic opportunities & Ordinal & \\
+\hline
+\multicolumn{4}{l}{\textbf{Governance}}\\
+\hline
+\hspace{1em}G1 & Access to the fishery & Categorical & \\
+\hline
+\hspace{1em}G2 & Number of fishers & Discrete & \\
+\hline
+\hspace{1em}G3 & Legal recognition of reserve & Binary & \\
+\hline
+\hspace{1em}G4 & Reserve type & Descriptive & \\
+\hline
+\hspace{1em}G5 & Illegal harvesting & Ordinal & \\
+\hline
+\hspace{1em}G6 & Management plan & Binary & \\
+\hline
+\hspace{1em}G7 & Reserve enforcement & Descriptive & \\
+\hline
+\hspace{1em}G8 & Size of reserve & Discrete & \\
+\hline
+\hspace{1em}G9 & Reasoning for reserve location & Descriptive & \\
+\hline
+\hspace{1em}G10 & Membership to fisher organizations & Binary & \\
+\hline
+\hspace{1em}G11 & Type of fisheries organizations & Categorical & \\
+\hline
+\hspace{1em}G12 & Representation & Ordinal & \\
+\hline
+\hspace{1em}G13 & Internal Regulation & Binary & \\
+\hline
+\hspace{1em}G14 & Perceived Effectiveness & Categorical & \\
+\hline
+\hspace{1em}G15 & Social Impact of Reserve & Categorical & \\
+\hline
+\multicolumn{4}{l}{\textsuperscript{*} The indicator is also applied to target species}\\
+\end{tabular}}
+\DIFaddendFL \end{table}
+
+\clearpage
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-3}Management objectives and respective performance indicators.}
+\centering
+\DIFdelbeginFL \DIFdel{\resizebox{\linewidth}{!}{\begin{tabular}[t]{>{\raggedright\arraybackslash}p{4cm}|l|l|l|l|l|l|l|l|l|l|l|l|l|l}
+\hline
+Objective & B1 & B2 & B3 & B4 & B4* & B5 & B6 & B7 & B7* & S1 & S1* & S2 & S2* & S3\\
+\hline
+Avoid overexploitation &  &  & x &  & x & x &  &  & x & x & x & x & x & x\\
+\hline
+Conserve species under a special protection &  &  & x &  & x & x &  &  & x & x &  & x &  & x\\
+\hline
+Maintain biological process &  &  &  & x & x & x &  & x & x & x & x & x & x & x\\
+\hline
+Improve fishery production in nearby waters &  &  & x & x & x & x & x & x & x & x & x & x & x & x\\
+\hline
+Preserve biological diversity and the ecosystem &  &  & x &  & x & x &  &  & x &  & x &  & x & x\\
+\hline
+Recover overexploited species & x & x &  & x &  & x & x & x &  &  &  &  &  & x\\
+\hline
+Recover species of economic interest & x & x &  & x &  & x & x & x &  &  &  &  &  & x\\
+\hline
+\multicolumn{15}{l}{\textsuperscript{*} The indicator is applied to target species}\\
+\end{tabular}}}
+\DIFdelendFL \DIFaddbeginFL \DIFadd{\resizebox{\linewidth}{!}{\begin{tabular}[t]{>{\raggedright\arraybackslash}p{4cm}|l|l|l|l|l|l|l|l|l|l|l|l|l|l}
+\hline
+Objective & B1 & B2 & B3 & B4 & B4* & B5 & B6 & B7 & B7* & S1 & S1* & S2 & S2* & S3\\
+\hline
+Avoid overexploitation &  &  & x & x & x & x & x & x & x & x & x & x & x & x\\
+\hline
+Conserve species under a special protection &  &  & x &  & x & x &  &  & x & x &  & x &  & x\\
+\hline
+Maintain biological process & x & x &  & x &  & x & x & x &  &  &  &  &  & x\\
+\hline
+Improve fishery production in nearby waters &  &  &  & x & x & x &  & x & x & x & x & x & x & x\\
+\hline
+Preserve biological diversity and the ecosystem & x & x &  & x &  & x & x & x &  &  &  &  &  & x\\
+\hline
+Recover overexploited species &  &  & x &  & x & x &  &  & x &  & x &  & x & x\\
+\hline
+Recover species of economic interest &  &  & x &  & x & x &  &  & x &  & x &  & x & x\\
+\hline
+\multicolumn{15}{l}{\textsuperscript{*} The indicator is applied to target species}\\
+\end{tabular}}}
+\DIFaddendFL \end{table}
+
+\subsection{Data and analyses}\label{data-and-analyses}
+
+In many coastal marine reserves\DIFdelbegin \DIFdel{of Mexico}\DIFdelend , biological data are \DIFaddbegin \DIFadd{often }\DIFaddend collected via
+underwater visual censuses as part of a reserve's monitoring program.
+Scientific divers \DIFdelbegin \DIFdel{(which are often local fishermen with
+guidance from Civil Society Organizations; CSOs) }\DIFdelend record fish and invertebrate richness and abundances,
+as well as fish total length along belt transects. Ecological surveys
+are typically performed annually in each reserve and corresponding
+control site(s), before and after the implementation of the reserve,
+providing a sampling design that can be used to draw causal inference.
+Control sites are areas where habitat is similar to that of the reserve,
+but with presence of fishing activity; in principle these are areas that
+are otherwise observationally identical to the reserve site, but where,
+for presumably random reasons, a reserve was not implemented. While
+transect dimensions (\emph{i.e.} length and width) and sampling methods
+might vary from study to study, the general idea remains the same:
+richness, abundances, and sizes of organisms are recorded in a
+study--specific standardized way. For this reason, MAREA does not assume
+specific transect dimensions, and pertinent indicators are calculated
+per transect (Table 1). \DIFaddbegin \DIFadd{More information on data collection and
+formatting is provided in a guidebook }{[}\DIFadd{45}{]}\DIFadd{, which is available in
+English and Spanish in MAREA's interface.
+}\DIFaddend 
+
+This sampling design for biological data allows us to use causal
+inference techniques {[}20,\DIFdelbegin \DIFdel{41}\DIFdelend \DIFaddbegin \DIFadd{46}\DIFaddend {]} to evaluate the effect of the reserve
+on biological indicators. The hypothesis that the indicators will
+respond to implementation of the reserve is tested by analyzing spatial
+and temporal changes in each numeric biological indicator (all but B5)
+using generalized linear models {[}20{]}. To account for variations in
+the environment and survey conditions, covariates that are gathered
+during the underwater ecological surveys are included in the
+difference-in-differences model with form:
+
+\begin{equation}I_{i,t,z}=\beta_0 + \sum_{t = 2}^T\gamma_{t}Y_t + \beta_1Z_{i,z} + \beta_2P_{i,t}\times Z_{i,z} + \beta_3T_{i,t,z} + \beta_4V_{i,t,z} + \beta_5D_{i,t,z} + \epsilon_{i,t,z}\end{equation}
+
+In this model, \(i\), \(t\), and \(z\) are indices for transect, time,
+and zone (control or reserve site), respectively. This model allows us
+to estimate the change in an indicator (\(I\)) based on the year
+(\(Y\)), a dummy variable that indicates treatment (\(Z\); \emph{i.e.}
+control or reserve), an interaction between a dummy variable that
+indicates \DIFdelbegin \DIFdel{pre-- or post--implementation }\DIFdelend \DIFaddbegin \DIFadd{before or after implementation }\DIFaddend (\(P\)) and treatment (\(Z\)),
+and covariates such as bottom temperature (\(T\); in °C), horizontal
+visibility during the survey (\(V\); in m), and depth at which survey
+was performed (\(D\); in m). \(\epsilon\) represents the error term
+associated to the regression. Here, years are modeled as factors, using
+the first year as the reference level. This does not impose a linear
+structure in the way an indicator changes through time (\emph{i.e.} the
+change in biomass between 2006 and 2007 does not have to be the same as
+the change between 2015 and 2016). The treatment and implementation
+variables, modeled as dummy variables, are coded as Control = 0 and
+Reserve = 1; and \DIFdelbegin \DIFdel{Pre--implementation }\DIFdelend \DIFaddbegin \DIFadd{Before implementation }\DIFaddend = 0 and \DIFdelbegin \DIFdel{Post--implementation }\DIFdelend \DIFaddbegin \DIFadd{After implementation }\DIFaddend = 1,
+respectively.
+
+Socioeconomic data are often collected by fishers, natural resource
+management agencies, or CSOs by recording landings, income, and
+sometimes prices for each species. To control for inflation, income is
+adjusted with the country's consumer price index {[}\DIFdelbegin \DIFdel{42}\DIFdelend \DIFaddbegin \DIFadd{47}\DIFaddend {]}:
+
+\begin{equation}I_t = RI\times \frac{CPI_t}{CPI_T}\end{equation}
+
+Where \(I_t\) represents the adjusted income for year \(t\) as the
+product between the reported income for that year and the ratio between
+the consumer price index (\(CPI\)) in that year to the most recent
+year's (\(T\)) CPI. Since no control sites are typically available for
+this data type, numeric socioeconomic indicators (S1 and S2) are
+evaluated with a simplified version of eq. 1:
+
+\begin{equation}I_{t}=\beta_0 + \beta_1P_{t} + \epsilon_{t}\end{equation}
+
+While this model does not formally allow for causal inference, we can
+still measure changes in mean landings and income before and after the
+implementation of the reserve and provide valuable input. For both
+models (eq. 1 and eq. 3), we estimate the model \DIFdelbegin \DIFdel{coeficients }\DIFdelend \DIFaddbegin \DIFadd{coefficient }\DIFaddend with
+ordinary least squares, and calculate heteroskedastic--robust standard
+errors \DIFaddbegin {[}\DIFadd{48}{]}\DIFaddend .
+
+While biological and some economic data are regularly collected,
+governance data are typically not available nor systematically collected
+by the community or other organizations. Therefore, we created a survey
+specifically designed to collect information needed for the proposed
+indicators (B5, S3, and G1--G15). The survey is included as
+supplementary material in English (S1 Appendix) and Spanish (S2
+Appendix). To analyze governance information, we developed a framework
+based on a literature review of common governance structures and their
+relation to effectiveness in managing fisheries or marine reserves (S3
+Table). This approach has been proven to successfully evaluate
+governance structures {[}\DIFdelbegin \DIFdel{43}\DIFdelend \DIFaddbegin \DIFadd{49}\DIFaddend {]}. Unlike with biological and socioeconomic
+objectives (see eqs 1 and 3), MAREA does not quantitatively analyze
+governance information. Rather, it is presented along with the
+biological and socioeconomic indicators to provide managers and users
+with a more complete description of the reserve.
+
+\subsection{Marine Reserve Evaluation App
+(MAREA)}\label{marine-reserve-evaluation-app-marea}
+
+We developed MAREAin R version 3.4.2 and R Studio 1.1.383 {[}\DIFdelbegin \DIFdel{44}\DIFdelend \DIFaddbegin \DIFadd{50}\DIFaddend {]} using
+the Shiny package {[}\DIFdelbegin \DIFdel{45}\DIFdelend \DIFaddbegin \DIFadd{51}\DIFaddend {]}, to build an interactive web application
+hosted on an open server; the MAREA app can be accessed at
+\href{turfeffect.shinyapps.io/marea/}{turfeffect.shinyapps.io/marea}.
+While the original version was developed in Spanish because it was aimed
+for Mexico and other Latin-American countries, all of its content can be
+translated by a translation widget available within the app.
+
+MAREA is designed as a 6--step process, divided in tabs that appear upon
+launching the app. The first tab introduces the app and summarizes the
+evaluation process. Then, the user selects management objectives, which
+MAREA automatically matches to appropriate indicators, based on Table 2.
+Users can also \DIFdelbegin \DIFdel{manually modify selected }\DIFdelend \DIFaddbegin \DIFadd{select and un-select }\DIFaddend indicators based on their interests
+and data availability \DIFaddbegin \DIFadd{by ``clicking'' on the check-boxes in MAREA}\DIFaddend . The
+user can then load data on one or more reserves, using standard *.csv
+text files; sample datasets are provided within MAREA. Once data have
+been loaded, MAREA identifies all reserves in the data, and lets the
+user select the reserve to be evaluated. At this point, the user can
+also specify the year of implementation of the reserve, reserve
+dimensions, and indicate target species that are of particular
+management interest. MAREA provides the user with a section to confirm
+that all the decisions made leading up to that point are correct. Once
+the user has confirmed all input data, objectives, and other
+information, MAREA performs the formal program evaluation analyses
+discussed above. For a typical data set, the automated analysis step
+takes less than one second. Finally, the user is taken to the results
+tab where all results are presented in a simple format. The user can
+also download a more comprehensive technical report produced in *.pdf
+format.
+
+The first output is a color--coded scorecard intended to provide a
+general overview of the effectiveness of the reserve. The scorecard
+provides a global score for the reserve, a general score for each
+category of indicators, and an individual score for each indicator. The
+global and category--level scores are determined by the percentage of
+positive indicators, overall and for each category, respectively. For
+numeric biological indicators (all but B5), the color is defined by the
+sign of the interaction term coefficient (\(\beta_2\)) in eq. 1. For
+socioeconomic indicators, colors are assigned based on the direction of
+the slope (\(\beta_1\)) in eq. 3. Red, yellow, and green are used for
+\(\beta_i<0\), \(\beta_i = 0\), and \(\beta_i>0\), respectively. The
+intensity of the color is defined by the significance of the
+coefficient, testing the null hypothesis of no change (\emph{i.e.}
+\(H_0: \beta_i = 0\)) with a Student's t-test. Cutoff values are
+\(p < 0.05\) and \(p < 0.1\). Thus, even in a case where
+\(\beta_i > 0\), if the coefficient is not significant by standard
+measures (\emph{i.e. } \(p>0.1\)), the indicator will be assigned a
+yellow color. A legend (Fig. 2) is provided within the scorecard to aid
+in the interpretation of these results. Governance indicators are
+represented simply by red or green. The color is defined based on what
+literature shows to be a negative (red) or positive (green) factor for a
+reserve (S3 Table). For example, if the perceived degree of illegal
+fishing is high, this indicator will be assigned a red color. However,
+due to the nature of some governance indicators, which require the user
+to provide a narrative, only some indicators are presented in the
+scorecard (although all are included in the technical report).
+
+\textbf{Fig 2. Legend used to interpret the scorecard produced by
+MAREA.} Colors indicate direction of change (red = negative; green =
+positive), and color intensity is given by the statistical significance.
+
+The second output from MAREA is a technical report intended to
+communicate information and statistical results in a more comprehensive
+and technical way. This report also includes a scorecard as a summary of
+the results, but provides more information for each indicator. For all
+numeric biological indicators, the report includes a graph of the value
+of the indicator in the reserve and control sites through time. It also
+provides a regression table that summarizes the value of all
+coefficients in the regression and their respective robust standard
+errors. The summary table also provides information on model fit
+(\(R^2\)) and significance of the regression.
+
+The scorecard is produced with functions from the Shinydashboard package
+{[}\DIFdelbegin \DIFdel{46}\DIFdelend \DIFaddbegin \DIFadd{52}\DIFaddend {]}. The technical report is produced by a parameterized Rmarkdown
+document {[}\DIFdelbegin \DIFdel{47}\DIFdelend \DIFaddbegin \DIFadd{53}\DIFaddend {]} processed by the knitr package {[}\DIFdelbegin \DIFdel{48}\DIFdelend \DIFaddbegin \DIFadd{54}\DIFaddend {]}. Another
+feature of MAREA is that the user can choose to share the data. Once the
+technical report is downloaded, the information on the reserve, its
+management objectives, and all uploaded data are saved into a central
+repository. These data can be accessed at any time by any person
+interested in acquiring them at \url{github.com/turfeffect/MAREAdata}.
+
+\subsection{Case study}\label{case-study}
+
+While MAREA is a general tool that can be easily employed to evaluate
+the effectiveness of any marine reserve with the required input data, we
+illustrate its use here by applying it to one marine reserve near Isla
+Natividad, in Baja California Sur, Mexico. Isla Natividad is located 8
+Km off the Pacific Coast of the Baja California Peninsula (Fig. 3),
+where fishers operate under a fishing cooperative (\emph{S.C.P.P. Buzos
+y Pescadores de la Baja California}) that promotes co-management of
+marine resources {[}\DIFdelbegin \DIFdel{49,50}\DIFdelend \DIFaddbegin \DIFadd{55,56}\DIFaddend {]}. Additionally, fishers have Territorial Use
+Rights for Fisheries (TURFs) that provide them with exclusive access
+rights to exploit the benthic marine resources within a given perimeter
+{[}\DIFdelbegin \DIFdel{50}\DIFdelend \DIFaddbegin \DIFadd{56}\DIFaddend {]}.
+
+\textbf{Fig 3. General location of Isla Natividad (left) and map of the
+island (right).} The marine reserve polygon is indicated in red, and the
+approximate location of control sites is indicated by blue squares (B =
+Babencho, D = La Dulce). \DIFaddbegin \DIFadd{Shapefiles for Mexican coastline and the US
+were obtained from the Instituto Nacional de Estadistica, Geografia e
+Informatica of Mexico (INEGI:
+www.inegi.org.mx/geo/contenidos/geoestadistica/m\_geoestadistico.aspx)
+and the tmap R package }{[}\DIFadd{57}{]}\DIFadd{, respectively.
+}\DIFaddend 
+
+In 2006, the Isla Natividad community implemented two community--based
+marine reserves within their TURF {[}\DIFdelbegin \DIFdel{9,51,52}\DIFdelend \DIFaddbegin \DIFadd{8,40,58}\DIFaddend {]} \DIFaddbegin \DIFadd{after establishing a
+baseline for the soon--to--be reserves and control sites}\DIFaddend . Evidence
+suggest that these reserves have been effective at enhancing resilience
+to climate variations {[}\DIFdelbegin \DIFdel{9}\DIFdelend \DIFaddbegin \DIFadd{8}\DIFaddend {]} and preserving genetic diversity of high
+value commercial species such as abalone {[}\DIFdelbegin \DIFdel{11}\DIFdelend \DIFaddbegin \DIFadd{10}\DIFaddend {]}. These ecological
+benefits have been translated into economic benefits, enhancing
+population persistence and bolstering abalone fisheries {[}\DIFdelbegin \DIFdel{53}\DIFdelend \DIFaddbegin \DIFadd{42}\DIFaddend {]}. For
+the purpose of this evaluation, we focused on the ``La Plana / Las
+Cuevas'' marine reserve, located at the southern end of the island (Fig.
+3) and its corresponding control site ``La Dulce / Babencho''.
+
+The objective of this reserve was to recover species of economic
+interest ----which were overexploited-- and to enhance fishery
+production in nearby waters. Fishers were also interested in preserving
+biological diversity and the ecosystem. Thus, objectives 4---7 were
+selected. Using Table 2 to match these objectives with appropriate
+management indicators, we selected all biological, socioeconomic, and
+governance indicators included as options in the framework.
+
+Local fishers (who were trained in scientific diving by the CSO
+Comunidad y Biodiversidad, A.C. (COBI; \url{www.cobi.org}), ReefCheck
+California, and Stanford University) and personnel from these
+institutions performed SCUBA dives to record fish and invertebrate
+richness and abundances, as well as fish total length. They recorded
+information along 30 m transects, with a sampling window of 2 m x 2 m
+following a standardized ReefCheck protocol {[}\DIFdelbegin \DIFdel{54}\DIFdelend \DIFaddbegin \DIFadd{59}\DIFaddend {]}. Ecological surveys
+were performed yearly in each reserve and corresponding control site(s),
+before and after the implementation of the reserve, providing the
+requisite time series data inside the reserve and for a suitable control
+site. Annual surveys (2006--2016) were carried out in late July -- early
+August, performing a total of 242 and 245 transects in the reserve site
+for fish and invertebrate surveys, respectively. Similar sampling effort
+was applied to the control site, with 221 fish and 222 invertebrate
+transects. Between 12 and 27 transects were performed in each site every
+year.
+
+Socioeconomic data were obtained from the National Commission for
+Aquaculture and Fisheries (\emph{Comisión Nacional de Acuacultura y
+Pesca}; CONAPESCA). The data contains species--level information on
+monthly landings and income from nine species from 2000 to 2014. Data on
+landings and income were aggregated by year and species, and adjusted by
+the Consumer Price Index {[}\DIFdelbegin \DIFdel{42}\DIFdelend \DIFaddbegin \DIFadd{47}\DIFaddend {]}. From the nine species available, we
+selected as objective species those that contributed the most (88.27\%)
+income from 2000 to 2014: lobster (\emph{Panulirus interruptus};
+71.76\%), red sea urchin (\emph{Mesocentrotus franciscanus}; 9.33\%),
+snail (\emph{Megastraea undosa}; 3.93\%), and sea cucumber
+(\emph{Parastichopus parvimensis}; 3.23\%). Abalone species
+(\emph{Haliotis fulgens}; 4.52\% and \emph{Haliotis corrugata}; 6.16\%)
+were excluded because the cooperative implemented an informal closure of
+these fisheries in 2010 to allow the population recover. Eliminating all
+fishing pressure on abalones means that the control site receives (for
+this species) the same treatment as the reserve.
+
+We constructed the governance data based on local knowledge of the area
+and the community.
+
+\section{Results from illustrative
+example}\label{results-from-illustrative-example}
+
+In this section we show the results of the application of MAREA to the
+La Plana/Las Cuevas marine reserve in Isla Natividad, Mexico. These
+results are intended to highlight the relevance and utility of the MAREA
+framework and app, which automate the analysis and make it replicable.
+While we highlight some of the general observed trends, we focus on the
+utility of the tool rather than on the specific effectiveness of this
+case study marine reserve.
+
+The scorecard (Fig. 4) shows that this reserve achieves a general score
+of 64\%, suggesting that 64\% of all indicators are positive. All
+category--level scores were also high, with values of 67\%, 60\%, and
+71\% positive indicators for biological, socioeconomic and governance,
+respectively.
+
+\textbf{Fig 4. Scorecard produced by MAREA for the ``La Plana / Las
+Cuevas'' marine reserve in Isla Natividad, Mexico.}
+
+Among the biological indicators, the greatest effect of the reserve was
+observed for snail and sea cucumber densities, with values of
+\(\beta_2 = 97.17\) (\emph{p} \textless{} 0.05) and \(\beta_2 = 2.31\)
+(\emph{p} \textless{} 0.05), respectively. Fish indicators showed no
+significant change (\emph{p} \textgreater{} 0.1), with negative trends
+for Shannon's diversity index and fish species richness and positive
+trends for density, biomass, and mean trophic level. Changes through
+time for these indicators are presented in Figure 5, and a summary of
+\(\beta_2\) coefficients is provided in Table 3.
+
+\clearpage
+
+\textbf{Fig. 5 Plots for values of each biological indicator (y-axis)
+through time (x-axis).} Red and blue correspond to the reserve and
+control sites, respectively. Black lines indicate yearly mean values,
+and ribbons indicate \(\pm\) 1 standard error. Dots are horizontally
+jittered to aid visualization. This figure contains information for fish
+Shannon's diversity index (a), fish species richness (b), fish density
+(c), fish trophic level (d), fish biomass (e), invertebrate Shannon's
+diversity index (f), invertebrate species richness (g), invertebrate
+density (h), lobster density (i), urchin density (j), snail density (k),
+and sea cucumber density (l).
+
+\begin{table}
+
+\caption{\label{tab:table of bio results}Summary of average treatment effect of the reserve on biological indicators.}
+\centering
+\begin{tabular}[t]{l|l|r}
+\hline
+Indicator & Estimate (SD) & t-score\\
+\hline
+Shannon fish & -0.22 (0.16) & -1.3969\\
+\hline
+Richness fish & -0.61 (0.43) & -1.4073\\
+\hline
+Density fish & 0.74 (6.15) & 0.1205\\
+\hline
+Trophic fish & 0.00 (0.01) & 0.1399\\
+\hline
+Biomass fish & 0.22 (1.47) & 0.1476\\
+\hline
+Shannon invert & -0.67 (0.22)** & -3.0481\\
+\hline
+Richness invert & -2.71 (0.81)** & -3.3519\\
+\hline
+Density invert & 91.21 (47.11)* & 1.9362\\
+\hline
+Lobster & 7.66 (8.93) & 0.8583\\
+\hline
+Urchin & 2.15 (1.23)* & 1.7425\\
+\hline
+Snail & 97.17 (42.90)** & 2.2652\\
+\hline
+Cucumber & 2.31 (1.17)** & 1.9782\\
+\hline
+\multicolumn{3}{l}{\textsuperscript{*} Asterisks indicate significance level, with (*)}\\
+\multicolumn{3}{l}{indicating p < 0.1 and (**) p < 0.05.}\\
+\end{tabular}
+\end{table}
+
+One of the main objectives of this reserve was to increase landings.
+Results of the socioeconomic indicators show that total landings were,
+on average, 64.20 metric tonnes higher (\emph{p} \textgreater{} 0.1)
+after the implementation of the reserves, though this cannot necessarily
+be interpreted as causal, because it relies entirely on a before--after
+comparison. Total income was \$10,344.85 (\emph{p} \textless{} 0.05)
+thousands of Mexican Pesos (K MXP) higher after the implementation of
+the reserves. On average, lobster and sea cucumber landings increased,
+while urchin and snail landings and income decreased. Figure 6 presents
+the changes in these indicators through time, and Table 4 summarizes
+these results.
+
+\textbf{Fig. 6 Plots for values of each socioeconomic indicator (y-axis)
+through time (x-axis).} Red and blue correspond to before and after the
+implementation of the reserve, respectively. This figure contains
+information for total landings (a), total income (b), lobster landings
+(c), urchin landings (d), snail landings (e), sea cucumber landings (f),
+lobster income (g), urchin income (h), snail income (i), and sea
+cucumber income (j).
+
+\begin{table}
+
+\caption{\label{tab:table of soc results}Summary of differences in socioeconomic indicators before and after the implementation of the reserve.}
+\centering
+\begin{tabular}[t]{l|l|r}
+\hline
+Indicator & Estimate (SD) & t-score\\
+\hline
+Landings & 64.20 (90.07) & 0.7127\\
+\hline
+Income & 10344.85 (3982.20)** & 2.5978\\
+\hline
+Lobster landings & 7.37 (13.95) & 0.5281\\
+\hline
+Urchin landings & -30.00 (9.49)** & -3.1620\\
+\hline
+Snail landings & -69.53 (33.82)* & -2.0561\\
+\hline
+Cucumber landings & 9.34 (6.72) & 1.3906\\
+\hline
+Lobster income & 14372.85 (3634.64)** & 3.9544\\
+\hline
+Urchin income & -5800.46 (1867.50)** & -3.1060\\
+\hline
+Snail income & -404.85 (187.07)** & -2.1641\\
+\hline
+Cucumber income & 131.49 (185.66) & 0.7082\\
+\hline
+\multicolumn{3}{l}{\textsuperscript{*} Asterisks indicate significance level, with (*)}\\
+\multicolumn{3}{l}{indicating p < 0.1 and (**) p < 0.05.}\\
+\end{tabular}
+\end{table}
+
+Recall that the governance objectives are evaluated based on the
+institutions present, not on a specific quantitative linkage between
+governance and biological or economic outcomes. Data for this reserve
+suggest that the community is strongly organized, which is a likely
+driver of the successes reported above {[}\DIFdelbegin \DIFdel{55}\DIFdelend \DIFaddbegin \DIFadd{60}\DIFaddend {]}. The first point of
+success is the existence of a fishing cooperative that is also
+affiliated with a regional federation of cooperatives. These polycentric
+governance structures allow various levels of organization that have
+been shown to foster communication and cooperation {[}\DIFdelbegin \DIFdel{43,50}\DIFdelend \DIFaddbegin \DIFadd{49,56}\DIFaddend {]};
+federations also provide bargain power with governments {[}\DIFdelbegin \DIFdel{43,56}\DIFdelend \DIFaddbegin \DIFadd{49,61}\DIFaddend {]}.
+Access to fishing resources is managed through a TURF, permits, and
+fishing quotas (for some species). McCay {[}\DIFdelbegin \DIFdel{49}\DIFdelend \DIFaddbegin \DIFadd{55}\DIFaddend {]} suggests that the TURF
+promotes a sense of stewardship of their resources and incentivizes
+sustainable management. Together, these structures enabled a
+participative, bottom--up process during the reserve design phase;
+opinions of all fishing members ---and often non--fishing community
+members--- were included. Participation of community members in reserve
+surveillance and yearly monitoring indicate commitment and interest, and
+allow informal communication of results to un--involved community
+members. Furthermore, the reserve is partially isolated from poaching
+activity and fishers have internal regulations pertaining to the
+reserves. The low level of illegal fishing by members of the community
+and outsiders both inside and outside the reserve represents another
+indication of effectiveness. Governance indicators are summarized in
+Table 5.
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-6}Summary of governance indicators.}
+\centering
+\begin{tabular}[t]{l|>{\raggedright\arraybackslash}p{9cm}}
+\hline
+Indicator & Description\\
+\hline
+Access to the fishery & Permits, Territorial Use Rights for Fisheries, Quotas (for some fisheries)\\
+\hline
+Number of fishers & Stable\\
+\hline
+Legal recognition of reserve & Not recognized\\
+\hline
+Reserve type & Community-based Marine Reserve\\
+\hline
+Illegal harvesting & Due to its relative isolations, neither the reserve or TURF suffer from significant illegal harvesting\\
+\hline
+Management plan & The reserve does not have a management plan, but written rules exist within the cooperative\\
+\hline
+Reserve enforcement & Fishers have two land stations equipped with radars and patrol boats 24/7 to patrol the reserves.\\
+\hline
+Size of reserve & The reserve is big enough to protect the targeted sessile or not highly mobile invertebrates (lobster, urchin, snail, cucumber, and abalone)\\
+\hline
+Reasoning for reserve location & The reserves were put in place in zones that, according to local knowledge, were once very productive. Habitat heterogeneity and ease of monitoring, surveillance and enforcement were also considered.\\
+\hline
+Membership to fisher organizations & The fishers are part of fisher organizations.\\
+\hline
+Type of fisheries organizations & The fishers are part of a cooperative (S.C.P.P. Buzos y Pescadores de la Baja California) and are affiliated to a federation (FEDECOOP).\\
+\hline
+Representation & Reserves were designed by fishers in a bottom-up approach, incorporating expertise from academics and CSO members. This was a highly inclusive and participatory process.\\
+\hline
+Internal Regulation & Fishers have stringent internal regulations to control fishing effort throughout their TURF, assigning different fishing zones and gears to different teams. Rules pertaining the marine reserves also exist.\\
+\hline
+Perceived Effectiveness & The fishers have a positive perception about the effectiveness of their reserve, often stating that they have seen significant economic benefits.\\
+\hline
+Social Impact of Reserve & The reserves have had a significant positive social impact. Fishers are proud to be an example of successgul marine conservation, allowing them to have increased social capital.\\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\section{Discussion}\label{discussion}
+
+We have developed and presented \DIFdelbegin \DIFdel{a user--friendly, }\DIFdelend \DIFaddbegin \DIFadd{an }\DIFaddend automated approach for evaluating the
+effectiveness of marine reserves \DIFaddbegin \DIFadd{in Mexico, and perhaps }\DIFaddend around the
+world. Here we highlight MAREA's utility for evidence---based
+management, and comment on a few of its shortcomings. The findings from
+Isla Natividad are used purely to validate the relevance of MAREA rather
+than to discuss particularities of the marine reserve effectiveness,
+which has been described before {[}\DIFdelbegin \DIFdel{9,11,53}\DIFdelend \DIFaddbegin \DIFadd{8,10,42}\DIFaddend {]}. We use examples from the
+case study to build on the utility of MAREA and discuss ways in which
+results can be interpreted to inform management.
+
+The causal inference techniques used by MAREA have been suggested
+{[}37,\DIFdelbegin \DIFdel{41}\DIFdelend \DIFaddbegin \DIFadd{46}\DIFaddend {]} and used {[}20{]} before in other ad hoc studies. This
+approach reduces ambiguity in the interpretation of results. For
+example, invertebrate density decreased through time inside and outside
+of the reserve (Fig. 5h). In this case, a before--after evaluation of
+the reserve (\emph{i.e.} ignoring the control site) would have
+incorrectly concluded that the reserve failed to protect invertebrates.
+On the other hand, a control--impact approach (\emph{i.e.} compare
+reserve vs.~control site only in 2016) would have identified higher
+densities inside the reserve, concluding that the reserve increases
+invertebrate density. However, by executing a formal
+difference--in--differences approach for causal inference, MAREA
+identifies the changes through time and across sites, and estimates the
+effect of the reserve on density at \(\beta_2 = 91.21\) (\emph{p}
+\textless{} 0.05). This approach reveals that invertebrate densities
+decrease in both sites through time, but the decrease is faster for the
+control site, thus yielding a positive value for \(\beta_2\).
+
+The approach used by MAREA to estimate the effect of the reserve on
+biological indicators requires cautious interpretation of the results.
+The value of the \(\beta_2\) coefficient represents the difference
+between the temporal trends of the reserve and control sites {[}20{]}.
+As exemplified by the case of invertebrate densities, a positive value
+(\emph{i.e.} \(\beta_2 > 0\)) does not necessarily indicate an increase
+in the indicator through time, but rather a positive difference with
+respect to the temporal trend of the control site. The inverse occurs
+for negative values of \(\beta_2\).
+
+MAREA provides in--depth analysis and a convenient snapshot overview of
+the effect of the reserve, allowing users to rapidly identify trends.
+However, users must interpret multiple indicators at a time to better
+understand the results. For example, with additional knowledge of local
+environmental variability (\emph{i.e.} indicator B5: Natural
+Disturbance), we can better understand the trends in invertebrate
+densities. As reported before {[}\DIFdelbegin \DIFdel{9}\DIFdelend \DIFaddbegin \DIFadd{8}\DIFaddend {]}, hypoxic conditions that have
+occurred in Isla Natividad can cause decreases in invertebrate
+densities, and reserves buffer the negative effect. While MAREA
+automates the analysis and makes results replicable, proper
+interpretation will still depend on the user. Results produced by MAREA
+can only aid in management and decision making when results have been
+correctly interpreted.
+
+Socioeconomic and governance indicators typically lack a control site,
+which impede us from using the causal inference techniques employed to
+measure biological changes {[}24{]}. However, we can still extract
+useful information from them. Again, by combining results from multiple
+indicators, MAREA can provide insights into the effect of the reserve.
+For example, lobster and sea cucumber have shown increases in densities,
+landings, and income. We cannot conclude that landings and income from
+these species have increased due to the reserve, but we can at least
+conclude that landings have not decreased. While further information on
+market behavior of each fishery is needed, these results provide
+insights into the state of the reserve and its associated fisheries.
+
+As for the governance information, it is difficult to establish causal
+links between the state of the reserve and the governance structures
+present in the community. However, providing a single platform
+(\emph{i.e.} scorecard) or document (\emph{i.e.} technical report) where
+biological, socioeconomic, and governance information is comprehensively
+included can aid in management. By using MAREA, this information will be
+reported across reserves in a standardized way, and can help managers
+identify overarching patterns across sites.
+
+By making results straightforward to interpret, MAREA may also assist in
+communication with a broader stakeholder community. While stakeholder
+involvement in the design and implementation phases of marine reserves
+is important, that may not be sufficient for ensuring long--run buy--in
+or success. The scorecard is easily understandable by experts and
+non--experts, and can be used as an effective tool for communicating the
+results of annual evaluations. Additionally, the technical report can
+serve as a tool for managers and scientists to rapidly produce and
+communicate information at a more technical level.
+
+We recognize that the \DIFaddbegin \DIFadd{seven objectives and }\DIFaddend 29 indicators used by MAREA
+might not fully describe a reserve. \DIFdelbegin \DIFdel{However, they }\DIFdelend \DIFaddbegin \DIFadd{In order to ensure the applicability
+of the tool to reserves in other countries, further testing in other
+regions should take place. However, the proposed objectives and
+indicators }\DIFaddend provide a starting point to perform the evaluation, to which
+managers and users can add other indicators (\emph{e.g.} larval
+dispersal or connectivity) that are relevant to their reserve.
+Furthermore, MAREA's value is that it provides a free, simple, and
+replicable way to perform rigorous impact analysis. The tool can easily
+be used by fishers, CSO members, and managers in government agencies,
+providing transparency of the analysis and results. In addition, it can
+empower and enable local managers and fishers to respond to local change
+and adapt by allowing direct and easy access to the information.
+
+\DIFaddbegin \DIFadd{An evident limitation of MAREA is its dependence on data obtained
+through a BACI design, and the amount of samples needed to estimate
+coefficients in Eqn. 1. It is not uncommon for control sites or
+baselines that describe the biological state of the area before the
+management intervention to be abscent. Propperly designing marine
+reserves by identifying control sites and establishing a baseline before
+the implementation of the reserve is enough to overcome this issue;
+reserves for which there is no control site and baseline can not be
+evaluated with MAREA. On the second case, typical underwater surveys
+require that at least 12 - 16 transects are performed on each site
+(}\emph{\DIFadd{i.e.}} \DIFadd{reserve and control) each year. This provides with at least
+48 samples (12 samples per site, per year), enough to avoid overfitting
+Eqn 1. On either case, these problems can be easily avoided by
+accounting for data requirements in the eventual evaluation, an
+important phase during the design process.
+}
+
+\DIFadd{To the best of our knowledge, MAREA is the first tool designed to
+evaluate marine reserves. Previous work }{[}\DIFadd{22,24}{]} \DIFadd{addressed MPA
+evaluation and provided the foundation for our contribution. However,
+these did not intended to create user--friendly tools to aid in the
+evaluation. As with other conservation management tools, development of
+tools that automatize complex calculations can have an important impact
+in management }{[}\DIFadd{62}{]}\DIFadd{. The use of open data science enables the
+creation of open-access tools that can address techincal gaps and
+inprove management }{[}\DIFadd{27}{]}\DIFadd{.
+}
+
+\DIFaddend The effectiveness of marine reserves continues to be a matter of debate
+{[}\DIFdelbegin \DIFdel{7,12,40}\DIFdelend \DIFaddbegin \DIFadd{11,43,63}\DIFaddend {]}. With current targets set to increase ocean protection,
+it is important that we understand the effects of our interventions
+{[}37{]} so we can better inform management {[}\DIFdelbegin \DIFdel{41}\DIFdelend \DIFaddbegin \DIFadd{46}\DIFaddend {]}. It is therefore
+important that academics, managers, fishers, and CSOs have access to
+open access tools like MAREA. This is particularly relevant for Mexico
+and other Latin American countries, where management agencies are often
+understaffed and underfunded {[}\DIFdelbegin \DIFdel{57}\DIFdelend \DIFaddbegin \DIFadd{64}\DIFaddend {]}, or where materials are often not
+available in their language. In this context, MAREA provides a simple
+and replicable way to align management objectives with performance
+indicators. The proposed methodologies, especially the way in which
+biological indicators are evaluated, provide valuable information for
+managers. We acknowledge there is room for improvement in the way in
+which socioeconomic and governance data are analyzed. Despite this,
+providing a unifying platform where all indicators can be analyzed and
+comprehensively presented represents a valuable step towards effective
+evidence---based management {[}\DIFdelbegin \DIFdel{41}\DIFdelend \DIFaddbegin \DIFadd{46}\DIFaddend {]}.
+
+The first release of MAREA is now available, and it will continue to be
+developed and maintained to keep up to date with the literature. This
+process will incorporate new features, and enhance current ones, aiming
+to improve user experience and expand the scope of the analysis. \DIFaddbegin \DIFadd{Other
+modifications may also include addition of more objectives and
+indicators to ensure applicability in other regions, full translation
+into other languages to avoid any ambiguities introduced via the
+automatic translation, or reporting effects over time in percentages to
+aid interpretation. }\DIFaddend Yet, we believe that this first release represents a
+major step towards effective, replicable evaluation and management of
+marine reserves.
+
+\section{Acknowledgements}\label{acknowledgements}
+
+We thank Olivier Deschenes and Andrew Plantinga, who provided valuable
+input to design the model that evaluates the biological indicators.
+Special thanks to the fishers from Isla Natividad, who gathered the data
+used in this study, and the fishers from El Rosario, who helped us
+validate our survey and framework, and to Arturo Hernández and Alfonso
+Romero who provided help with the logistics. \DIFaddbegin \DIFadd{Finally, we thank the
+Editor for a professional handling, and two anonymous reviewers for
+their suggestions, which significantly improved the quality of this
+paper.
+}\DIFaddend 
+
+\clearpage
+
+\section{References}\label{references}
+
+\hypertarget{refs}{}
+\hypertarget{ref-pauly_2005-qV}{}
+1. Pauly D, Watson R, Alder J. Global trends in world fisheries: Impacts
+on marine ecosystems and food security. Philos Trans R Soc Lond, B, Biol
+Sci. 2005;360: 5--12.
+doi:\href{https://doi.org/10.1098/rstb.2004.1574}{10.1098/rstb.2004.1574}
+
+\hypertarget{ref-halpern_2008-dK}{}
+2. Halpern BS, Walbridge S, Selkoe KA, Kappel CV, Micheli F, D'Agrosa C,
+et al. A global map of human impact on marine ecosystems. Science.
+2008;319: 948--952.
+doi:\href{https://doi.org/10.1126/science.1149345}{10.1126/science.1149345}
+
+\hypertarget{ref-lester_2008-F_}{}
+3. Lester S, Halpern B. Biological responses in marine no-take reserves
+versus partially protected areas. Mar Ecol Prog Ser. 2008;367: 49--56.
+doi:\href{https://doi.org/10.3354/meps07599}{10.3354/meps07599}
+
+\hypertarget{ref-lester_2009-Ks}{}
+4. Lester S, Halpern B, Grorud-Colvert K, Lubchenco J, Ruttenberg B,
+Gaines S, et al. Biological effects within no-take marine reserves: A
+global synthesis. Mar Ecol Prog Ser. 2009;384: 33--46.
+doi:\href{https://doi.org/10.3354/meps08029}{10.3354/meps08029}
+
+\hypertarget{ref-sala_2016-PV}{}
+5. Sala E, Costello C, De Bourbon Parme J, Fiorese M, Heal G, Kelleher
+K, et al. Fish banks: An economic model to scale marine conservation.
+Marine Policy. 2016;73: 154--161.
+doi:\href{https://doi.org/10.1016/j.marpol.2016.07.032}{10.1016/j.marpol.2016.07.032}
+
+\hypertarget{ref-hastings_2017-sm}{}
+6. Hastings A, Gaines SD, Costello C. Marine reserves solve an important
+bycatch problem in fisheries. Proc Natl Acad Sci U S A. 2017;\DIFdelbegin \DIFdel{doi:
+}\DIFdelend \DIFaddbegin \DIFadd{114:
+8927--8934.
+doi:}\DIFaddend \href{https://doi.org/10.1073/pnas.1705169114}{10.1073/pnas.1705169114}
+
+\DIFdelbegin %DIFDELCMD < \hypertarget{ref-padleton_2017-vn}{}
+%DIFDELCMD < %%%
+\DIFdel{7. Padleton L, Aghmadia G, Browman H, Thurstand R, Kaplan D, Bartolino
+V.
+Debating the effectiveness of marine protected areas. ICES Journal of
+Marine Science. 2017;
+doi:}%DIFDELCMD < \href{https://doi.org/10.1093/icesjms/fsx154}{10.1093/icesjms/fsx154}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \hypertarget{ref-aburtooropeza_2011-ya}{}
+\DIFdelbegin \DIFdel{8. }\DIFdelend \DIFaddbegin \DIFadd{7. }\DIFaddend Aburto-Oropeza O, Erisman B, Galland GR, Mascareñas-Osorio I, Sala E,
+Ezcurra E. Large recovery of fish biomass in a no-take marine reserve.
+PLoS ONE. 2011;6: e23601.
+doi:\href{https://doi.org/10.1371/journal.pone.0023601}{10.1371/journal.pone.0023601}
+
+\hypertarget{ref-micheli_2012-EU}{}
+\DIFdelbegin \DIFdel{9. }\DIFdelend \DIFaddbegin \DIFadd{8. }\DIFaddend Micheli F, Saenz-Arroyo A, Greenley A, Vazquez L, Espinoza Montes JA,
+Rossetto M, et al. Evidence that marine reserves enhance resilience to
+climatic impacts. PLoS ONE. 2012;7: e40832.
+doi:\href{https://doi.org/10.1371/journal.pone.0040832}{10.1371/journal.pone.0040832}
+
+\hypertarget{ref-roberts_2017-J9}{}
+\DIFdelbegin \DIFdel{10. }\DIFdelend \DIFaddbegin \DIFadd{9. }\DIFaddend Roberts CM, O'Leary BC, McCauley DJ, Cury PM, Duarte CM, Lubchenco J,
+et al. Marine reserves can mitigate and promote adaptation to climate
+change. Proc Natl Acad Sci U S A. 2017;114: 6167--6175.
+doi:\href{https://doi.org/10.1073/pnas.1701262114}{10.1073/pnas.1701262114}
+
+\hypertarget{ref-munguavega_2015-yg}{}
+\DIFdelbegin \DIFdel{11. }\DIFdelend \DIFaddbegin \DIFadd{10. }\DIFaddend Munguía-Vega A, Sáenz-Arroyo A, Greenley AP, Espinoza-Montes JA,
+Palumbi SR, Rossetto M, et al. Marine reserves help preserve genetic
+diversity after impacts derived from climate variability: Lessons from
+the pink abalone in baja california. Global Ecology and Conservation.
+2015;4: 264--276.
+doi:\href{https://doi.org/10.1016/j.gecco.2015.07.005}{10.1016/j.gecco.2015.07.005}
+
+\hypertarget{ref-edgar_2014-UO}{}
+\DIFdelbegin \DIFdel{12. }\DIFdelend \DIFaddbegin \DIFadd{11. }\DIFaddend Edgar GJ, Stuart-Smith RD, Willis TJ, Kininmonth S, Baker SC, Banks
+S, et al. Global conservation outcomes depend on marine protected areas
+with five key features. Nature. 2014;506: 216--220.
+doi:\href{https://doi.org/10.1038/nature13022}{10.1038/nature13022}
+
+\hypertarget{ref-giakoumi_2017-V2}{}
+\DIFdelbegin \DIFdel{13. }\DIFdelend \DIFaddbegin \DIFadd{12. }\DIFaddend Giakoumi S, Scianna C, Plass-Johnson J, Micheli F, Grorud-Colvert K,
+Thiriet P, et al. Ecological effects of full and partial protection in
+the crowded mediterranean sea: A regional meta-analysis. Sci Rep.
+2017;7: 8940.
+doi:\href{https://doi.org/10.1038/s41598-017-08850-w}{10.1038/s41598-017-08850-w}
+
+\hypertarget{ref-sala_2017-69}{}
+\DIFdelbegin \DIFdel{14. }\DIFdelend \DIFaddbegin \DIFadd{13. }\DIFaddend Sala E, Giakoumi S. No-take marine reserves are the most effective
+protected areas in the ocean. ICES Journal of Marine Science. 2017;
+doi:\href{https://doi.org/10.1093/icesjms/fsx059}{10.1093/icesjms/fsx059}
+
+\hypertarget{ref-betti_2017-lq}{}
+\DIFdelbegin \DIFdel{15. }\DIFdelend \DIFaddbegin \DIFadd{14. }\DIFaddend Betti F, Bavestrello G, Bo M, Asnaghi V, Chiantore M, Bava S, et al.
+Over 10 years of variation in mediterranean reef benthic communities.
+Marine Ecology. 2017;38: e12439.
+doi:\href{https://doi.org/10.1111/maec.12439}{10.1111/maec.12439}
+
+\DIFaddbegin \hypertarget{ref-szuwalski_2017-jc}{}
+\DIFadd{15. Szuwalski CS, Burgess MG, Costello C, Gaines SD. High fishery
+catches through trophic cascades in china. Proc Natl Acad Sci U S A.
+2017;114: 717--721.
+doi:}\href{https://doi.org/10.1073/pnas.1612722114}{10.1073/pnas.1612722114}
+
+\DIFaddend \hypertarget{ref-davies_2017-ml}{}
+16. Davies TK, Mees CC, Milner-Gulland EJ. Use of a counterfactual
+approach to evaluate the effect of area closures on fishing location in
+a tropical tuna fishery. PLoS ONE. 2017;12: e0174758.
+doi:\href{https://doi.org/10.1371/journal.pone.0174758}{10.1371/journal.pone.0174758}
+
+\hypertarget{ref-guidetti_2014-8Z}{}
+17. Guidetti P, Baiata P, Ballesteros E, Di Franco A, Hereu B,
+Macpherson E, et al. Large-scale assessment of mediterranean marine
+protected areas effects on fish assemblages. PLoS ONE. 2014;9: e91841.
+doi:\href{https://doi.org/10.1371/journal.pone.0091841}{10.1371/journal.pone.0091841}
+
+\hypertarget{ref-friedlander_2017-oI}{}
+18. Friedlander AM, Golbuu Y, Ballesteros E, Caselle JE, Gouezo M,
+Olsudong D, et al. Size, age, and habitat determine effectiveness of
+palau's marine protected areas. PLoS ONE. 2017;12: e0174787.
+doi:\href{https://doi.org/10.1371/journal.pone.0174787}{10.1371/journal.pone.0174787}
+
+\hypertarget{ref-rodriguez_2017-PD}{}
+19. Rodriguez AG, Fanning LM. Assessing marine protected areas
+effectiveness: A case study with the tobago cays marine park. OJMS.
+2017;07: 379--408.
+doi:\href{https://doi.org/10.4236/ojms.2017.73027}{10.4236/ojms.2017.73027}
+
+\hypertarget{ref-moland_2013-VP}{}
+20. Moland E, Olsen EM, Knutsen H, Garrigou P, Espeland SH, Kleiven AR,
+et al. Lobster and cod benefit from small-scale northern marine
+protected areas: Inference from an empirical before-after control-impact
+study. Proc Biol Sci. 2013;280: 20122679.
+doi:\href{https://doi.org/10.1098/rspb.2012.2679}{10.1098/rspb.2012.2679}
+
+\hypertarget{ref-soykan_2015-nu}{}
+21. Soykan CU, Lewison RL. Using community-level metrics to monitor the
+effects of marine protected areas on biodiversity. Conserv Biol.
+2015;29: 775--783.
+doi:\href{https://doi.org/10.1111/cobi.12445}{10.1111/cobi.12445}
+
+\hypertarget{ref-pomeroy_2005-Py}{}
+22. Pomeroy RS, Watson LM, Parks JE, Cid GA. How is your mpa doing? A
+methodology for evaluating the management effectiveness of marine
+protected areas. Ocean Coast Manag. 2005;48: 485--502.
+doi:\href{https://doi.org/10.1016/j.ocecoaman.2005.05.004}{10.1016/j.ocecoaman.2005.05.004}
+
+\hypertarget{ref-pomeroy_2004-23}{}
+23. Pomeroy RS, Parks JE, Watson LM. How is your mpa doing ? A guidebook
+of natural and social indicators for evaluating marine protected areas
+management effectiveness {[}Internet{]}. IUCN; 2004.
+doi:\href{https://doi.org/10.2305/IUCN.CH.2004.PAPS.1.en}{10.2305/IUCN.CH.2004.PAPS.1.en}
+
+\hypertarget{ref-mascia_2017-m_}{}
+24. Mascia MB, Fox HE, Glew L, Ahmadia GN, Agrawal A, Barnes M, et al. A
+novel framework for analyzing conservation impacts: Evaluation, theory,
+and marine protected areas. Ann N Y Acad Sci. 2017;1399: 93--115.
+doi:\href{https://doi.org/10.1111/nyas.13428}{10.1111/nyas.13428}
+
+\hypertarget{ref-ostrom_2009-hg}{}
+25. Ostrom E. A general framework for analyzing sustainability of
+social-ecological systems. Science. 2009;325: 419--422.
+doi:\href{https://doi.org/10.1126/science.1172133}{10.1126/science.1172133}
+
+\hypertarget{ref-basurto_2013-oq}{}
+26. Basurto X, Gelcich S, Ostrom E. The social--ecological system
+framework as a knowledge classificatory system for benthic small-scale
+fisheries. Global Environmental Change. 2013;23: 1366--1380.
+doi:\href{https://doi.org/10.1016/j.gloenvcha.2013.08.001}{10.1016/j.gloenvcha.2013.08.001}
+
+\hypertarget{ref-lowndes_2017-xh}{}
+27. Lowndes JSS, Best BD, Scarborough C, Afflerbach JC, Frazier MR,
+O'Hara CC, et al. Our path to better science in less time using open
+data science tools. Nat ecol evol. 2017;1: 0160.
+doi:\href{https://doi.org/10.1038/s41559-017-0160}{10.1038/s41559-017-0160}
+
+\hypertarget{ref-halpern_2012-k9}{}
+28. Halpern BS, Longo C, Hardy D, McLeod KL, Samhouri JF, Katona SK, et
+al. An index to assess the health and benefits of the global ocean.
+Nature. 2012;488: 615--620.
+doi:\href{https://doi.org/10.1038/nature11397}{10.1038/nature11397}
+
+\hypertarget{ref-halpern_2017-Zi}{}
+29. Halpern BS, Frazier M, Afflerbach J, O'Hara C, Katona S, Stewart
+Lowndes JS, et al. Drivers and implications of change in global ocean
+health over the past five years. PLoS ONE. 2017;12: e0178267.
+doi:\href{https://doi.org/10.1371/journal.pone.0178267}{10.1371/journal.pone.0178267}
+
+\hypertarget{ref-selig_2015-F9}{}
+30. Selig ER, Frazier M, O'Leary JK, Jupiter SD, Halpern BS, Longo C, et
+al. Measuring indicators of ocean health for an island nation: The ocean
+health index for fiji. Ecosystem Services. 2015;16: 403--412.
+doi:\href{https://doi.org/10.1016/j.ecoser.2014.11.007}{10.1016/j.ecoser.2014.11.007}
+
+\hypertarget{ref-halpern_2014-lQ}{}
+31. Halpern BS, Longo C, Scarborough C, Hardy D, Best BD, Doney SC, et
+al. Assessing the health of the u.S. west coast with a regional-scale
+application of the ocean health index. PLoS ONE. 2014;9: e98995.
+doi:\href{https://doi.org/10.1371/journal.pone.0098995}{10.1371/journal.pone.0098995}
+
+\hypertarget{ref-elfes_2014-RC}{}
+32. Elfes CT, Longo C, Halpern BS, Hardy D, Scarborough C, Best BD, et
+al. A regional-scale ocean health index for brazil. PLoS ONE. 2014;9:
+e92589.
+doi:\href{https://doi.org/10.1371/journal.pone.0092589}{10.1371/journal.pone.0092589}
+
+\hypertarget{ref-anderson_2015-ND}{}
+33. Anderson JL, Anderson CM, Chu J, Meredith J, Asche F, Sylvia G, et
+al. The fishery performance indicators: A management tool for triple
+bottom line outcomes. PLoS ONE. 2015;10: e0122809.
+doi:\href{https://doi.org/10.1371/journal.pone.0122809}{10.1371/journal.pone.0122809}
+
+\hypertarget{ref-dowling_2016-pO}{}
+34. Dowling N, Wilson J, Rudd M, Babcock E, Caillaux M, Cope J, et al.
+FishPath: A decision support system for assessing and managing data- and
+capacity- limited fisheries. In: Quinn II T, Armstrong J, Baker M,
+Heifetz J, Witherell D, editors. Assessing and managing data-limited
+fish stocks. Alaska Sea Grant, University of Alaska Fairbansk; 2016.
+doi:\href{https://doi.org/10.4027/amdlfs.2016.03}{10.4027/amdlfs.2016.03}
+
+\hypertarget{ref-oyanedel_2017-TO}{}
+35. Oyanedel R, Macy Humberstone J, Shattenkirk K, Rodriguez Van-Dyck S,
+Joye Moyer K, Poon S, et al. A decision support tool for designing
+turf-reserves. BMS. 2017;93: 155--172.
+doi:\href{https://doi.org/10.5343/bms.2015.1095}{10.5343/bms.2015.1095}
+
+\hypertarget{ref-vilela_2017-Zo}{}
+36. Vilela T, Reid J. Improving hydropower choices via an online and
+open access tool. PLoS ONE. 2017;12: e0179393.
+doi:\href{https://doi.org/10.1371/journal.pone.0179393}{10.1371/journal.pone.0179393}
+
+\hypertarget{ref-burgess_2016-HN}{}
+37. Burgess MG, Clemence M, McDermott GR, Costello C, Gaines SD. Five
+rules for pragmatic blue growth. Marine Policy. 2016;
+doi:\href{https://doi.org/10.1016/j.marpol.2016.12.005}{10.1016/j.marpol.2016.12.005}
+
+\hypertarget{ref-nom049sagpesc_2014-V6}{}
+38. NOM-049-SAG/PESC. NORMA oficial mexicana nom-049-sag/pesc-2014, que
+determina el procedimiento para establecer zonas de refugio para los
+recursos pesqueros en aguas de jurisdicción federal de los estados
+unidos mexicanos. DOF. 2014;
+
+\hypertarget{ref-lgeepa_2017-jL}{}
+39. LGEEPA. Ley general del equilibrio ecológico y la protección al
+ambiente. DOF. 2017; Available:
+\url{http://www.diputados.gob.mx/LeyesBiblio/pdf/148/_240117.pdf}
+
+\DIFdelbegin %DIFDELCMD < \hypertarget{ref-woodcock_2017-Wm}{}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \hypertarget{ref-lester_2017-nh}{}
+\DIFaddend 40. \DIFaddbegin \DIFadd{Lester S, McDonald G, Clemence M, Dougherty D, Szuwalski C. Impacts
+of turfs and marine reserves on fisheries and conservation goals:
+Theory, empirical evidence, and modeling. BMS. 2017;93: 173--198.
+doi:}\href{https://doi.org/10.5343/bms.2015.1083}{10.5343/bms.2015.1083}
+
+\hypertarget{ref-chirico_2017-Rz}{}
+\DIFadd{41. Chirico AAD, McClanahan TR, Eklöf JS. Community- and
+government-managed marine protected areas increase fish size, biomass
+and potential value. PLoS ONE. 2017;12: e0182342.
+doi:}\href{https://doi.org/10.1371/journal.pone.0182342}{10.1371/journal.pone.0182342}
+
+\hypertarget{ref-rossetto_2015-V0}{}
+\DIFadd{42. Rossetto M, Micheli F, Saenz-Arroyo A, Montes JAE, De Leo GA, Rochet
+M-J. No-take marine reserves can enhance population persistence and
+support the fishery of abalone. Can J Fish Aquat Sci. 2015;72:
+1503--1517.
+doi:}\href{https://doi.org/10.1139/cjfas-2013-0623}{10.1139/cjfas-2013-0623}
+
+\hypertarget{ref-woodcock_2017-Wm}{}
+\DIFadd{43. }\DIFaddend Woodcock P, O'Leary BC, Kaiser MJ, Pullin AS. Your evidence or mine?
+Systematic evaluation of reviews of marine protected area effectiveness.
+Fish Fish. 2017;18: 668--681.
+doi:\href{https://doi.org/10.1111/faf.12196}{10.1111/faf.12196}
+
+\DIFaddbegin \hypertarget{ref-carter_2017-Uf}{}
+\DIFadd{44. Carter AB, Davies CR, Emslie MJ, Mapstone BD, Russ GR, Tobin AJ, et
+al. Reproductive benefits of no-take marine reserves vary with region
+for an exploited coral reef fish. Sci Rep. 2017;7: 9693.
+doi:}\href{https://doi.org/10.1038/s41598-017-10180-w}{10.1038/s41598-017-10180-w}
+
+\hypertarget{ref-villaseorderbez_website_2017-xE}{}
+\DIFadd{45. Villaseñor-Derbez JC, Faro C, Wright M, Martínez J. A guide to
+evaluate the effectiveness of no-take marine reserves in mexico
+}{[}\DIFadd{Internet}{]}\DIFadd{. 2017. Available:
+}\url{https://www.researchgate.net/publication/317840581/_A/_guide/_to/_evaluate/_the/_effectiveness/_of/_no-take/_marine/_reserves/_in/_Mexico}
+
+\DIFaddend \hypertarget{ref-ferraro_2006-oW}{}
+\DIFdelbegin \DIFdel{41. }\DIFdelend \DIFaddbegin \DIFadd{46. }\DIFaddend Ferraro PJ, Pattanayak SK. Money for nothing? A call for empirical
+evaluation of biodiversity conservation investments. PLoS Biol. 2006;4:
+e105.
+doi:\href{https://doi.org/10.1371/journal.pbio.0040105}{10.1371/journal.pbio.0040105}
+
+\hypertarget{ref-oecd_website_2017-VV}{}
+\DIFdelbegin \DIFdel{42. }\DIFdelend \DIFaddbegin \DIFadd{47. }\DIFaddend OECD. Prices - inflation (cpi) - oecd data {[}Internet{]}. 2017.
+Available: \url{https://data.oecd.org/price/inflation-cpi.htm}
+
+\DIFaddbegin \hypertarget{ref-sandwich_2014}{}
+\DIFadd{48. Zeileis A. Econometric computing with hc and hac covariance matrix
+estimators. Journal of Statistical Software. 2004;11: 1--17.
+}
+
+\DIFaddend \hypertarget{ref-espinosaromero_2014-PY}{}
+\DIFdelbegin \DIFdel{43. }\DIFdelend \DIFaddbegin \DIFadd{49. }\DIFaddend Espinosa-Romero MJ, Rodriguez LF, Weaver AH, Villanueva-Aznar C,
+Torre J. The changing role of ngos in mexican small-scale fisheries:
+From environmental conservation to multi-scale governance. Marine
+Policy. 2014;50: 290--299.
+doi:\href{https://doi.org/10.1016/j.marpol.2014.07.005}{10.1016/j.marpol.2014.07.005}
+
+\hypertarget{ref-rcore_2017}{}
+\DIFdelbegin \DIFdel{44. }\DIFdelend \DIFaddbegin \DIFadd{50. }\DIFaddend R Core Team. R: A language and environment for statistical computing
+{[}Internet{]}. Vienna, Austria: R Foundation for Statistical Computing;
+2017. Available: \url{https://www.R-project.org/}
+
+\hypertarget{ref-shiny_2017}{}
+\DIFdelbegin \DIFdel{45. }\DIFdelend \DIFaddbegin \DIFadd{51. }\DIFaddend Chang W, Cheng J, Allaire J, Xie Y, McPherson J. Shiny: Web
+application framework for r {[}Internet{]}. 2017. Available:
+\url{https://CRAN.R-project.org/package=shiny}
+
+\hypertarget{ref-shinydashboard_2017}{}
+\DIFdelbegin \DIFdel{46. }\DIFdelend \DIFaddbegin \DIFadd{52. }\DIFaddend Chang W, Borges Ribeiro B. Shinydashboard: Create dashboards with
+'shiny' {[}Internet{]}. 2017. Available:
+\url{https://CRAN.R-project.org/package=shinydashboard}
+
+\hypertarget{ref-rmarkdown_2017}{}
+\DIFdelbegin \DIFdel{47. }\DIFdelend \DIFaddbegin \DIFadd{53. }\DIFaddend Allaire J, Cheng J, Xie Y, McPherson J, Chang W, Allen J, et al.
+Rmarkdown: Dynamic documents for r {[}Internet{]}. 2017. Available:
+\url{https://CRAN.R-project.org/package=rmarkdown}
+
+\hypertarget{ref-knitr_2017}{}
+\DIFdelbegin \DIFdel{48. }\DIFdelend \DIFaddbegin \DIFadd{54. }\DIFaddend Xie Y. Knitr: A general-purpose package for dynamic report
+generation in r {[}Internet{]}. 2017. Available:
+\url{http://yihui.name/knitr/}
+
+\hypertarget{ref-mccay_2017-1m}{}
+\DIFdelbegin \DIFdel{49. }\DIFdelend \DIFaddbegin \DIFadd{55. }\DIFaddend McCay B. Territorial use rights in fisheries of the northern pacific
+coast of mexico. BMS. 2017;93: 69--81.
+doi:\href{https://doi.org/10.5343/bms.2015.1091}{10.5343/bms.2015.1091}
+
+\hypertarget{ref-mccay_2014-CN}{}
+\DIFdelbegin \DIFdel{50. }\DIFdelend \DIFaddbegin \DIFadd{56. }\DIFaddend McCay BJ, Micheli F, Ponce-Díaz G, Murray G, Shester G,
+Ramirez-Sanchez S, et al. Cooperatives, concessions, and co-management
+on the pacific coast of mexico. Marine Policy. 2014;44: 49--59.
+doi:\href{https://doi.org/10.1016/j.marpol.2013.08.001}{10.1016/j.marpol.2013.08.001}
+
+\DIFaddbegin \hypertarget{ref-tmap_2017}{}
+\DIFadd{57. Tennekes M. Tmap: Thematic maps }{[}\DIFadd{Internet}{]}\DIFadd{. 2017. Available:
+}\url{https://CRAN.R-project.org/package=tmap}
+
+\DIFaddend \hypertarget{ref-afflerbach_2014-HP}{}
+\DIFdelbegin \DIFdel{51. }\DIFdelend \DIFaddbegin \DIFadd{58. }\DIFaddend Afflerbach JC, Lester SE, Dougherty DT, Poon SE. A global survey of
+-reserves, territorial use rights for fisheries coupled with marine
+reserves. Global Ecology and Conservation. 2014;2: 97--106.
+doi:\href{https://doi.org/10.1016/j.gecco.2014.08.001}{10.1016/j.gecco.2014.08.001}
+
+\DIFdelbegin %DIFDELCMD < \hypertarget{ref-lester_2017-nh}{}
+%DIFDELCMD < %%%
+\DIFdel{52. Lester S, McDonald G, Clemence M, Dougherty D, Szuwalski C. Impacts
+of turfs and marine reserves on fisheries and conservation goals:
+Theory, empirical evidence, and modeling. BMS. 2017;93: 173--198.
+doi:}%DIFDELCMD < \href{https://doi.org/10.5343/bms.2015.1083}{10.5343/bms.2015.1083}
+%DIFDELCMD < 
+
+%DIFDELCMD < \hypertarget{ref-rossetto_2015-V0}{}
+%DIFDELCMD < %%%
+\DIFdel{53. Rossetto M, Micheli F, Saenz-Arroyo A, Montes JAE, De Leo GA, Rochet
+M-J. No-take marine reserves can enhance population persistence and
+support the fishery of abalone. Can J Fish Aquat Sci. 2015;72:
+1503--1517.
+doi:}%DIFDELCMD < \href{https://doi.org/10.1139/cjfas-2013-0623}{10.1139/cjfas-2013-0623}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \hypertarget{ref-suman_2010-ez}{}
+\DIFdelbegin \DIFdel{54. }\DIFdelend \DIFaddbegin \DIFadd{59. }\DIFaddend Suman CS, Saenz-Arroyo A, Dawson C, Luna MC. Manual de instruccion
+de reef check california: Guia de instruccion para el monitoreo del
+bosque de sargazo en la peninsula de baja california. Pacific Palisades,
+CA, USA: Reef Check Foundation; 2010.
+
+\hypertarget{ref-gutirrez_2011-0U}{}
+\DIFdelbegin \DIFdel{55. }\DIFdelend \DIFaddbegin \DIFadd{60. }\DIFaddend Gutiérrez NL, Hilborn R, Defeo O. Leadership, social capital and
+incentives promote successful fisheries. Nature. 2011;470: 386--389.
+doi:\href{https://doi.org/10.1038/nature09689}{10.1038/nature09689}
+
+\hypertarget{ref-finkbeiner_2015-87}{}
+\DIFdelbegin \DIFdel{56. }\DIFdelend \DIFaddbegin \DIFadd{61. }\DIFaddend Finkbeiner EM, Basurto X. Re-defining co-management to facilitate
+small-scale fisheries reform: An illustration from northwest mexico.
+Marine Policy. 2015;51: 433--441.
+doi:\href{https://doi.org/10.1016/j.marpol.2014.10.010}{10.1016/j.marpol.2014.10.010}
+
+\DIFaddbegin \hypertarget{ref-ball_2009-qi}{}
+\DIFadd{62. Ball IR, Possingham HP, Watts ME. Marxan and relatives: Software for
+spatial conservation prioritization. Spatial conservation prioritization
+quantitative methods \& computational tools. United Kingdom: Oxford
+University Press; 2009. pp. 185--195. Available:
+}\url{https://espace.library.uq.edu.au/view/UQ:200259}
+
+\hypertarget{ref-padleton_2017-vn}{}
+\DIFadd{63. Padleton L, Aghmadia G, Browman H, Thurstand R, Kaplan D, Bartolino
+V. Debating the effectiveness of marine protected areas. ICES Journal of
+Marine Science. 2017;
+doi:}\href{https://doi.org/10.1093/icesjms/fsx154}{10.1093/icesjms/fsx154}
+
+\DIFaddend \hypertarget{ref-lundquist_2005-OL}{}
+\DIFdelbegin \DIFdel{57. }\DIFdelend \DIFaddbegin \DIFadd{64. }\DIFaddend Lundquist CJ, Granek EF. Strategies for successful marine
+conservation: Integrating socioeconomic, political, and scientific
+factors. Conserv Biol. 2005;19: 1771--1778.
+doi:\href{https://doi.org/10.1111/j.1523-1739.2005.00279.x}{10.1111/j.1523-1739.2005.00279.x}
+
+\section{Supporting information}\label{supporting-information}
+
+\textbf{S1 Appendix. Survey to collect governance information from
+fishing communities.} English version
+
+\textbf{S2 Appendix. Survey to collect governance information from
+fishing communities.} Spanish version
+
+\textbf{S3 Table. Assigned values and reasoning of socioeconomic and
+governance indicators used to color-code the scorecard in MAREA}
+
+
+\end{document}
