@@ -1,7 +1,7 @@
 Code,Indicator,Data type,Unit (if applicable)
 B1,Shannon diversity index,Continuous,
 B2,Species richness,Discrete,Number of species/transect
-B3,Density of mature organisms,Continuous,Percent points
+B3,Density of mature organisms,Continuous,Percent
 B4,Density*,Continuous,Organisms/transect
 B5,Natural Disturbance,Descriptive,
 B6,Mean Trophic Level,Continuous,
