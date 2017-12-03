@@ -1,0 +1,716 @@
+---
+title: A user--friendly tool to evaluate the effectiveness of no--take marine reserves
+subtitle: Marine reserve evaluation
+header-includes:
+- \usepackage{setspace}
+- \doublespacing
+- \usepackage{lineno}
+- \linenumbers
+output:
+  pdf_document:
+    fig_caption: yes
+    keep_tex: yes
+fontsize: 12pt
+bibliography:
+- exported-references.bib
+- packages.bib
+csl: plos.csl
+---
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { 
+      equationNumbers: { 
+            autoNumber: "all",
+            formatNumber: function (n) {return '9.'+n}
+      } 
+  }
+});
+</script>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+options(knitr.table.format = "latex")
+
+windowsFonts(Times=windowsFont("TT Times New Roman"))
+
+```
+
+Juan Carlos Villaseñor-Derbez^1¶\*^, Caio Faro^1¶^, Melaina Wright^1¶^, Jael Martínez^1¶^, Sean Fitzgerald^1&^, Stuart Fulton^2&^, Maria del Mar Mancha-Cisneros^3&^, Gavin McDonald^1,4,5&^, Fiorenza Micheli^6&^, Alvin Suárez^2&^, Jorge Torre^2&^, Christopher Costello^1,4,5¶^
+
+
+^1^ Bren School of Environmental Science and Management, University of California Santa Barbara, Santa Barbara, California, United States
+
+^2^ Comunidad y Biodiversidad A.C., Calle Isla del Peruano, Guaymas, Sonora, México
+
+^3^ School of Life Sciences, Arizona State University, Tempe, Arizona, United States
+
+^4^ Sustainable Fisheries Group, University of California Santa Barbara, Santa Barbara, California, United States
+
+^5^ Marine Science Institute, University of California Santa Barbara, Santa Barbara, California, United States
+
+^6^ Hopkins Marine Station and Center for Ocean Solutions, Stanford University, Pacific Grove, CA 93950, USA
+
+
+\*Corresponding author
+
+Email: jvillasenor@bren.ucsb.edu (JCVD)
+
+¶ These authors contributed equally to this work.
+
+& These authors also contributed equally to this work.
+
+\clearpage
+
+**Abstract**
+
+Marine reserves are implemented to achieve a variety of objectives, but are seldom rigorously evaluated to determine whether those objectives are met. In the rare cases when evaluations do take place, they typically focus on ecological indicators and ignore other relevant objectives such as socioeconomics and governance. And regardless of the objectives, the diversity of locations, monitoring protocols, and analysis approaches hinder the ability to compare results across case studies. Moreover, analysis and evaluation of reserves is generally conducted by outside researchers, not the reserve managers or users, plausibly thereby hindering effective local management and rapid response to change. We present a framework and tool, called “MAREA”, to overcome these challenges. Its purpose is to evaluate the extent to which any given reserve has achieved its stated objectives.  MAREA provides specific guidance on data collection and formatting, and then conducts rigorous causal inference analysis based on data input by the user, providing real--time outputs about the effectiveness of the reserve. MAREA’s ease of use, standardization of state--of--the--art inference methods, and ability to analyze marine reserve effectiveness across ecological, socioeconomic, and governance objectives could dramatically further our understanding and support of effective marine reserve management.
+
+```{r load packages}
+suppressPackageStartupMessages({
+  library(MPAtools)
+  library(knitr)
+  library(kableExtra)
+  library(stargazer)
+  library(maptools)
+  library(tmap)
+  library(tmaptools)
+  library(rgdal)
+  library(sp)
+  library(magrittr)
+  library(tidyverse)
+})
+
+# RefManageR::ReadBib("exported-references.bib") %>%
+# View()
+```
+
+
+# Introduction
+
+Unsustainable fishing practices threaten biodiversity, conservation, economic and social outcomes [@pauly_2005-qV; @halpern_2008-dK]. Marine Protected Areas (MPAs; and marine reserves, in which all extractive efforts are prohibited) are frequently proposed to aid in the recovery of fish and invertebrate stocks [@lester_2008-F_; @lester_2009-Ks; @sala_2016-PV; @hastings_2017-sm] by limiting or restricting fishing effort and gears.
+
+Available empirical evidence on marine reserve effectiveness is mixed [@padleton_2017-vn]. Some studies have shown that MPAs increase biomass [@aburtooropeza_2011-ya; @lester_2009-Ks], enhance resilience to climatic impacts [@micheli_2012-EU; @roberts_2017-J9], and preserve genetic diversity [@munguavega_2015-yg]. Compared to partially protected MPAs, marine reserves have higher levels of biomass, density, richness, and larger organisms [@lester_2008-F_; @edgar_2014-UO; @giakoumi_2017-V2; @sala_2017-69]. These effects are often measured as biological changes in the area through time and many lack a control site for comparison [@betti_2017-lq]. This approach does not account for other factors for which one must control [@davies_2017-ml] in order to causally attribute a biological change to the reserve. While some studies have used control sites, these analyses do not estimate the effect of the reserve, and often use a control--impact comparison approach that does not address temporal variability [@guidetti_2014-8Z; @friedlander_2017-oI; @lester_2009-Ks; @aburtooropeza_2011-ya; @rodriguez_2017-PD]. A smaller fraction of studies have used a before--after--control--impact (*i.e.* BACI) design comparing reserves to control sites before and after implementation [@moland_2013-VP; @soykan_2015-nu; @lester_2009-Ks], which allows the use of causal inference techniques that estimate the effect of the reserve.
+
+But even when proper causal inference can be drawn, results are often idiosyncratic across reserves. Effects of reserves on ecological and economic outcomes are highly heterogeneous, and often depend on the specific ecological, economic, and social context. The purpose of this paper is to describe a user--friendly tool, called “MAREA”, to rigorously systematize the evaluation of marine reserve effectiveness. The tool is in the form of an open-source application that uses state--of--the--art methods from program evaluation to compare a reserve to control sites along a number of ecological, economic, and governance dimensions.
+
+The challenge of how to standardize marine reserve evaluation is not a new one. The recent IUCN framework “How is your MPA doing?” [@pomeroy_2005-Py; @pomeroy_2004-23] provides a comprehensive list of biological, socioeconomic, and governance indicators, and insights into how these indicators may be measured. But this framework stops short of analysis, so provides a user with little guidance about establishing causal inference about the reserve. Recent work by Mascia *et al.* [@mascia_2017-m_] integrates these three dimensions via the Social Ecological Systems Framework [@ostrom_2009-hg; @basurto_2013-oq] and suggests the use of causal inference techniques to provide a measure of the effect of conservation interventions. However, these two novel approaches do not provide a user-friendly tool that enables replicability and scalability of the analysis, particularly when used by the fishers and decision makers themselves.
+
+An increasingly popular way to make science accessible, reproducible, scalable, and replicable is through Open Science and the development of open--access tools [@lowndes_2017-xh]. The Ocean Health Index [@halpern_2012-k9; @halpern_2017-Zi], for example, successfully standardized a way to measure the health and benefits of the oceans. This approach has been implemented at a global scale, but also at country-level [@selig_2015-F9], and regionally [@halpern_2014-lQ; @elfes_2014-RC]. Open access tools are not limited to conservation, and have also been developed to evaluate fishery performance [@anderson_2015-ND; @dowling_2016-pO], design territorial use rights for fisheries [TURFs; @oyanedel_2017-TO], and improve decision making in the hydro power industry [@vilela_2017-Zo].
+
+This paper presents a framework and user--friendly tool to evaluate marine reserve effectiveness, which incorporates the biological, socioeconomic, and governance dimensions of any fishery. We first provide a list of commonly stated management objectives and match them to appropriate indicators. We then develop a simple approach to analyzing these indicators building on causal inference techniques [@moland_2013-VP], which help us understand the effect of management interventions [@burgess_2016-HN; @mascia_2017-m_]. To implement the analytical approach in a user-friendly format, we introduce the Marine Reserve Evaluation Application (MAREA), an open source, web–based tool that automates the framework described in this paper and enables its broader use. Finally, we present a case study on the evaluation of a marine reserve established by the fishers of Isla Natividad (Mexico) in 2006, to demonstrate the potential of MAREA.
+
+# Materials and methods
+
+Here, we describe the proposed framework to evaluate the effectiveness of marine reserves (Fig. 1). We explain how management objectives were identified and matched to appropriate indicators that allow the evaluation of the reserves, and provide brief guidelines on data collection. Alongside, methodologies to analyze these indicators are presented. We then describe the development of MAREA and explain how this user--friendly open--access tool can be used by fishermen, managers, and other stakeholders with little scientific background. Finally, we provide guidelines on how to interpret and use the results and output generated by MAREA to inform management.
+
+**Fig 1. Workflow to evaluate the effectiveness of marine reserves.**
+
+```{r, fig.cap = "Workflow to evaluate the effectiveness of marine reserves."}
+fig1 <- knitr::include_graphics("./Figures/flowchart.gif", dpi = 2380)
+```
+
+## Marine Reserve objectives and indicators
+
+Throughout this study, we will refer to the stated goals for which a marine reserve was designed as “objectives.” This work was motivated by the case of Mexico, where 39 reserves have been implemented over the past five years to achieve objectives such as increasing productivity in nearby waters or recover overexploited species; most of these reserves have never been formally evaluated for effectiveness at meeting those objectives. Thus, our focus was on identifying common objectives of marine reserves in Mexico. However, a literature review and discussions with marine reserve researchers worldwide suggest that the objectives driving Mexican marine reserve implementation are similar to those in the rest of the world. Thus, we group these objectives into seven major categories, which can be applied to marine reserves worldwide. The list of objectives includes stated objectives in legislation [@nom049sagpesc_2014-V6; @lgeepa_2017-jL] and official documents such as the Technical Justification Studies (*Estudios Técnicos Justificativos*), agreements, and decrees associated to these areas:
+
+1.	Avoid overexploitation
+2.	Conserve species under a special protection regime
+3.	Maintain biological processes (reproduction, recruitment, growth, feeding)
+4.	Improve fishery production in adjacent waters
+5.	Preserve biological diversity and the ecosystem
+6.	Recover overexploited species
+7.	Recover species of economic interest
+
+Based on these seven objectives, we determined a set of associated indicators to evaluate reserve effectiveness. These indicators are specific variables on which data could be collected, and analyzed, to ultimately determine whether the corresponding objective was causally being achieved by the marine reserve. The list of indicators was compiled through a review of scientific literature in which we identified indicators that were used to measure similar objectives. A first filter eliminated indicators for which baseline data do not typically exist in Mexico. The preliminary list of indicators was reviewed at a workshop with participation of members from Mexican fishery management agencies and non-government organizations. Later, these were presented to fishers from the Ensenada Fishing Cooperative (*S.C.P.P. Ensenada*), in El Rosario, Baja California, who provided input. Our final list of indicators includes those identified in review works [@lester_2009-Ks; @woodcock_2017-Wm].
+
+Indicators are divided into three main categories: biological, socioeconomic, and governance (Table 1). The nine biological indicators focus on fish and invertebrate communities that are evaluated using underwater ecological surveys performed inside and outside the reserve (see Data and Analysis section for specific sampling design and methodologies). Five socioeconomic indicators reflect the performance of the fishery in terms of landings, income from landings, and availability of alternative livelihoods. Fifteen governance indicators describe the governance structures under which the community operates (*e.g.*, access rights to the fishery, number of fishers, legal recognition of the reserve). Some indicators require a numerical entry (*e.g.* Fish biomass) while others are more descriptive (*e.g.* Reasoning for reserve location). Many of them specifically measure an outcome of the reserve, though some are designed to further the understanding of the mechanisms driving a reserve’s performance. In that sense, most biological and socioeconomic indicators are outcome variables. On the other hand, governance indicators are viewed as possible explanatory variables of reserve performance. Whenever an indicator is applied to “Target species”, it means that the indicator can be used for all species (*e.g.* Fish Biomass) and/or for individual species that are either the conservation target  of the reserve or are of particular economic or ecological interest (*e.g.* Grouper Biomass). Table 1 presents the proposed indicators, and Table 2 shows how objectives are matched with biological and socioeconomic indicators.
+
+```{r, results = "asis"}
+read.csv("./Tables/Table_indicators.csv") %>% 
+  knitr::kable(caption = "List of indicators to evaluate the effectiveness of no-take marine reserves.",
+               col.names = c("Code", "Indicator", "Data type", "Unit")) %>%
+  kable_styling(latex_options = c("scale_down")) %>%
+  group_rows("Biological", 1, 7) %>%
+  group_rows("Socioeconomic", 8, 10) %>% 
+  group_rows("Governance", 11, 25) %>% 
+  add_footnote(c("The indicator is also applied to target species"), notation = "symbol")
+```
+
+\clearpage
+
+```{r}
+read.csv("./Tables/Objectives_Indicators.csv") %>% 
+  select(1:15) %>% 
+  knitr::kable(caption = "Management objectives and respective performance indicators. All governance indicators should allways be used.",
+               col.names = c("Objective", "B1", "B2", "B3", "B4", "B4*", "B5", "B6", "B7", "B7*", "S1", "S1*", "S2", "S2*", "S3")) %>% 
+  kable_styling(latex_options = c("scale_down"))  %>% 
+  column_spec(1, width = "4cm") %>% 
+  add_footnote(c("The indicator is applied to target species"), notation = "symbol")
+```
+
+## Data and analyses
+
+In many coastal marine reserves of Mexico, biological data are collected via underwater visual censuses as part of a reserve’s monitoring program. Scientific divers (which are often local fishermen with guidance from Civil Society Organizations; CSOs) record fish and invertebrate richness and abundances, as well as fish total length along belt transects. Ecological surveys are typically performed annually in each reserve and corresponding control site(s), before and after the implementation of the reserve, providing a sampling design that can be used to draw causal inference. Control sites are areas where habitat is similar to that of the reserve, but with presence of fishing activity; in principle these are areas that are otherwise observationally identical to the reserve site, but where, for presumably random reasons, a reserve was not implemented. While transect dimensions (*i.e.* length and width) and sampling methods might vary from study to study, the general idea remains the same: richness, abundances, and sizes of organisms are recorded in a study–specific standardized way. For this reason, MAREA does not assume specific transect dimensions, and pertinent indicators are calculated per transect (Table 1).
+
+This sampling design for biological data allows us to use causal inference techniques [@moland_2013-VP; @ferraro_2006-oW] to evaluate the effect of the reserve on biological indicators. The hypothesis that the indicators will respond to implementation of the reserve is tested by analyzing spatial and temporal changes in each numeric biological indicator (all but B5) using generalized linear models [@moland_2013-VP]. To account for variations in the environment and survey conditions, covariates that are gathered during the underwater ecological surveys are included in the difference-in-differences model with form:
+
+\begin{equation}I_{i,t,z}=\beta_0 + \sum_{t = 2}^T\gamma_{t}Y_t + \beta_1Z_{i,z} + \beta_2P_{i,t}\times Z_{i,z} + \beta_3T_{i,t,z} + \beta_4V_{i,t,z} + \beta_5D_{i,t,z} + \epsilon_{i,t,z}\end{equation}
+
+In this model, $i$, $t$, and $z$ are indices for transect, time, and zone (control or reserve site), respectively. This model allows us to estimate the change in an indicator ($I$) based on the year ($Y$), a dummy variable that indicates treatment ($Z$; *i.e.* control or reserve), an interaction between a dummy variable that indicates pre-- or post--implementation ($P$) and treatment ($Z$), and covariates such as bottom temperature ($T$; in °C), horizontal visibility during the survey ($V$; in m), and depth at which survey was performed ($D$; in m). $\epsilon$ represents the error term associated to the regression. Here, years are modeled as factors, using the first year as the reference level. This does not impose a linear structure in the way an indicator changes through time (*i.e.* the change in biomass between 2006 and 2007 does not have to be the same as the change between 2015 and 2016). The treatment and implementation variables, modeled as dummy variables, are coded as Control = 0 and Reserve = 1; and Pre--implementation = 0 and Post--implementation = 1, respectively.
+
+Socioeconomic data are often collected by fishers, natural resource management agencies, or CSOs by recording landings, income, and sometimes prices for each species. To control for inflation, income is adjusted with the country’s consumer price index [@oecd_website_2017-VV]:
+
+\begin{equation}I_t = RI\times \frac{CPI_t}{CPI_T}\end{equation}
+
+Where $I_t$ represents the adjusted income for year $t$ as the product between the reported income for that year and the ratio between the consumer price index ($CPI$) in that year to the most recent year’s ($T$) CPI. Since no control sites are typically available for this data type, numeric socioeconomic indicators (S1 and S2) are evaluated with a simplified version of eq. 1:
+
+\begin{equation}I_{t}=\beta_0 + \beta_1P_{t} + \epsilon_{t}\end{equation}
+
+While this model does not formally allow for causal inference, we can still measure changes in mean landings and income before and after the implementation of the reserve and provide valuable input. For both models (eq. 1 and eq. 3), we estimate the model coeficients with ordinary least squares, and calculate heteroskedastic–robust standard errors.
+
+While biological and some economic data are regularly collected, governance data are typically not available nor systematically collected by the community or other organizations. Therefore, we created a survey specifically designed to collect information needed for the proposed indicators (B5, S3, and G1--G15). The survey is included as supplementary material in English (S1 Appendix) and Spanish (S2 Appendix). To analyze governance information, we developed a framework based on a literature review of common governance structures and their relation to effectiveness in managing fisheries or marine reserves (S3 Table). This approach has been proven to successfully evaluate governance structures [@espinosaromero_2014-PY]. Unlike with biological and socioeconomic objectives (see eqs 1 and 3), MAREA does not quantitatively analyze governance information. Rather, it is presented along with the biological and socioeconomic indicators to provide managers and users with a more complete description of the reserve.
+
+## Marine Reserve Evaluation App (MAREA)
+
+We developed MAREAin R version 3.4.2 and R Studio 1.1.383 [@rcore_2017] using the Shiny package [@shiny_2017], to build an interactive web application hosted on an open server; the MAREA app can be accessed at [turfeffect.shinyapps.io/marea](turfeffect.shinyapps.io/marea/). While the original version was developed in Spanish because it was aimed for Mexico and other Latin-American countries, all of its content can be translated by a translation widget available within the app.
+
+MAREA is designed as a 6--step process, divided in tabs that appear upon launching the app. The first tab introduces the app and summarizes the evaluation process. Then, the user selects management objectives, which MAREA automatically matches to appropriate indicators, based on Table 2. Users can also manually modify selected indicators based on their interests and data availability. The user can then load data on one or more reserves, using standard \*.csv text files; sample datasets are provided within MAREA. Once data have been loaded, MAREA identifies all reserves in the data, and lets the user select the reserve to be evaluated. At this point, the user can also specify the year of implementation of the reserve, reserve dimensions, and indicate target species that are of particular management interest. MAREA provides the user with a section to confirm that all the decisions made leading up to that point are correct. Once the user has confirmed all input data, objectives, and other information, MAREA performs the formal program evaluation analyses discussed above. For a typical data set, the automated analysis step takes less than one second. Finally, the user is taken to the results tab where all results are presented in a simple format. The user can also download a more comprehensive technical report produced in \*.pdf  format.
+
+The first output is a color–coded scorecard intended to provide a general overview of the effectiveness of the reserve. The scorecard provides a global score for the reserve, a general score for each category of indicators, and an individual score for each indicator. The global and category–level scores are determined by the percentage of positive indicators, overall and for each category, respectively. For numeric biological indicators (all but B5), the color is defined by the sign of the interaction term coefficient ($\beta_2$) in eq. 1. For socioeconomic indicators, colors are assigned based on the direction of the slope ($\beta_1$) in eq. 3. Red, yellow, and green are used for $\beta_i<0$, $\beta_i = 0$, and $\beta_i>0$, respectively. The intensity of the color is defined by the significance of the coefficient, testing the null hypothesis of no change (*i.e.* $H_0: \beta_i = 0$) with a Student’s t-test. Cutoff values are $p < 0.05$ and $p < 0.1$. Thus, even in a case where $\beta_i > 0$, if the coefficient is not significant by standard measures (*i.e. * $p>0.1$), the indicator will be assigned a yellow color. A legend (Fig. 2) is provided within the scorecard to aid in the interpretation of these results. Governance indicators are represented simply by red or green. The color is defined based on what literature shows to be a negative (red) or positive (green) factor for a reserve (S3 Table). For example, if the perceived degree of illegal fishing is high, this indicator will be assigned a red color. However, due to the nature of some governance indicators, which require the user to provide a narrative, only some indicators are presented in the scorecard (although all are included in the technical report).
+
+**Fig 2. Legend used to interpret the scorecard produced by MAREA.** Colors indicate direction of change (red = negative; green = positive), and color intensity is given by the statistical significance.
+
+```{r}
+fig2 <- knitr::include_graphics("./Figures/legend2.gif")
+```
+
+
+The second output from MAREA is a technical report intended to communicate information and statistical results in a more comprehensive and technical way. This report also includes a scorecard as a summary of the results, but provides more information for each indicator. For all numeric biological indicators, the report includes a graph of the value of the indicator in the reserve and control sites through time. It also provides a regression table that summarizes the value of all coefficients in the regression and their respective robust standard errors. The summary table also provides information on model fit ($R^2$) and significance of the regression.
+
+The scorecard is produced with functions from the Shinydashboard package [@shinydashboard_2017]. The technical report is produced by a parameterized Rmarkdown document [@rmarkdown_2017] processed by the knitr package [@knitr_2017]. Another feature of MAREA is that the user can choose to share the data. Once the technical report is downloaded, the information on the reserve, its management objectives, and all uploaded data are saved into a central repository. These data can be accessed at any time by any person interested in acquiring them at [github.com/turfeffect/MAREAdata](github.com/turfeffect/MAREAdata).
+
+## Case study
+
+```{r read data}
+
+fish_data <- read.csv("./Data/natividad_fish.csv", stringsAsFactors = F)
+
+invert_data <- read.csv("./Data/natividad_invertebrates.csv", stringsAsFactors = F)
+
+# invert_data$Genero[invert_data$GeneroEspecie == "Strongylocentrotus franciscanus"] <- "Mesocentrotus"
+# invert_data$GeneroEspecie[invert_data$GeneroEspecie == "Strongylocentrotus franciscanus"] <- "Mesocentrotus franciscanus"
+# 
+# write.csv(invert_data, "./Data/natividad_invertebrates.csv", row.names = F)
+
+landings <- read.csv("Data/natividad_landings_conapesca.csv", stringsAsFactors = F) #%>% 
+#   filter(!GeneroEspecie %in% c("Haliotis fulgens", "Haliotis corrugata"))
+# 
+# landings$GeneroEspecie[landings$GeneroEspecie == "Megastrea undosa"] <- "Megastraea undosa"
+# write.csv(landings, "Data/natividad_landings_conapesca.csv", row.names = F)
+
+```
+
+While MAREA is a general tool that can be easily employed to evaluate the effectiveness of any marine reserve with the required input data, we illustrate its use here by applying it to one marine reserve near Isla Natividad, in Baja California Sur, Mexico. Isla Natividad is located 8 Km off the Pacific Coast of the Baja California Peninsula (Fig. 3), where fishers operate under a fishing cooperative (*S.C.P.P. Buzos y Pescadores de la Baja California*) that promotes co-management of marine resources [@mccay_2017-1m; @mccay_2014-CN]. Additionally, fishers have Territorial Use Rights for Fisheries (TURFs) that provide them with exclusive access rights to exploit the benthic marine resources within a given perimeter [@mccay_2014-CN].
+
+**Fig 3. General location of Isla Natividad (left) and map of the island (right).** The marine reserve polygon is indicated in red, and the approximate location of control sites is indicated by blue squares (B = Babencho, D = La Dulce).
+
+```{r map}
+proj <- CRS("+proj=longlat +datum=NAD27")
+
+baja <- readOGR(dsn = "./Data/Spatial", layer = "muni_2015gw", verbose = F)
+
+stat <- baja[baja$NOM_ENT %in% c("Baja California Sur", "Baja California", "Sonora"),]
+stat$COUNTRY <- "Mexico"
+stat <- unionSpatialPolygons(stat, stat$COUNTRY)
+
+baja2 <- baja[baja$NOM_ENT %in% c("Baja California Sur"),]
+
+proj2 <- CRS(proj4string(baja2))
+
+#Small shapefile for region of interest
+xy1 <- data.frame(X = mean(-115.24, -115.14), Y = mean(27.85, 27.90))
+coordinates(xy1) <- c("X", "Y")
+proj4string(xy1) <- proj
+res1 <- spTransform(xy1, proj)
+
+# Reserve polygons
+reserves <- read.csv("./Data/Spatial/baja_coordinates.csv", stringsAsFactors = F) %>% 
+  filter(Location == "PlanaCuevas") %>% 
+  select(lon = Longitude, lat = Latitude, id = Location) %>% 
+  split(.$id) %>% 
+  lapply(function(x) { x["id"] <- NULL; x }) %>% 
+  sapply(Polygon) %>% 
+  Polygons(ID = 1) %>% 
+  list() %>% 
+  SpatialPolygons(proj4string = proj2)
+
+# Labes for first map
+labels1 <- data.frame(X = c(-111, -111, -116), Y = c(32, 30, 25), Label = c("USA", "Mexico", "Pacific Ocean"))
+coordinates(labels1) <- c("X", "Y")
+proj4string(labels1) <- proj2
+labels1 <- spTransform(labels1, proj2)
+
+# controls
+controls <- data.frame(X = c(-115.187, -115.1464), Y = c(27.865, 27.84407), Label = c("B", "D"))
+coordinates(controls) <- c("X", "Y")
+proj4string(controls) <- proj2
+controls <- spTransform(controls, proj2)
+
+# Labels for second map
+labels2 <- data.frame(X = c(-115.17, -115.17, -115.17), Y = c(27.89, 27.8675, 27.8625), Label = c("Pacific Ocean", "Isla", "Natividad"))
+coordinates(labels2) <- c("X", "Y")
+proj4string(labels2) <- proj2
+labels2 <- spTransform(labels2, proj2)
+
+# Maps
+data(World)
+W <- spTransform(World, proj)
+W <- W[W$name == "United States",]
+
+pen_map <- tm_shape(W, bbox = bb(xlim = c(-118.36648, -109.41321),
+                                 ylim = c(22.87195, 32.71863))) +
+  tm_polygons() +
+  tm_shape(stat) +
+  tm_polygons() +
+  tm_shape(res1) +
+  tm_symbols(shape = 0, size = 2, border.col = "black", col = "black", border.lwd = 2) +
+  tm_shape(labels1) +
+  tm_text("Label") +
+  tm_scale_bar(position = c("left", "bottom"))
+
+study_area <- tm_shape(baja2, bbox = bb(xlim = c(-115.22, -115.14), ylim = c(27.85, 27.90))) +
+  tm_polygons() +
+  tm_shape(reserves) +
+  tm_polygons(border.col = "black", col = "red", border.lwd = 0) +
+  tm_shape(controls) +
+  tm_symbols(shape = 22, size = 4, border.col = "black", col = "blue", border.lwd = 1) +
+  tm_text("Label") +
+  tm_shape(labels2) +
+  tm_text("Label") +
+  tm_compass(position = c("left", "bottom")) +
+  tm_scale_bar(position = c("left", "bottom"))
+```
+
+In 2006, the Isla Natividad community implemented two community--based marine reserves within their TURF [@afflerbach_2014-HP; @lester_2017-nh; @micheli_2012-EU]. Evidence suggest that these reserves have been effective at enhancing resilience to climate variations [@micheli_2012-EU] and preserving genetic diversity of high value commercial species such as abalone [@munguavega_2015-yg]. These ecological benefits have been translated into economic benefits, enhancing population persistence and bolstering abalone fisheries [@rossetto_2015-V0]. For the purpose of this evaluation, we focused on the “La Plana / Las Cuevas” marine reserve, located at the southern end of the island (Fig. 3) and its corresponding control site “La Dulce / Babencho”.
+
+The objective of this reserve was to recover species of economic interest -—which were overexploited-- and to enhance fishery production in nearby waters. Fishers were also interested in preserving biological diversity and the ecosystem. Thus, objectives 4–-7 were selected. Using Table 2 to match these objectives with appropriate management indicators, we selected all biological, socioeconomic, and governance indicators included as options in the framework.
+
+```{r, data summaries}
+fish_summary <- fish_data %>% 
+  filter(RC == "La Plana / Las Cuevas - La Dulce / Babencho") %>% 
+  group_by(Ano, Zona, Transecto) %>% 
+  summarize(n()) %>% 
+  group_by(Ano, Zona) %>% 
+  summarize(n = n()) %>% 
+  spread(Zona, n)
+
+invert_summary <- invert_data %>% 
+  filter(RC == "La Plana / Las Cuevas - La Dulce / Babencho") %>% 
+  group_by(Ano, Zona, Transecto) %>% 
+  summarize(n()) %>% 
+  group_by(Ano, Zona) %>% 
+  summarize(n = n()) %>% 
+  spread(Zona, n)
+
+landings_summary <- landings %>% 
+  group_by(GeneroEspecie) %>% 
+  summarize(Valor = sum(Ingresos, na.rm = T)) %>% 
+  arrange(Valor) %>% 
+  mutate(Valor = Valor/sum(Valor)*100)
+```
+
+Local fishers (who were trained in scientific diving by the CSO Comunidad y Biodiversidad, A.C. (COBI; [www.cobi.org](www.cobi.org)), ReefCheck California, and Stanford University) and personnel from these institutions performed SCUBA dives to record fish and invertebrate richness and abundances, as well as fish total length. They recorded information along 30 m transects, with a sampling window of 2 m x 2 m following a standardized ReefCheck protocol [@suman_2010-ez]. Ecological surveys were performed yearly in each reserve and corresponding control site(s), before and after the implementation of the reserve, providing the requisite time series data inside the reserve and for a suitable control site. Annual surveys (2006--2016) were carried out in late July -- early August, performing a total of `r sum(fish_summary$Reserva)` and `r sum(invert_summary$Reserva)` transects in the reserve site for fish and invertebrate surveys, respectively. Similar sampling effort was applied to the control site, with `r sum(fish_summary$Control)` fish and `r sum(invert_summary$Control)` invertebrate transects. Between 12 and 27 transects were performed in each site every year.
+
+Socioeconomic data were obtained from the National Commission for Aquaculture and Fisheries (*Comisión Nacional de Acuacultura y Pesca*; CONAPESCA). The data contains species--level information on monthly landings and income from nine species from 2000 to 2014. Data on landings and income were aggregated by year and species, and adjusted by the Consumer Price Index [@oecd_website_2017-VV]. From the nine species available, we selected as objective species those that contributed the most (88.27%) income from 2000 to 2014: lobster (*Panulirus interruptus*; 71.76%), red sea urchin (*Mesocentrotus franciscanus*; 9.33%), snail (*Megastraea undosa*; 3.93%), and sea cucumber (*Parastichopus parvimensis*; 3.23%). Abalone species (*Haliotis fulgens*; 4.52% and *Haliotis corrugata*; 6.16%) were excluded because the cooperative implemented an informal closure of these fisheries in 2010 to allow the population recover. Eliminating all fishing pressure on abalones means that the control site receives (for this species) the same treatment as the reserve.
+
+We constructed the governance data based on local knowledge of the area and the community.
+
+```{r source functions}
+source("Functions/mpa_plot4.R")
+source("Functions/my_theme.R")
+source("Functions/bio_results.R")
+source("Functions/bio_results_i.R")
+```
+
+```{r fish analysis}
+splist <- sp_list(fish = fish_data, invert = invert_data, rc = "La Plana / Las Cuevas - La Dulce / Babencho")
+
+data("IndListB")
+
+values <-  list(indB = IndListB$Indicators,
+                  comunidad = "Isla Natividad",
+                  objsp = NULL,
+                  ano.imp = 2006)
+
+fish_results <- bio_results(values = values,
+                            data = fish_data,
+                            res = "La Plana / Las Cuevas",
+                            con = c("La Dulce", "Babencho")) %>% 
+  filter(!is.na(e))
+```
+
+```{r invert analysis}
+objsp <- data.frame(sp = c("Panulirus interruptus","Mesocentrotus franciscanus", "Megastraea undosa", "Parastichopus parvimensis"), class = "invert", stringsAsFactors = F)
+
+values <-  list(indB = IndListB$Indicators,
+                comunidad = "Isla Natividad",
+                objsp = objsp,
+                ano.imp = 2006)
+
+invert_results <- bio_results_i(values = values,
+                                data = invert_data,
+                                res = "La Plana / Las Cuevas",
+                                con = c("La Dulce", "Babencho")) %>% 
+  filter(!is.na(e))
+```
+
+```{r socioeco analysis}
+
+data("IndListS")
+
+values <-  list(indS = IndListS$Indicators,
+                comunidad = "Isla Natividad",
+                objsp = objsp,
+                ano.imp = 2006)
+
+socio <- soc_results(values = values, data = landings) %>% 
+  filter(!is.na(e))
+```
+
+# Results from illustrative example
+
+In this section we show the results of the application of MAREA to the La Plana/Las Cuevas marine reserve in Isla Natividad, Mexico. These results are intended to highlight the relevance and utility of the MAREA framework and app, which automate the analysis and make it replicable. While we highlight some of the general observed trends, we focus on the utility of the tool rather than on the specific effectiveness of this case study marine reserve.
+
+The scorecard (Fig. 4) shows that this reserve achieves a general score of 64%, suggesting  that  64% of all indicators are positive. All category–level scores were also high, with values of 67%, 60%, and 71% positive indicators for biological, socioeconomic and governance, respectively.
+
+**Fig 4. Scorecard produced by MAREA for the "La Plana / Las Cuevas" marine reserve in Isla Natividad, Mexico.** 
+
+```{r}
+fig4 <- include_graphics("./Figures/scorecard.png")
+```
+
+```{r summary of bio results}
+shannon_fish_model <- fish_results$model[[1]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+richness_fish_model <- fish_results$model[[2]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+density_fish_model <- fish_results$model[[3]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+trophic_fish_model <- fish_results$model[[4]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+biomass_fish_model <- fish_results$model[[5]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+shannon_invert_model <- invert_results$model[[1]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+richness_invert_model <- invert_results$model[[2]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+density_invert_model <- invert_results$model[[3]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+lobster_density_model <- invert_results$model[[4]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+urchin_density_model <- invert_results$model[[5]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+snail_density_model <- invert_results$model[[6]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+cucumber_density_model <- invert_results$model[[7]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+bio_results_summary <- rbind(shannon_fish_model, richness_fish_model, density_fish_model, trophic_fish_model, biomass_fish_model, shannon_invert_model, richness_invert_model, density_invert_model, lobster_density_model, urchin_density_model, snail_density_model, cucumber_density_model) %>% 
+  filter(term == "ZonaReserva:Post1") %>% 
+  mutate(Indicator = c("Shannon fish", "Richness fish", "Density fish", "Trophic fish", "Biomass fish", "Shannon invert", "Richness invert", "Density invert", "Lobster", "Urchin", "Snail", "Cucumber"),
+         significance1 = ifelse(p.value < 0.1, "*", ""),
+         significance2 = ifelse(p.value < 0.05, "*", ""),
+         significance = paste0(significance1, significance2)) %>% 
+  select(Indicator, estimate, std.error, statistic, p.value, significance)
+```
+
+```{r summary of soc results}
+landings_model <- socio$model[[1]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+income_model <- socio$model[[2]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+landings_lobster_model <- socio$model[[3]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+landings_urchin_model <- socio$model[[4]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+landings_snail_model <- socio$model[[5]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+landings_cucumber_model <- socio$model[[6]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+income_lobster_model <- socio$model[[7]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+income_urchin_model <- socio$model[[8]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+income_snail_model <- socio$model[[9]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+income_cucumber_model <- socio$model[[10]] %>% 
+  lmtest::coeftest(vcov = sandwich::vcovHC(.,type = "HC1")) %>%
+  broom::tidy()
+
+socio_results_summary <- rbind(landings_model, income_model, landings_lobster_model, landings_urchin_model, landings_snail_model, landings_cucumber_model, income_lobster_model, income_urchin_model, income_snail_model, income_cucumber_model) %>% 
+  filter(term == "Post1") %>% 
+  mutate(Indicator = c("Landings", "Income", "Lobster landings", "Urchin landings", "Snail landings", "Cucumber landings", "Lobster income", "Urchin income", "Snail income", "Cucumber income"),
+         significance1 = ifelse(p.value < 0.1, "*", ""),
+         significance2 = ifelse(p.value < 0.05, "*", ""),
+         significance = paste0(significance1, significance2)) %>% 
+  select(Indicator, estimate, std.error, statistic, p.value, significance)
+```
+
+Among the biological indicators, the greatest effect of the reserve was observed for snail and sea cucumber densities, with values of $\beta_2 = `r formatC(bio_results_summary$estimate[11], digits = 2, format = "f")`$ (*p* < 0.05) and $\beta_2 = `r formatC(bio_results_summary$estimate[12], digits = 2, format = "f")`$ (*p* < 0.05), respectively. Fish indicators showed no significant change (*p* > 0.1), with negative trends for Shannon's diversity index and fish species richness and positive trends for density, biomass, and mean trophic level. Changes through time for these indicators are presented in Figure 5, and a summary of $\beta_2$ coefficients is provided in Table 3.
+
+\clearpage
+
+**Fig. 5 Plots for values of each biological indicator (y-axis) through time (x-axis).** Red and blue correspond to the reserve and control sites, respectively. Black lines indicate yearly mean values, and ribbons indicate $\pm$ 1 standard error. Dots are horizontally jittered to aid visualization. This figure contains information for fish Shannon's diversity index (a), fish species richness (b), fish density (c), fish trophic level (d), fish biomass (e), invertebrate Shannon's diversity index (f), invertebrate species richness (g), invertebrate density (h), lobster density (i), urchin density (j), snail density (k), and sea cucumber density (l).
+
+```{r plots"}
+
+shannon_fish_plot <- fish_results$plot[[1]] %>% 
+  my_theme(y.lab = "H'", text.x = 2005, text.y = 2.75, text.label = "a")
+
+richness_fish_plot <- fish_results$plot[[2]] %>% 
+  my_theme(y.lab = "S (spp./transect)", text.x = 2005, text.y = 9.5, text.label = "b")
+
+density_fish_plot <- fish_results$plot[[3]] %>% 
+  my_theme(y.lab = "D (org/transect)", text.x = 2005, text.y = 175, text.label = "c")
+
+trophic_fish_plot <- fish_results$plot[[4]] %>% 
+  my_theme(y.lab = "TL", text.x = 2005, text.y = 4.05, text.label = "d")
+
+biomass_fish_plot <- fish_results$plot[[5]] %>% 
+  my_theme(y.lab = "B (Kg/transect)", text.x = 2005, text.y = 200, text.label = "e")
+
+#invert
+
+shannon_invert_plot <- invert_results$plot[[1]] %>% 
+  my_theme(y.lab = "H'", text.x = 2005, text.y = 3.2, text.label = "f")
+
+richness_invert_plot <- invert_results$plot[[2]] %>% 
+  my_theme(y.lab = "S (spp./transect)", text.x = 2005, text.y = 14, text.label = "g")
+
+density_invert_plot <- invert_results$plot[[3]] %>% 
+  my_theme(y.lab = "D (org/transect)", text.x = 2005, text.y = 950, text.label = "h")
+
+lobster_density_invert_plot <- invert_results$plot[[4]] %>% 
+  my_theme(y.lab = "D (org/transect)", text.x = 2005, text.y = 275, text.label = "i")
+
+urchin_density_invert_plot <- invert_results$plot[[5]] %>% 
+  my_theme(x.lab = "", y.lab = "D (org/transect)", text.x = 2005, text.y = 50, text.label = "j")
+
+snail_density_invert_plot <- invert_results$plot[[6]] %>% 
+  my_theme(x.lab = "year", y.lab = "D (org/transect)", text.x = 2005, text.y = 700, text.label = "k")
+
+cucumber_density_invert_plot <- invert_results$plot[[7]] %>% 
+  my_theme(x.lab = "", y.lab = "D (org/transect)", text.x = 2005, text.y = 32, text.label = "l")
+
+```
+
+
+```{r table of bio results, results = "asis"}
+bio_results_summary %>% 
+  mutate(estimate = paste0(formatC(estimate, digits = 2, format = "f"),
+                           " (",
+                           formatC(std.error, digits = 2, format = "f"),
+                           ")",
+                           significance)) %>% 
+  select(Indicator, estimate, tscore = statistic) %>% 
+  kable(caption = "Summary of average treatment effect of the reserve on biological indicators.",
+        digits = c(NA, NA, 4),
+        col.names = c("Indicator", "Estimate (SD)", "t-score")) %>% 
+  kable_styling() %>% 
+  add_footnote(c("Asterisks indicate significance level, with (*) indicating p < 0.1 and (**) p < 0.05."),
+               notation = "symbol")
+```
+
+One of the main objectives of this reserve was to increase landings. Results of the socioeconomic indicators show that total landings were, on average, 64.20 metric tonnes higher (*p* > 0.1) after the implementation of the reserves, though this cannot necessarily be interpreted as causal, because it relies entirely on a before--after comparison. Total income was $10,344.85 (*p* < 0.05) thousands of Mexican Pesos (K MXP) higher after the implementation of the reserves. On average, lobster and sea cucumber landings increased, while urchin and snail landings and income decreased. Figure 6 presents the changes in these indicators through time, and Table 4 summarizes these results.
+
+**Fig. 6 Plots for values of each socioeconomic indicator (y-axis) through time (x-axis).** Red and blue correspond to before and after the implementation of the reserve, respectively. This figure contains information for total landings (a), total income (b), lobster landings (c), urchin landings (d), snail landings (e), sea cucumber landings (f), lobster income (g), urchin income (h), snail income (i), and sea cucumber income (j).
+
+```{r time series socio, fig.height = 6}
+
+landings_plot <- socio$plot[[1]] %>% 
+  my_theme(y.lab = "Landings (Kg)", text.x = 2001, text.y = 1150, text.label = "a", bio = F)
+
+income_plot <- socio$plot[[2]] %>% 
+  my_theme(y.lab = "Income (K MXP)", text.x = 2001, text.y = 35000, text.label = "b", bio = F)
+
+landings_lobster_plot <- socio$plot[[3]] %>% 
+  my_theme(y.lab = "Landings (Kg)", text.x = 2001, text.y = 175, text.label = "c", bio = F)
+
+landings_urchin_plot <- socio$plot[[4]] %>% 
+  my_theme(y.lab = "Landings (Kg)", text.x = 2001, text.y = 55, text.label = "d", bio = F)
+
+landings_snail_plot <- socio$plot[[5]] %>% 
+  my_theme(y.lab = "Landings (Kg)", text.x = 2001, text.y = 300, text.label = "e", bio = F)
+
+landings_cucumber_plot <- socio$plot[[6]] %>% 
+  my_theme(y.lab = "Landings (Kg)", text.x = 2001, text.y = 58, text.label = "f", bio = F)
+
+income_lobster_plot <- socio$plot[[7]] %>% 
+  my_theme(y.lab = "Income (K MXP)", text.x = 2001, text.y = 35000, text.label = "g", bio = F)
+
+income_urchin_plot <- socio$plot[[8]] %>% 
+  my_theme(y.lab = "Income (K MXP)", text.x = 2001, text.y = 10000, text.label = "h", bio = F)
+
+income_snail_plot <- socio$plot[[9]] %>% 
+  my_theme(y.lab = "Income (K MXP)", text.x = 2001, text.y = 2100, text.label = "i", bio = F)
+
+income_cucumber_plot <- socio$plot[[10]] %>% 
+  my_theme(y.lab = "Income (K MXP)", text.x = 2001, text.y = 1500, text.label = "j", bio = F)
+
+```
+
+```{r table of soc results, results = "asis"}
+socio_results_summary %>% 
+  mutate(estimate = paste0(formatC(estimate, digits = 2, format = "f"),
+                           " (",
+                           formatC(std.error, digits = 2, format = "f"),
+                           ")",
+                           significance)) %>% 
+  select(Indicator, estimate, tscore = statistic) %>% 
+  kable(caption = "Summary of differences in socioeconomic indicators before and after the implementation of the reserve.",
+        digits = c(NA, NA, 4),
+        col.names = c("Indicator", "Estimate (SD)", "t-score")) %>% 
+  kable_styling() %>% 
+  add_footnote(c("Asterisks indicate significance level, with (*) indicating p < 0.1 and (**) p < 0.05."),
+               notation = "symbol")
+```
+
+Recall that the governance objectives are evaluated based on the institutions present, not on a specific quantitative linkage between governance and biological or economic outcomes. Data for this reserve suggest that the community is strongly organized, which is a likely driver of the successes reported above [@gutirrez_2011-0U]. The first point of success is the existence of a fishing cooperative that is also affiliated with a regional federation of cooperatives. These polycentric governance structures allow various levels of organization that have been shown to foster communication and cooperation [@mccay_2014-CN; @espinosaromero_2014-PY]; federations also provide bargain power with governments [@espinosaromero_2014-PY; @finkbeiner_2015-87]. Access to fishing resources is managed through a TURF, permits, and fishing quotas (for some species). McCay [@mccay_2017-1m] suggests that the TURF promotes a sense of stewardship of their resources and incentivizes sustainable management. Together, these structures enabled a participative, bottom–up process during the reserve design phase; opinions of all fishing members ---and often non--fishing community members--- were included. Participation of community members in reserve surveillance and yearly monitoring indicate commitment and interest, and allow informal communication of results to un--involved community members. Furthermore, the reserve is partially isolated from poaching activity and fishers have internal regulations pertaining to the reserves. The low level of illegal fishing by members of the community and outsiders both inside and outside the reserve represents another indication of effectiveness. Governance indicators are summarized in Table 5.
+
+```{r}
+read.csv("Tables/Governance_data.csv", col.names = c("Indicator", "Description"), stringsAsFactors = F) %>% 
+  kable(caption = "Summary of governance indicators.") %>%
+  kable_styling(full_width = F) %>% 
+  column_spec(2, width = "9cm")
+```
+
+\clearpage
+
+# Discussion
+
+We have developed and presented a user--friendly, automated approach for evaluating the effectiveness of marine reserves around the world. Here we highlight MAREA’s utility for evidence–-based management, and comment on a few of its shortcomings. The findings from Isla Natividad are used purely to validate the relevance of MAREA rather than to discuss particularities of the marine reserve effectiveness, which has been described before [@micheli_2012-EU; @rossetto_2015-V0; @munguavega_2015-yg]. We use examples from the case study to build on the utility of MAREA and discuss ways in which results can be interpreted to inform management.
+
+The causal inference techniques used by MAREA have been suggested [@burgess_2016-HN; @ferraro_2006-oW] and used [@moland_2013-VP] before in other ad hoc studies. This approach reduces ambiguity in the interpretation of results. For example, invertebrate density decreased through time inside and outside of the reserve (Fig. 5h). In this case, a before–after evaluation of the reserve (*i.e.* ignoring the control site) would have incorrectly concluded that the reserve failed to protect invertebrates. On the other hand, a control–impact approach (*i.e.* compare reserve vs. control site only in 2016) would have identified higher densities inside the reserve, concluding that the reserve increases invertebrate density. However, by executing a formal difference--in--differences approach for causal inference, MAREA identifies the changes through time and across sites, and estimates the effect of the reserve on density at $\beta_2 = `r formatC(bio_results_summary$estimate[8], digits = 2, format = "f")`$ (*p* < 0.05). This approach reveals that invertebrate densities decrease in both sites through time, but the decrease is faster for the control site, thus yielding a positive value for $\beta_2$.
+
+The approach used by MAREA to estimate the effect of the reserve on biological indicators requires cautious interpretation of the results. The value of the $\beta_2$ coefficient represents the difference between the temporal trends of the reserve and control sites [@moland_2013-VP]. As exemplified by the case of invertebrate densities, a positive value (*i.e.* $\beta_2 > 0$) does not necessarily indicate an increase in the indicator through time, but rather a positive difference with respect to the temporal trend of the control site. The inverse occurs for negative values of $\beta_2$.
+
+MAREA provides in--depth analysis and a convenient snapshot overview of the effect of the reserve, allowing users to rapidly identify trends. However, users must interpret multiple indicators at a time to better understand the results. For example, with additional knowledge of local environmental variability (*i.e.* indicator B5: Natural Disturbance), we can better understand the trends in invertebrate densities. As reported before [@micheli_2012-EU], hypoxic conditions that have occurred in Isla Natividad can cause decreases in invertebrate densities, and reserves buffer the negative effect. While MAREA automates the analysis and makes results replicable, proper interpretation will still depend on the user. Results produced by MAREA can only aid in management and decision making when results have been correctly interpreted.
+
+Socioeconomic and governance indicators typically lack a control site, which impede us from using the causal inference techniques employed to measure biological changes [@mascia_2017-m_]. However, we can still extract useful information from them. Again, by combining results from multiple indicators, MAREA can provide insights into the effect of the reserve. For example, lobster and sea cucumber have shown increases in densities, landings, and income. We cannot conclude that landings and income from these species have increased due to the reserve, but we can at least conclude that landings have not decreased. While further information on market behavior of each fishery is needed, these results provide insights into the state of the reserve and its associated fisheries.
+
+As for the governance information, it is difficult to establish causal links between the state of the reserve and the governance structures present in the community. However, providing a single platform (*i.e.* scorecard) or document (*i.e.* technical report) where biological, socioeconomic, and governance information is comprehensively included can aid in management. By using MAREA, this information will be reported across reserves in a standardized way, and can help managers identify overarching patterns across sites.
+
+By making results straightforward to interpret, MAREA may also assist in communication with a broader stakeholder community. While stakeholder involvement in the design and implementation phases of marine reserves is important, that may not be sufficient for ensuring long--run buy--in or success. The scorecard is easily understandable by experts and non--experts, and can be used as an effective tool for communicating the results of annual evaluations. Additionally, the technical report can serve as a tool for managers and scientists to rapidly produce and communicate information at a more technical level.
+
+We recognize that the 29 indicators used by MAREA might not fully describe a reserve. However, they provide a starting point to perform the evaluation, to which managers and users can add other indicators (*e.g.* larval dispersal or connectivity) that are relevant to their reserve. Furthermore, MAREA’s value is that it provides a free, simple, and replicable way to perform rigorous impact analysis. The tool can easily be used by fishers, CSO members, and managers in government agencies, providing transparency of the analysis and results. In addition, it can empower and enable local managers and fishers to respond to local change and adapt by allowing direct and easy access to the information.
+
+The effectiveness of marine reserves continues to be a matter of debate [@woodcock_2017-Wm; @edgar_2014-UO; @padleton_2017-vn]. With current targets set to increase ocean protection, it is important that we understand the effects of our interventions [@burgess_2016-HN] so we can better inform management [@ferraro_2006-oW]. It is therefore important that academics, managers, fishers, and CSOs have access to open access tools like MAREA. This is particularly relevant for Mexico and other Latin American countries, where management agencies are often understaffed and underfunded [@lundquist_2005-OL], or where materials are often not available in their language. In this context, MAREA provides a simple and replicable way to align management objectives with performance indicators. The proposed methodologies, especially the way in which biological indicators are evaluated, provide valuable information for managers. We acknowledge there is room for improvement in the way in which socioeconomic and governance data are analyzed. Despite this, providing a unifying platform where all indicators can be analyzed and comprehensively presented represents a valuable step towards effective evidence-–based management [@ferraro_2006-oW].
+
+The first release of MAREA is now available, and it will continue to be developed and maintained to keep up to date with the literature. This process will incorporate new features, and enhance current ones, aiming to improve user experience and expand the scope of the analysis. Yet, we believe that this first release represents a major step towards effective, replicable evaluation and management of marine reserves.
+
+# Acknowledgements
+
+We thank Olivier Deschenes and Andrew Plantinga, who provided valuable input to design the model that evaluates the biological indicators. Special thanks to the fishers from Isla Natividad, who gathered the data used in this study, and the fishers from El Rosario, who helped us validate our survey and framework, and to Arturo Hernández and Alfonso Romero who provided help with the logistics.
+
+\clearpage
+
+```{r ATE socio, eval = F, include =F}
+socio_results_summary %>% 
+  transform(Indicator = reorder(Indicator, -estimate)) %>% 
+  ggplot(aes(x = Indicator, y = estimate)) +
+  geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error), width = 0.25, size = 1) +
+  geom_point(aes(color = significance), size = 2) +
+  theme_bw() +
+  coord_flip() +
+  geom_hline(yintercept = 0) +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "None") +
+  labs(x = "Indicator", y = "Average Treatment Effect") +
+      theme(text = element_text(family = "Times", size = 10))
+```
+
+```{r, ATE plot, fig.width = 6, fig.height = 3, eval = F, include =F}
+plot_ATE_all_bio <- bio_results_summary %>% 
+  transform(Indicator = reorder(Indicator, -estimate)) %>% 
+  ggplot(aes(x = Indicator, y = estimate)) +
+  geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error), width = 0.25, size = 1) +
+  geom_point(aes(color = significance), size = 2) +
+  theme_bw() +
+  coord_flip() +
+  geom_hline(yintercept = 0) +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "None") +
+  labs(x = "Indicator", y = "Average Treatment Effect") +
+      theme(text = element_text(family = "Times", size = 10))
+
+plot_ATE_small_bio <- bio_results_summary %>% 
+  filter(estimate < 10) %>% 
+  transform(Indicator = reorder(Indicator, -estimate)) %>% 
+  ggplot(aes(x = Indicator, y = estimate)) +
+  geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error), width = 0.25, size = 1) +
+  geom_point(aes(color = significance), size = 2) +
+  theme_bw() +
+  coord_flip() +
+  geom_hline(yintercept = 0) +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.justification = c(1,1),
+        legend.position = c(0.95,0.95),
+        legend.background = element_rect(fill = "transparent", size=.25)) +
+  labs(x = "Indicator", y = "Average Treatment Effect") +
+      theme(text = element_text(family = "Times", size = 10))
+
+gridExtra::grid.arrange(plot_ATE_all_bio, plot_ATE_small_bio, ncol = 2)
+```
+
+# References
+
+<div id="refs"></div>
+
+# Supporting information
+
+**S1 Appendix. Survey to collect governance information from fishing communities.** English version
+
+**S2 Appendix. Survey to collect governance information from fishing communities.** Spanish version
+
+**S3 Table. Assigned values and reasoning of socioeconomic and governance indicators used to color-code the scorecard in MAREA**
