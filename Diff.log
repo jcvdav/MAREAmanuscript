@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.17)  2 DEC 2017 16:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.17)  8 DEC 2017 16:58
 entering extended mode
 **./Diff.tex
 (Diff.tex
@@ -1206,7 +1206,7 @@ fier (name{table.1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.567 \clearpage
+l.577 \clearpage
                 ] [9
 
 ] [10pdfTeX warning (ext4): destination with the same identifier (name{table.2}
@@ -1214,14 +1214,19 @@ l.567 \clearpage
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.668 
-      ] [11] [12] [13] [14] [15] [16] [17] [18pdfTeX warning (ext4): destinatio
-n with the same identifier (name{table.3}) has been already used, duplicate ign
-ored
+l.678 
+      ] [11] [12] [13] [14]
+Overfull \hbox (1.47632pt too wide) in paragraph at lines 826--839
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
+  []\T1/lmr/m/n/12 (-20) implemented two community--
+ []
+
+[15] [16] [17] [18pdfTeX warning (ext4): destination with the same identifier (
+name{table.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.972 
+l.984 
       
 
 ] [19pdfTeX warning (ext4): destination with the same identifier (name{table.4}
@@ -1229,62 +1234,62 @@ l.972
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1031 
+l.1043 
        ] [20] [21pdfTeX warning (ext4): destination with the same identifier (n
 ame{table.5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1073 \clearpage
+l.1085 \clearpage
                  ] [22
 
 ] [23] [24] [25] [26] [27
 
 ]
-Overfull \hbox (4.20769pt too wide) in paragraph at lines 1350--1351
+Overfull \hbox (4.20769pt too wide) in paragraph at lines 1362--1363
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []   |   []   |   []   |   [][][]\T1/lmr/m/n/12 (-20) 10.1073/pnas.161272
 2114[] 
  []
 
 [28] [29] [30] [31]
-Underfull \hbox (badness 1584) in paragraph at lines 1531--1533
+Underfull \hbox (badness 1584) in paragraph at lines 1547--1549
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
 ]   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1531--1533
+Underfull \hbox (badness 10000) in paragraph at lines 1547--1549
 [][]$\T1/lmr/m/n/12 (+20) https : / / www . researchgate . net / publication / 
 317840581 / _A / _guide / _to / _evaluate / _the /
  []
 
 
-Underfull \hbox (badness 1796) in paragraph at lines 1535--1539
+Underfull \hbox (badness 1796) in paragraph at lines 1551--1555
 \T1/lmr/m/n/12 (+20) eval-u-a-tion of bio-di-ver-sity con-ser-va-tion in-vest-m
 ents. PLoS Biol. 2006;4: e105.
  []
 
 [32] [33] [34]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1668.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1684.
  [35]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1668.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1684.
  (Diff.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1668.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1668.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1684.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1684.
 
 Package rerunfilecheck Info: File `Diff.out' has not changed.
 (rerunfilecheck)             Checksum: CA030D29346DB341A1D8ECA2A7CE4B46;1736.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1668.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1684.
  ) 
 Here is how much of TeX's memory you used:
- 14556 strings out of 493329
- 207952 string characters out of 3139072
- 345201 words of memory out of 3000000
+ 14549 strings out of 493329
+ 207882 string characters out of 3139072
+ 347201 words of memory out of 3000000
  17603 multiletter control sequences out of 15000+200000
- 58216 words of font info for 110 fonts, out of 3000000 for 9000
+ 57742 words of font info for 106 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,15n,38p,308b,425s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,15n,38p,308b,373s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Fil
 es/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Program Files/MiKTeX 2.9/fon
 ts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ma
@@ -1299,9 +1304,9 @@ blic/lm/lmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/
 MiKTeX 2.9/fonts/type1/public/lm/lmss8.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
 ype1/public/lm/lmsy10.pfb>
-Output written on Diff.pdf (35 pages, 325740 bytes).
+Output written on Diff.pdf (35 pages, 330035 bytes).
 PDF statistics:
  441 PDF objects out of 1000 (max. 8388607)
- 127 named destinations out of 1000 (max. 500000)
+ 128 named destinations out of 1000 (max. 500000)
  8281 words of extra memory for PDF output out of 10000 (max. 10000000)
 
