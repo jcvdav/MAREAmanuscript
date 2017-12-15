@@ -24,7 +24,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
-            pdftitle={A user--friendly tool to evaluate the effectiveness of no--take marine reserves},
+            pdftitle={A user-friendly tool to evaluate the effectiveness of no-take marine reserves},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
@@ -72,7 +72,7 @@
 }
 
 \setlength{\droptitle}{-2em}
-  \title{A user--friendly tool to evaluate the effectiveness of no--take marine
+  \title{A user-friendly tool to evaluate the effectiveness of no-take marine
 reserves}
   \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
@@ -158,8 +158,8 @@ to overcome these challenges. Its purpose is to evaluate the extent to
 which any given reserve has achieved its stated objectives. MAREA
 provides specific guidance on data collection and formatting, and then
 conducts rigorous causal inference analysis based on data input by the
-user, providing real--time outputs about the effectiveness of the
-reserve. MAREA's ease of use, standardization of state--of--the--art
+user, providing real-time outputs about the effectiveness of the
+reserve. MAREA's ease of use, standardization of state-of-the-art
 inference methods, and ability to analyze marine reserve effectiveness
 across ecological, socioeconomic, and governance objectives could
 dramatically further our understanding and support of effective marine
@@ -184,18 +184,18 @@ other factors (\emph{e.g.} system-level changes in productivity caused
 by predatory release {[}15{]}; or favorable environmental conditions
 {[}16{]}) for which one must control {[}17{]} in order to causally
 attribute a biological change to the reserve. Other studies have used a
-control--impact comparison approach that uses control sites but does not
+control-impact comparison approach that uses control sites but does not
 address temporal variability {[}4,7,18--20{]}.
 
-A smaller fraction of studies have used a before--after--control--impact
+A smaller fraction of studies have used a before-after-control-impact
 (\emph{i.e.} BACI) design comparing reserves to control sites before and
 after implementation {[}4,21,22{]}, which allows the use of causal
 inference techniques that estimate the effect of the reserve. For
 example, in ref {[}21{]} authors use a BACI design and observe increases
-in lobster catches --a proxy for abundances-- after the implementation
-of the reserves for protected and control sites. However, the temporal
+in lobster catches --a proxy for abundances-- after reserve
+implementation for protected and control sites. However, the temporal
 changes in the reserve were greater than in the control site, suggesting
-a positive effect off the reserve on lobster catches. But even when
+a positive effect of the reserve on lobster catches. But even when
 proper causal inference can be drawn, results are often different across
 reserves. Effects of reserves on ecological and economic outcomes are
 highly heterogeneous, and often depend on the specific ecological,
@@ -217,7 +217,7 @@ themselves.
 
 An increasingly popular way to make science accessible, reproducible,
 scalable, and replicable is through Open Science and the development of
-open--access tools {[}28{]}. The Ocean Health Index {[}29,30{]}, for
+open-access tools {[}28{]}. The Ocean Health Index {[}29,30{]}, for
 example, successfully standardized a way to measure the health and
 benefits of the oceans. This approach has been implemented at a global
 scale, but also at country-level {[}31{]}, and regionally {[}32,33{]}.
@@ -226,22 +226,23 @@ developed to evaluate fishery performance {[}34,35{]}, design
 territorial use rights for fisheries {[}36{]}, and improve decision
 making in the hydro power industry {[}37{]}.
 
-The purpose of this paper is to describe a user--friendly tool, called
+The purpose of this paper is to describe a user-friendly tool, called
 ``MAREA'', to rigorously systematize the evaluation of marine reserve
-effectiveness in terms of fisheries and marine conservation. The tool is
-in the form of an open--source application that uses state--of--the--art
-methods from program evaluation to compare a reserve to control sites
-along a number of biological, economic, and governance dimensions. We
-first provide a list of commonly stated management objectives and match
-them to appropriate indicators. We then develop a simple approach to
-analyzing these indicators building on causal inference techniques
-{[}21{]}, which help us understand the effect of management
-interventions {[}25,38{]}. To implement the analytical approach, we
-introduce the Marine Reserve Evaluation Application (MAREA), an open
-source, web--based tool that automates the framework described in this
-paper and enables its broader use. Finally, we present a case study on
-the evaluation of a marine reserve established by the fishers of Isla
-Natividad (Mexico) in 2006, to demonstrate the potential of MAREA.
+effectiveness in terms of fisheries and marine conservation goals. The
+tool is in the form of an open-source application that uses
+state-of-the-art methods from program evaluation to compare a reserve to
+control sites along a number of biological, economic, and governance
+dimensions. We first provide a list of commonly stated management
+objectives and match them to appropriate indicators. We then develop a
+simple approach to analyzing these indicators building on causal
+inference techniques {[}21{]}, which help us understand the effect of
+management interventions {[}25,38{]}. To implement the analytical
+approach, we introduce the Marine Reserve Evaluation Application
+(MAREA), an open source, web--based tool that automates the framework
+described in this paper and enables its broader use. Finally, we present
+a case study on the evaluation of a marine reserve established by the
+fishers of Isla Natividad (Mexico) in 2006, to demonstrate the potential
+of MAREA.
 
 \section{Materials and methods}\label{materials-and-methods}
 
@@ -251,10 +252,10 @@ identified and matched to appropriate indicators that allow the
 evaluation of the reserves, and provide brief guidelines on data
 collection. Alongside, methodologies to analyze these indicators are
 presented. We then describe the development of MAREA and explain how
-this open--access tool can be used by fishermen, managers, and other
-stakeholders with little scientific background. Finally, we provide
-guidelines on how to interpret and use the results and output generated
-by MAREA to inform management.
+this tool can be used by fishermen, managers, and other stakeholders
+with little scientific background. Finally, we provide guidelines on how
+to interpret and use the results and output generated by MAREA to inform
+management.
 
 \textbf{Fig 1. Workflow to evaluate the effectiveness of marine
 reserves.}
@@ -270,15 +271,15 @@ nearby waters or recovery of overexploited species; most of these
 reserves have never been formally evaluated for effectiveness at meeting
 those objectives. Thus, our focus was on identifying common objectives
 of marine reserves in Mexico. However, a literature review and
-discussions with marine reserve researchers suggest that the objectives
-driving Mexican marine reserve implementation are similar to those in
-the rest of the world. Thus, we group these objectives into seven major
-categories that may be applied to marine reserves worldwide. Any given
-reserve may have been implemented to meet one or more of these. The list
-includes objectives stated in legislation {[}39,40{]} and official
-documents such as the Technical Justification Studies (\emph{Estudios
-Técnicos Justificativos}), agreements, and decrees associated to these
-areas:
+discussions with marine reserve researchers suggested that the
+objectives driving Mexican marine reserve implementation are similar to
+those in the rest of the world. Thus, we group these objectives into
+seven major categories that may be applied to marine reserves worldwide.
+Any given reserve may have been implemented to meet one or more of
+these. The list includes objectives stated in legislation {[}39,40{]}
+and official documents such as the Technical Justification Studies
+(\emph{Estudios Técnicos Justificativos}), agreements, and decrees
+associated to these areas:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -302,7 +303,7 @@ areas:
 
 Based on these seven objectives, we determined a set of associated
 indicators to evaluate reserve effectiveness. These indicators are
-specific variables on which data could be collected, and analyzed, to
+specific variables on which data could be collected and analyzed, to
 ultimately determine whether the corresponding objective was causally
 being achieved by the marine reserve. The list of indicators was
 compiled through a review of scientific literature in which we
@@ -349,16 +350,19 @@ potential (\emph{i.e.} B3; {[}45{]}) or having more fish -regardless of
 their size- to attract tourism (\emph{i.e.} B4). Table 1 presents the
 proposed indicators, and Table 2 shows how objectives are matched with
 biological and socioeconomic indicators. Governance indicators are
-excluded from Table 2, as governance indicators are important to
-consider for every objective.
+excluded from Table 2, but should be considered for every objective as
+each serves as a plausible explanatory variable for reserve performance.
 
-\begin{table}
+\clearpage
 
-\caption{\label{tab:unnamed-chunk-2}List of indicators to evaluate the effectiveness of no-take marine reserves.}
+\textbf{Table 1. List of indicators to evaluate the effectiveness of
+no-take marine reserves.}
+
+\begin{table}[H]
 \centering
-\resizebox{\linewidth}{!}{\begin{tabular}[t]{l|l|l|l}
+\resizebox{\linewidth}{!}{\begin{tabular}{l|l|l|l}
 \hline
-Code & Indicator & Data type & Unit\\
+\bfseries{Code} & \bfseries{Indicator} & \bfseries{Data type} & \bfseries{Unit}\\
 \hline
 \multicolumn{4}{l}{\textbf{Biological}}\\
 \hline
@@ -416,19 +420,21 @@ Code & Indicator & Data type & Unit\\
 \hline
 \hspace{1em}G15 & Social Impact of Reserve & Categorical & \\
 \hline
-\multicolumn{4}{l}{\textsuperscript{*} The indicator is also applied to target species}\\
 \end{tabular}}
 \end{table}
 
+* Indicates the indicator is applied to target species
+
 \clearpage
 
-\begin{table}
+\textbf{Table 2. Management objectives and respective performance
+indicators.}
 
-\caption{\label{tab:unnamed-chunk-3}Management objectives and respective performance indicators.}
+\begin{table}[H]
 \centering
-\resizebox{\linewidth}{!}{\begin{tabular}[t]{>{\raggedright\arraybackslash}p{4cm}|l|l|l|l|l|l|l|l|l|l|l|l|l|l}
+\resizebox{\linewidth}{!}{\begin{tabular}{>{\raggedright\arraybackslash}p{4cm}|l|l|l|l|l|l|l|l|l|l|l|l|l|l}
 \hline
-Objective & B1 & B2 & B3 & B4 & B4* & B5 & B6 & B7 & B7* & S1 & S1* & S2 & S2* & S3\\
+\bfseries{Objective} & \bfseries{B1} & \bfseries{B2} & \bfseries{B3} & \bfseries{B4} & \bfseries{B4*} & \bfseries{B5} & \bfseries{B6} & \bfseries{B7} & \bfseries{B7*} & \bfseries{S1} & \bfseries{S1*} & \bfseries{S2} & \bfseries{S2*} & \bfseries{S3}\\
 \hline
 Avoid overexploitation &  &  & x & x & x & x & x & x & x & x & x & x & x & x\\
 \hline
@@ -444,9 +450,13 @@ Recover overexploited species &  &  & x &  & x & x &  &  & x &  & x &  & x & x\\
 \hline
 Recover species of economic interest &  &  & x &  & x & x &  &  & x &  & x &  & x & x\\
 \hline
-\multicolumn{15}{l}{\textsuperscript{*} The indicator is applied to target species}\\
 \end{tabular}}
 \end{table}
+
+Governance indicators are excluded from the table, but all should be
+used for any objective.
+
+* Indicates the indicator is applied to target species
 
 \subsection{Data and analyses}\label{data-and-analyses}
 
@@ -501,9 +511,10 @@ Reserve = 1; and Before implementation = 0 and After implementation = 1,
 respectively.
 
 Socioeconomic data are often collected by fishers, natural resource
-management agencies, or CSOs by recording landings, income, and
-sometimes prices for each species. To control for inflation, income is
-adjusted with the country's consumer price index {[}48{]}:
+management agencies, or Civil Society Organizations (CSOs) by recording
+landings, income, and sometimes prices for each species. To control for
+inflation, income is adjusted with the country's consumer price index
+{[}48{]}:
 
 \begin{equation}I_t = RI\times \frac{CPI_t}{CPI_T}\end{equation}
 
@@ -519,7 +530,7 @@ evaluated with a simplified version of eq. 1:
 While this model does not formally allow for causal inference, we can
 still measure changes in mean landings and income before and after the
 implementation of the reserve and provide valuable input. For both
-models (eq. 1 and eq. 3), we estimate the model coefficient with
+models (eq. 1 and eq. 3), we estimate the model coefficients with
 ordinary least squares, and calculate heteroskedastic--robust standard
 errors {[}49{]}.
 
@@ -542,15 +553,15 @@ with a more complete description of the reserve.
 \subsection{Marine Reserve Evaluation App
 (MAREA)}\label{marine-reserve-evaluation-app-marea}
 
-We developed MAREAin R version 3.4.2 and R Studio 1.1.383 {[}51{]} using
-the Shiny package {[}52{]}, to build an interactive web application
-hosted on an open server; the MAREA app can be accessed at
+We developed MAREA in R version 3.4.2 and R Studio 1.1.383 {[}51{]}
+using the Shiny package {[}52{]}, to build an interactive web
+application hosted on an open server; the MAREA app can be accessed at
 \href{turfeffect.shinyapps.io/marea/}{turfeffect.shinyapps.io/marea}.
 While the original version was developed in Spanish because it was aimed
 for Mexico and other Latin-American countries, all of its content can be
 translated by a translation widget available within the app.
 
-MAREA is designed as a 6--step process, divided in tabs that appear upon
+MAREA is designed as a 6-step process, divided in tabs that appear upon
 launching the app. The first tab introduces the app and summarizes the
 evaluation process. Then, the user selects management objectives, which
 MAREA automatically matches to appropriate indicators, based on Table 2.
@@ -640,17 +651,17 @@ rights to exploit the benthic marine resources within a given perimeter
 \textbf{Fig 3. General location of Isla Natividad (left) and map of the
 island (right).} The marine reserve polygon is indicated in red, and the
 approximate location of control sites is indicated by blue squares (B =
-Babencho, D = La Dulce). Shapefiles for Mexican coastline and the US
-were obtained from the Instituto Nacional de Estadistica, Geografia e
-Informatica of Mexico (INEGI:
+Babencho, D = La Dulce). Shapefiles for Mexican coastline and the United
+States were obtained from the Instituto Nacional de Estadistica,
+Geografia e Informatica of Mexico (INEGI:
 www.inegi.org.mx/geo/contenidos/geoestadistica/m\_geoestadistico.aspx)
 and the tmap R package {[}58{]}, respectively.
 
 In 2006, the Isla Natividad community established a biological baseline
 following the data collection protocol described in this study. The
-community then implemented two community--based marine reserves within
+community then implemented two community-based marine reserves within
 their TURF {[}8,41,59{]} after establishing a baseline for the
-soon--to--be reserves and control sites. Evidence suggest that these
+soon-to-be reserves and control sites. Evidence suggest that these
 reserves have been effective at enhancing resilience to climate
 variations {[}8{]} and preserving genetic diversity of high value
 commercial species such as abalone {[}10{]}. These ecological benefits
@@ -687,7 +698,7 @@ year.
 
 Socioeconomic data were obtained from the National Commission for
 Aquaculture and Fisheries (\emph{Comisión Nacional de Acuacultura y
-Pesca}; CONAPESCA). The data contains species--level information on
+Pesca}; CONAPESCA). The data contains species-level information on
 monthly landings and income from nine species from 2000 to 2014. Data on
 landings and income were aggregated by year and species, and adjusted by
 the Consumer Price Index {[}48{]}. From the nine species available, we
@@ -698,9 +709,9 @@ snail (\emph{Megastraea undosa}; 3.93\%), and sea cucumber
 (\emph{Parastichopus parvimensis}; 3.23\%). Abalone species
 (\emph{Haliotis fulgens}; 4.52\% and \emph{Haliotis corrugata}; 6.16\%)
 were excluded because the cooperative implemented an informal closure of
-these fisheries in 2010 to allow the population recover. Eliminating all
-fishing pressure on abalones means that the control site receives (for
-this species) the same treatment as the reserve.
+these fisheries in 2010 to allow the population to recover. Eliminating
+all fishing pressure on abalones means that the control site receives
+(for this species) the same treatment as the reserve.
 
 We constructed the governance data based on local knowledge of the area
 and the community.
@@ -735,8 +746,6 @@ trends for density, biomass, and mean trophic level. Changes through
 time for these indicators are presented in Figure 5, and a summary of
 \(\beta_2\) coefficients is provided in Table 3.
 
-\clearpage
-
 \textbf{Fig. 5 Plots for values of each biological indicator (y-axis)
 through time (x-axis).} Red and blue correspond to the reserve and
 control sites, respectively. Black lines indicate yearly mean values,
@@ -748,13 +757,14 @@ diversity index (f), invertebrate species richness (g), invertebrate
 density (h), lobster density (i), urchin density (j), snail density (k),
 and sea cucumber density (l).
 
-\begin{table}
+\textbf{Table 3. Summary of average treatment effect of the reserve on
+biological indicators.}
 
-\caption{\label{tab:table of bio results}Summary of average treatment effect of the reserve on biological indicators.}
+\begin{table}[H]
 \centering
-\begin{tabular}[t]{l|l|r}
+\begin{tabular}{l|l|r}
 \hline
-Indicator & Estimate (SD) & t-score\\
+\bfseries{Indicator} & \bfseries{Estimate (SD)} & \bfseries{t-score}\\
 \hline
 Shannon fish & -0.22 (0.16) & -1.3969\\
 \hline
@@ -780,16 +790,19 @@ Snail & 97.17 (42.90)** & 2.2652\\
 \hline
 Cucumber & 2.31 (1.17)** & 1.9782\\
 \hline
-\multicolumn{3}{l}{\textsuperscript{*} Asterisks indicate significance level, with (*)}\\
-\multicolumn{3}{l}{indicating p < 0.1 and (**) p < 0.05.}\\
 \end{tabular}
 \end{table}
+
+* Indicate significance level, with (*) indicating p \textless{} 0.1 and
+(**) p \textless{} 0.05.
+
+\clearpage
 
 One of the main objectives of this reserve was to increase landings.
 Results of the socioeconomic indicators show that total landings were,
 on average, 64.20 metric tonnes higher (\emph{p} \textgreater{} 0.1)
 after the implementation of the reserves, though this cannot necessarily
-be interpreted as causal, because it relies entirely on a before--after
+be interpreted as causal, because it relies entirely on a before-after
 comparison. Total income was \$10,344.85 (\emph{p} \textless{} 0.05)
 thousands of Mexican Pesos (K MXP) higher after the implementation of
 the reserves. On average, lobster and sea cucumber landings increased,
@@ -805,13 +818,14 @@ information for total landings (a), total income (b), lobster landings
 lobster income (g), urchin income (h), snail income (i), and sea
 cucumber income (j).
 
-\begin{table}
+\textbf{Table 4. Summary of differences in socioeconomic indicators
+before and after the implementation of the reserve.}
 
-\caption{\label{tab:table of soc results}Summary of differences in socioeconomic indicators before and after the implementation of the reserve.}
+\begin{table}[H]
 \centering
-\begin{tabular}[t]{l|l|r}
+\begin{tabular}{l|l|r}
 \hline
-Indicator & Estimate (SD) & t-score\\
+\bfseries{Indicator} & \bfseries{Estimate (SD)} & \bfseries{t-score}\\
 \hline
 Landings & 64.20 (90.07) & 0.7127\\
 \hline
@@ -833,10 +847,11 @@ Snail income & -404.85 (187.07)** & -2.1641\\
 \hline
 Cucumber income & 131.49 (185.66) & 0.7082\\
 \hline
-\multicolumn{3}{l}{\textsuperscript{*} Asterisks indicate significance level, with (*)}\\
-\multicolumn{3}{l}{indicating p < 0.1 and (**) p < 0.05.}\\
 \end{tabular}
 \end{table}
+
+* Indicate significance level, with (*) indicating p \textless{} 0.1 and
+(**) p \textless{} 0.05.
 
 Recall that the governance objectives are evaluated based on the
 institutions present, not on a specific quantitative linkage between
@@ -853,24 +868,25 @@ fishing quotas (for some species). McCay {[}56{]} suggests that the TURF
 promotes a sense of stewardship of their resources and incentivizes
 sustainable management. Together, these structures enabled a
 participative, bottom--up process during the reserve design phase;
-opinions of all fishing members ---and often non--fishing community
-members--- were included. Participation of community members in reserve
+opinions of all fishing members --and often non-fishing community
+members-- were included. Participation of community members in reserve
 surveillance and yearly monitoring indicate commitment and interest, and
-allow informal communication of results to un--involved community
-members. Furthermore, the reserve is partially isolated from poaching
-activity and fishers have internal regulations pertaining to the
-reserves. The low level of illegal fishing by members of the community
-and outsiders both inside and outside the reserve represents another
-indication of effectiveness. Governance indicators are summarized in
-Table 5.
+allow informal communication of results to uninvolved community members.
+Furthermore, the reserve is partially isolated from poaching activity,
+and fishers have internal regulations pertaining to the reserves. The
+low level of illegal fishing by members of the community and outsiders
+both inside and outside the reserve represents another indication of
+effectiveness. Governance indicators are summarized in Table 5.
 
-\begin{table}
+\clearpage
 
-\caption{\label{tab:unnamed-chunk-6}Summary of governance indicators.}
+\textbf{Table 5. Summary of governance indicators.}
+
+\begin{table}[H]
 \centering
-\begin{tabular}[t]{l|>{\raggedright\arraybackslash}p{9cm}}
+\begin{tabular}{l|>{\raggedright\arraybackslash}p{9cm}}
 \hline
-Indicator & Description\\
+\bfseries{Indicator} & \bfseries{Description}\\
 \hline
 Access to the fishery & Permits, Territorial Use Rights for Fisheries, Quotas (for some fisheries)\\
 \hline
@@ -911,13 +927,13 @@ Social Impact of Reserve & The reserves have had a significant positive social i
 
 We have developed and presented an automated approach for evaluating the
 effectiveness of marine reserves in Mexico, and perhaps around the
-world. Here we highlight MAREA's utility for evidence---based
-management, and comment on a few of its shortcomings. The findings from
-Isla Natividad are used purely to validate the relevance of MAREA rather
-than to discuss particularities of the marine reserve effectiveness,
-which has been described before {[}8,10,43{]}. We use examples from the
-case study to build on the utility of MAREA and discuss ways in which
-results can be interpreted to inform management.
+world. Here we highlight MAREA's utility for evidence-based management,
+and comment on a few of its shortcomings. The findings from Isla
+Natividad are used purely to validate the relevance of MAREA rather than
+to discuss particularities of the marine reserve effectiveness, which
+has been described before {[}8,10,43{]}. We use examples from the case
+study to build on the utility of MAREA and discuss ways in which results
+can be interpreted to inform management.
 
 The causal inference techniques used by MAREA have been suggested
 {[}38,47{]} and used {[}21{]} before in other ad hoc studies. This
@@ -930,7 +946,7 @@ On the other hand, a control--impact approach (\emph{i.e.} compare
 reserve vs.~control site only in 2016) would have identified higher
 densities inside the reserve, concluding that the reserve increases
 invertebrate density. However, by executing a formal
-difference--in--differences approach for causal inference, MAREA
+difference-in-differences approach for causal inference, MAREA
 identifies the changes through time and across sites, and estimates the
 effect of the reserve on density at \(\beta_2 = 91.21\) (\emph{p}
 \textless{} 0.05). This approach reveals that invertebrate densities
@@ -947,7 +963,7 @@ in the indicator through time, but rather a positive difference with
 respect to the temporal trend of the control site. The inverse occurs
 for negative values of \(\beta_2\).
 
-MAREA provides in--depth analysis and a convenient snapshot overview of
+MAREA provides in-depth analysis and a convenient snapshot overview of
 the effect of the reserve, allowing users to rapidly identify trends.
 However, users must interpret multiple indicators at a time to better
 understand the results. For example, with additional knowledge of local
@@ -985,9 +1001,9 @@ identify overarching patterns across sites.
 By making results straightforward to interpret, MAREA may also assist in
 communication with a broader stakeholder community. While stakeholder
 involvement in the design and implementation phases of marine reserves
-is important, that may not be sufficient for ensuring long--run buy--in
+is important, that may not be sufficient for ensuring long-term buy-in
 or success. The scorecard is easily understandable by experts and
-non--experts, and can be used as an effective tool for communicating the
+non-experts, and can be used as an effective tool for communicating the
 results of annual evaluations. Additionally, the technical report can
 serve as a tool for managers and scientists to rapidly produce and
 communicate information at a more technical level.
@@ -1015,20 +1031,20 @@ identifying control sites and establishing a baseline before the
 implementation of the reserve is enough to overcome this issue; reserves
 for which there is no control site and baseline cannot be evaluated with
 MAREA. Typical underwater surveys require that at least 12 - 16
-transects are performed on each site (\emph{i.e.} reserve and control)
-each year. This provides with at least 48 samples (12 samples per site,
-per year), enough to avoid overfitting Eqn 1. However, these problems
-can be easily avoided during the design and implementation phases by
+transects are performed for each site (\emph{i.e.} reserve and control)
+each year. This provides at least 48 samples (12 samples per site, per
+year), enough to avoid overfitting Eqn 1. However, these problems can be
+easily avoided during the design and implementation phases by
 anticipating what data will be needed in the eventual evaluation.
 
 To the best of our knowledge, MAREA is the first tool designed to
 evaluate marine reserves. Previous work {[}23,25{]} addressed MPA
 evaluation and provided the foundation for our contribution. However,
-these did not intended to create user--friendly tools to aid in the
+these did not intended to create user-friendly tools to aid in the
 evaluation. As with other conservation management tools, development of
 tools that automatize complex calculations can have an important impact
 in management {[}63{]}. The use of open data science enables the
-creation of open-access tools that can address techincal gaps and
+creation of open-access tools that can address technical gaps and
 inprove management {[}28{]}.
 
 The effectiveness of marine reserves continues to be a matter of debate
