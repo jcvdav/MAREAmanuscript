@@ -13,7 +13,7 @@ output:
 fontsize: 12pt
 bibliography:
 - exported-references.bib
-- packages.bib
+# - packages.bib
 csl: plos.csl
 ---
 <script type="text/x-mathjax-config">
@@ -160,7 +160,7 @@ Governance indicators are excluded from the table, but all should be used for an
 
 In many coastal marine reserves, biological data are often collected via underwater visual censuses as part of a reserve’s monitoring program. Scientific divers record fish and invertebrate richness and abundances, as well as fish total length along belt transects. Ecological surveys are typically performed annually in each reserve and corresponding control site(s), before and after the implementation of the reserve, providing a sampling design that can be used to draw causal inference. Control sites are areas where habitat is similar to that of the reserve, but with presence of fishing activity; in principle these are areas that are otherwise observationally identical to the reserve site, but where, for presumably random reasons, a reserve was not implemented. While transect dimensions (*i.e.* length and width) and sampling methods might vary from study to study, the general idea remains the same: richness, abundances, and sizes of organisms are recorded in a study–specific standardized way. For this reason, MAREA does not assume specific transect dimensions, and pertinent indicators are calculated per transect (Table 1). More information on data collection and formatting is provided in a guidebook [@villaseorderbez_website_2017-xE], which is available in English and Spanish in MAREA's interface.
 
-This sampling design for biological data allows us to use causal inference techniques [@moland_2013-VP; @ferraro_2006-oW] to evaluate the effect of the reserve on biological indicators. The hypothesis that the indicators will respond to implementation of the reserve is tested by analyzing spatial and temporal changes in each numeric biological indicator (all but B5) using generalized linear models [@moland_2013-VP]. To account for variations in the environment and survey conditions, covariates that are gathered during the underwater ecological surveys are included in the difference-in-differences model with form:
+This sampling design for biological data allows us to use causal inference techniques [@moland_2013-VP; @ferraro_2006-oW] to evaluate the effect of the reserve on biological indicators. The hypothesis that the indicators will respond to implementation of the reserve is tested by analyzing spatial and temporal changes in each numeric biological indicator using generalized linear models [@moland_2013-VP]. To account for variations in the environment and survey conditions, covariates that are gathered during the underwater ecological surveys are included in the difference-in-differences model with form:
 
 \begin{equation}I_{i,t,z}=\beta_0 + \sum_{t = 2}^T\gamma_{t}Y_t + \beta_1Z_{i,z} + \beta_2P_{i,t}\times Z_{i,z} + \beta_3T_{i,t,z} + \beta_4V_{i,t,z} + \beta_5D_{i,t,z} + \epsilon_{i,t,z}\end{equation}
 
@@ -174,7 +174,7 @@ Where $I_t$ represents the adjusted income for year $t$ as the product between t
 
 \begin{equation}I_{t}=\beta_0 + \beta_1P_{t} + \epsilon_{t}\end{equation}
 
-While this model does not formally allow for causal inference, we can still measure changes in mean landings and income before and after the implementation of the reserve and provide valuable input. For both models (eq. 1 and eq. 3), we estimate the model coefficients with ordinary least squares, and calculate heteroskedastic–robust standard errors [@sandwich_2014].
+While this model does not formally allow for causal inference, we can still measure changes in mean landings and income before and after the implementation of the reserve and provide valuable input. For both models (eq. 1 and eq. 3), we estimate the model coefficients with ordinary least squares, and calculate heteroskedastic–robust standard errors [@zeileis_2004-7n].
 
 While biological and some economic data are regularly collected, governance data are typically not available nor systematically collected by the community or other organizations. Therefore, we created a survey specifically designed to collect information needed for the proposed indicators (B5, S3, and G1--G15). The survey is included as supplementary material in English (S1 Appendix) and Spanish (S2 Appendix). To analyze governance information, we developed a framework based on a literature review of common governance structures and their relation to effectiveness in managing fisheries or marine reserves (S3 Table). This approach has been proven to successfully evaluate governance structures [@espinosaromero_2014-PY]. Unlike with biological and socioeconomic objectives (see eqs 1 and 3), MAREA does not quantitatively analyze governance information. Rather, it is presented along with the biological and socioeconomic indicators to provide managers and users with a more complete description of the reserve.
 
@@ -220,7 +220,7 @@ landings <- read.csv("Data/natividad_landings_conapesca.csv", stringsAsFactors =
 
 While MAREA is a general tool that can be easily employed to evaluate the effectiveness of any marine reserve with the required input data, we illustrate its use here by applying it to one marine reserve near Isla Natividad, in Baja California Sur, Mexico. Isla Natividad is located 8 Km off the Pacific Coast of the Baja California Peninsula (Fig. 3), where fishers operate under a fishing cooperative (*S.C.P.P. Buzos y Pescadores de la Baja California*) that promotes co-management of marine resources [@mccay_2017-1m; @mccay_2014-CN]. Additionally, fishers have Territorial Use Rights for Fisheries (TURFs) that provide them with exclusive access rights to exploit the benthic marine resources within a given perimeter [@mccay_2014-CN].
 
-**Fig 3. General location of Isla Natividad (left) and map of the island (right).** The marine reserve polygon is indicated in red, and the approximate location of control sites is indicated by blue squares (B = Babencho, D = La Dulce). Shapefiles for Mexican coastline and the United States were obtained from the Instituto Nacional de Estadistica, Geografia e Informatica of Mexico (INEGI: www.inegi.org.mx/geo/contenidos/geoestadistica/m_geoestadistico.aspx) and the tmap R package [@tmap_2017], respectively.
+**Fig 3. General location of Isla Natividad (left) and map of the island (right).** The marine reserve polygon is indicated in red, and the approximate location of control sites is indicated by blue squares (B = Babencho, D = La Dulce). Shapefiles for Mexican coastline and the United States were obtained from INEGI @[INEGI] and the tmap R package [@tmap_2017], respectively.
 
 ```{r map}
 proj <- CRS("+proj=longlat +datum=NAD27")
