@@ -686,10 +686,11 @@ This sampling design for biological data allows us to use causal
 inference techniques {[}\DIFdelbegin \DIFdel{20,41}\DIFdelend \DIFaddbegin \DIFadd{21,47}\DIFaddend {]} to evaluate the effect of the reserve
 on biological indicators. The hypothesis that the indicators will
 respond to implementation of the reserve is tested by analyzing spatial
-and temporal changes in each numeric biological indicator \DIFdelbegin \DIFdel{(all but B5)}\DIFdelend
-using generalized linear models {[}\DIFdelbegin \DIFdel{20}\DIFdelend \DIFaddbegin \DIFadd{21}\DIFaddend {]}. To account for variations in
-the environment and survey conditions, covariates that are gathered
-during the underwater ecological surveys are included in the
+and temporal changes in each numeric biological indicator \DIFdelbegin \DIFdel{(all but B5)
+}\DIFdelend using
+generalized linear models {[}\DIFdelbegin \DIFdel{20}\DIFdelend \DIFaddbegin \DIFadd{21}\DIFaddend {]}. To account for variations in the
+environment and survey conditions, covariates that are gathered during
+the underwater ecological surveys are included in the
 difference-in-differences model with form:
 
 \begin{equation}I_{i,t,z}=\beta_0 + \sum_{t = 2}^T\gamma_{t}Y_t + \beta_1Z_{i,z} + \beta_2P_{i,t}\times Z_{i,z} + \beta_3T_{i,t,z} + \beta_4V_{i,t,z} + \beta_5D_{i,t,z} + \epsilon_{i,t,z}\end{equation}
@@ -791,10 +792,10 @@ provides a global score for the reserve, a general score for each
 category of indicators, and an individual score for each indicator. The
 global and category--level scores are determined by the percentage of
 positive indicators, overall and for each category, respectively. For
-numeric biological indicators (all but B5), the color is defined by the
-sign of the interaction term coefficient (\(\beta_2\)) in eq. 1. For
-socioeconomic indicators, colors are assigned based on the direction of
-the slope (\(\beta_1\)) in eq. 3. Red, yellow, and green are used for
+numeric biological indicators\DIFdelbegin \DIFdel{(all but B5)}\DIFdelend , the color is defined by the sign of the
+interaction term coefficient (\(\beta_2\)) in eq. 1. For socioeconomic
+indicators, colors are assigned based on the direction of the slope
+(\(\beta_1\)) in eq. 3. Red, yellow, and green are used for
 \(\beta_i<0\), \(\beta_i = 0\), and \(\beta_i>0\), respectively. The
 intensity of the color is defined by the significance of the
 coefficient, testing the null hypothesis of no change (\emph{i.e.}
@@ -854,17 +855,15 @@ rights to exploit the benthic marine resources within a given perimeter
 island (right).} The marine reserve polygon is indicated in red, and the
 approximate location of control sites is indicated by blue squares (B =
 Babencho, D = La Dulce). \DIFaddbegin \DIFadd{Shapefiles for Mexican coastline and the United
-States were obtained from the Instituto Nacional de Estadistica,
-Geografia e Informatica of Mexico (INEGI:
-www.inegi.org.mx/geo/contenidos/geoestadistica/m\_geoestadistico.aspx)
-and the tmap R package }{[}\DIFadd{58}{]}\DIFadd{, respectively.
+States were obtained from INEGI }{[}\DIFadd{58}{]} \DIFadd{and the tmap R package
+}{[}\DIFadd{59}{]}\DIFadd{, respectively.
 }\DIFaddend 
 
 In 2006, the Isla Natividad community \DIFdelbegin \DIFdel{implemented two community--based
 }\DIFdelend \DIFaddbegin \DIFadd{established a biological baseline
 following the data collection protocol described in this study. The
 community then implemented two community-based }\DIFaddend marine reserves within
-their TURF {[}\DIFdelbegin \DIFdel{9,51,52}\DIFdelend \DIFaddbegin \DIFadd{8,41,59}\DIFaddend {]} \DIFaddbegin \DIFadd{after establishing a baseline for the
+their TURF {[}\DIFdelbegin \DIFdel{9,51,52}\DIFdelend \DIFaddbegin \DIFadd{8,41,60}\DIFaddend {]} \DIFaddbegin \DIFadd{after establishing a baseline for the
 soon-to-be reserves and control sites}\DIFaddend . Evidence suggest that these
 reserves have been effective at enhancing resilience to climate
 variations {[}\DIFdelbegin \DIFdel{9}\DIFdelend \DIFaddbegin \DIFadd{8}\DIFaddend {]} and preserving genetic diversity of high value
@@ -889,7 +888,7 @@ California, and Stanford University) and personnel from these
 institutions performed SCUBA dives to record fish and invertebrate
 richness and abundances, as well as fish total length. They recorded
 information along 30 m transects, with a sampling window of 2 m x 2 m
-following a standardized ReefCheck protocol {[}\DIFdelbegin \DIFdel{54}\DIFdelend \DIFaddbegin \DIFadd{60}\DIFaddend {]}. Ecological surveys
+following a standardized ReefCheck protocol {[}\DIFdelbegin \DIFdel{54}\DIFdelend \DIFaddbegin \DIFadd{61}\DIFaddend {]}. Ecological surveys
 were performed yearly in each reserve and corresponding control site(s),
 before and after the implementation of the reserve, providing the
 requisite time series data inside the reserve and for a suitable control
@@ -1094,12 +1093,12 @@ Cucumber income & 131.49 (185.66) & 0.7082\\
 institutions present, not on a specific quantitative linkage between
 governance and biological or economic outcomes. Data for this reserve
 suggest that the community is strongly organized, which is a likely
-driver of the successes reported above {[}\DIFdelbegin \DIFdel{55}\DIFdelend \DIFaddbegin \DIFadd{61}\DIFaddend {]}. The first point of
+driver of the successes reported above {[}\DIFdelbegin \DIFdel{55}\DIFdelend \DIFaddbegin \DIFadd{62}\DIFaddend {]}. The first point of
 success is the existence of a fishing cooperative that is also
 affiliated with a regional federation of cooperatives. These polycentric
 governance structures allow various levels of organization that have
 been shown to foster communication and cooperation {[}\DIFdelbegin \DIFdel{43,}\DIFdelend 50\DIFaddbegin \DIFadd{,57}\DIFaddend {]};
-federations also provide bargain power with governments {[}\DIFdelbegin \DIFdel{43,56}\DIFdelend \DIFaddbegin \DIFadd{50,62}\DIFaddend {]}.
+federations also provide bargain power with governments {[}\DIFdelbegin \DIFdel{43,56}\DIFdelend \DIFaddbegin \DIFadd{50,63}\DIFaddend {]}.
 Access to fishing resources is managed through a TURF, permits, and
 fishing quotas (for some species). McCay {[}\DIFdelbegin \DIFdel{49}\DIFdelend \DIFaddbegin \DIFadd{56}\DIFaddend {]} suggests that the TURF
 promotes a sense of stewardship of their resources and incentivizes
@@ -1293,19 +1292,19 @@ evaluation and provided the foundation for our contribution. However,
 these did not intended to create user-friendly tools to aid in the
 evaluation. As with other conservation management tools, development of
 tools that automatize complex calculations can have an important impact
-in management }{[}\DIFadd{63}{]}\DIFadd{. The use of open data science enables the
+in management }{[}\DIFadd{64}{]}\DIFadd{. The use of open data science enables the
 creation of open-access tools that can address technical gaps and
 inprove management }{[}\DIFadd{28}{]}\DIFadd{.
 }
 
 \DIFaddend The effectiveness of marine reserves continues to be a matter of debate
-{[}\DIFdelbegin \DIFdel{7,12,40}\DIFdelend \DIFaddbegin \DIFadd{11,44,64}\DIFaddend {]}. With current targets set to increase ocean protection,
+{[}\DIFdelbegin \DIFdel{7,12,40}\DIFdelend \DIFaddbegin \DIFadd{11,44,65}\DIFaddend {]}. With current targets set to increase ocean protection,
 it is important that we understand the effects of our interventions
 {[}\DIFdelbegin \DIFdel{37}\DIFdelend \DIFaddbegin \DIFadd{38}\DIFaddend {]} so we can better inform management {[}\DIFdelbegin \DIFdel{41}\DIFdelend \DIFaddbegin \DIFadd{47}\DIFaddend {]}. It is therefore
 important that academics, managers, fishers, and CSOs have access to
 open access tools like MAREA. This is particularly relevant for Mexico
 and other Latin American countries, where management agencies are often
-understaffed and underfunded {[}\DIFdelbegin \DIFdel{57}\DIFdelend \DIFaddbegin \DIFadd{65}\DIFaddend {]}, or where materials are often not
+understaffed and underfunded {[}\DIFdelbegin \DIFdel{57}\DIFdelend \DIFaddbegin \DIFadd{66}\DIFaddend {]}, or where materials are often not
 available in their language. In this context, MAREA provides a simple
 and replicable way to align management objectives with performance
 indicators. The proposed methodologies, especially the way in which
@@ -1451,9 +1450,8 @@ catches through trophic cascades in china. Proc Natl Acad Sci USA.
 doi:}\href{https://doi.org/10.1073/pnas.1612722114}{10.1073/pnas.1612722114}
 
 \hypertarget{ref-chavez_2003-_m}{}
-\DIFaddend 16. \DIFaddbegin \DIFadd{Chavez FP, Ryan J, Lluch-Cota SE, Niquen C M. From anchovies to
-sardines and back: Multidecadal change in the pacific ocean. Science.
-2003;299: 217--221.
+\DIFaddend 16. \DIFaddbegin \DIFadd{Chavez FP. From anchovies to sardines and back: Multidecadal change
+in the pacific ocean. Science. 2003;299: 217--221.
 doi:}\href{https://doi.org/10.1126/science.1075880}{10.1126/science.1075880}
 
 \hypertarget{ref-davies_2017-ml}{}
@@ -1649,10 +1647,10 @@ doi:\href{https://doi.org/10.1371/journal.pbio.0040105}{10.1371/journal.pbio.004
 \DIFdelbegin \DIFdel{42. }\DIFdelend \DIFaddbegin \DIFadd{48. }\DIFaddend OECD. Prices - inflation (cpi) - oecd data {[}Internet{]}. 2017.
 Available: \url{https://data.oecd.org/price/inflation-cpi.htm}
 
-\DIFaddbegin \hypertarget{ref-sandwich_2014}{}
+\DIFaddbegin \hypertarget{ref-zeileis_2004-7n}{}
 \DIFadd{49. Zeileis A. Econometric computing with hc and hac covariance matrix
-estimators. Journal of Statistical Software. 2004;11: 1--17.
-}
+estimators. J Stat Softw. 2004;11.
+doi:}\href{https://doi.org/10.18637/jss.v011.i10}{10.18637/jss.v011.i10}
 
 \DIFaddend \hypertarget{ref-espinosaromero_2014-PY}{}
 \DIFdelbegin \DIFdel{43. }\DIFdelend \DIFaddbegin \DIFadd{50. }\DIFaddend Espinosa-Romero MJ, Rodriguez LF, Weaver AH, Villanueva-Aznar C,
@@ -1697,12 +1695,17 @@ Ramirez-Sanchez S, et al. Cooperatives, concessions, and co-management
 on the pacific coast of mexico. Marine Policy. 2014;44: 49--59.
 doi:\href{https://doi.org/10.1016/j.marpol.2013.08.001}{10.1016/j.marpol.2013.08.001}
 
-\DIFaddbegin \hypertarget{ref-tmap_2017}{}
-\DIFadd{58. Tennekes M. Tmap: Thematic maps }{[}\DIFadd{Internet}{]}\DIFadd{. 2017. Available:
+\DIFaddbegin \hypertarget{ref-INEGI}{}
+\DIFadd{58. Estadistica Geografia e Informatica de Mexico IN de. Marco
+geoestadistico nacional. 2017. Available:
+}\url{www.inegi.org.mx/geo/contenidos/geoestadistica/m_geoestadistico.aspx}
+
+\hypertarget{ref-tmap_2017}{}
+\DIFadd{59. Tennekes M. Tmap: Thematic maps }{[}\DIFadd{Internet}{]}\DIFadd{. 2017. Available:
 }\url{https://CRAN.R-project.org/package=tmap}
 
 \DIFaddend \hypertarget{ref-afflerbach_2014-HP}{}
-\DIFdelbegin \DIFdel{51. }\DIFdelend \DIFaddbegin \DIFadd{59. }\DIFaddend Afflerbach JC, Lester SE, Dougherty DT, Poon SE. A global survey of
+\DIFdelbegin \DIFdel{51. }\DIFdelend \DIFaddbegin \DIFadd{60. }\DIFaddend Afflerbach JC, Lester SE, Dougherty DT, Poon SE. A global survey of
 -reserves, territorial use rights for fisheries coupled with marine
 reserves. Global Ecology and Conservation. 2014;2: 97--106.
 doi:\href{https://doi.org/10.1016/j.gecco.2014.08.001}{10.1016/j.gecco.2014.08.001}
@@ -1726,37 +1729,37 @@ doi:}%DIFDELCMD < \href{https://doi.org/10.1139/cjfas-2013-0623}{10.1139/cjfas-2
 
 %DIFDELCMD < %%%
 \DIFdelend \hypertarget{ref-suman_2010-ez}{}
-\DIFdelbegin \DIFdel{54. }\DIFdelend \DIFaddbegin \DIFadd{60. }\DIFaddend Suman CS, Saenz-Arroyo A, Dawson C, Luna MC. Manual de instruccion
+\DIFdelbegin \DIFdel{54. }\DIFdelend \DIFaddbegin \DIFadd{61. }\DIFaddend Suman CS, Saenz-Arroyo A, Dawson C, Luna MC. Manual de instruccion
 de reef check california: Guia de instruccion para el monitoreo del
 bosque de sargazo en la peninsula de baja california. Pacific Palisades,
 CA, USA: Reef Check Foundation; 2010.
 
 \hypertarget{ref-gutirrez_2011-0U}{}
-\DIFdelbegin \DIFdel{55. }\DIFdelend \DIFaddbegin \DIFadd{61. }\DIFaddend Gutiérrez NL, Hilborn R, Defeo O. Leadership, social capital and
+\DIFdelbegin \DIFdel{55. }\DIFdelend \DIFaddbegin \DIFadd{62. }\DIFaddend Gutiérrez NL, Hilborn R, Defeo O. Leadership, social capital and
 incentives promote successful fisheries. Nature. 2011;470: 386--389.
 doi:\href{https://doi.org/10.1038/nature09689}{10.1038/nature09689}
 
 \hypertarget{ref-finkbeiner_2015-87}{}
-\DIFdelbegin \DIFdel{56. }\DIFdelend \DIFaddbegin \DIFadd{62. }\DIFaddend Finkbeiner EM, Basurto X. Re-defining co-management to facilitate
+\DIFdelbegin \DIFdel{56. }\DIFdelend \DIFaddbegin \DIFadd{63. }\DIFaddend Finkbeiner EM, Basurto X. Re-defining co-management to facilitate
 small-scale fisheries reform: An illustration from northwest mexico.
 Marine Policy. 2015;51: 433--441.
 doi:\href{https://doi.org/10.1016/j.marpol.2014.10.010}{10.1016/j.marpol.2014.10.010}
 
 \DIFaddbegin \hypertarget{ref-ball_2009-qi}{}
-\DIFadd{63. Ball IR, Possingham HP, Watts ME. Marxan and relatives: Software for
+\DIFadd{64. Ball IR, Possingham HP, Watts ME. Marxan and relatives: Software for
 spatial conservation prioritization. Spatial conservation prioritization
 quantitative methods \& computational tools. United Kingdom: Oxford
 University Press; 2009. pp. 185--195. Available:
 }\url{https://espace.library.uq.edu.au/view/UQ:200259}
 
 \hypertarget{ref-padleton_2017-vn}{}
-\DIFadd{64. Padleton L, Aghmadia G, Browman H, Thurstand R, Kaplan D, Bartolino
+\DIFadd{65. Padleton L, Aghmadia G, Browman H, Thurstand R, Kaplan D, Bartolino
 V. Debating the effectiveness of marine protected areas. ICES Journal of
 Marine Science. 2017;
 doi:}\href{https://doi.org/10.1093/icesjms/fsx154}{10.1093/icesjms/fsx154}
 
 \DIFaddend \hypertarget{ref-lundquist_2005-OL}{}
-\DIFdelbegin \DIFdel{57. }\DIFdelend \DIFaddbegin \DIFadd{65. }\DIFaddend Lundquist CJ, Granek EF. Strategies for successful marine
+\DIFdelbegin \DIFdel{57. }\DIFdelend \DIFaddbegin \DIFadd{66. }\DIFaddend Lundquist CJ, Granek EF. Strategies for successful marine
 conservation: Integrating socioeconomic, political, and scientific
 factors. Conserv Biol. 2005;19: 1771--1778.
 doi:\href{https://doi.org/10.1111/j.1523-1739.2005.00279.x}{10.1111/j.1523-1739.2005.00279.x}
